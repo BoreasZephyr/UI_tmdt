@@ -6,11 +6,12 @@
   --second-color: #fb6e2e;
 
   --header-height: 87px;
+  --footer-height: 200px;
 }
 * {
   padding: 0;
   margin: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 html {
   box-sizing: border-box;
@@ -19,9 +20,39 @@ html {
   font-size: 62.5%;
   line-height: 1.6rem;
 }
+body {
+}
 a {
   text-decoration: none;
 }
+.link {
+  color: var(--white-color);
+}
+.link:hover {
+  color: var(--primary-color);
+}
+.link:visited {
+  columns: var(--white-color);
+}
 .btn {
   width: auto;
+}
+.btn:focus {
+  box-shadow: 0;
+}
+.primary-btn {
+  background-color: var(--primary-color);
+  /* font-size: 3.6rem;
+  font-weight: 500; */
+  color: var(--white-color);
+  border-radius: 40px;
+  padding: 5px 12px;
+}
+footer {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  min-height: var(--footer-height);
+  max-height: var(--footer-height);
+  margin-top: 20px;
+  position: relative;
 }
