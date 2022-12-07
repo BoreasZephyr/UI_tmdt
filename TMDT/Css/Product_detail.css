@@ -1,0 +1,121 @@
+.product-info-container {
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px grey;
+  padding: 5px;
+}
+.product__img-container {
+}
+.product__img-slide-container {
+}
+.product__img-slide {
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  border: 1px solid #707070;
+  border-radius: 3px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: transform linear 0.1s;
+  will-change: transform;
+}
+.product__img-slide:hover {
+  box-shadow: 0 20px 20px 0 rgb(0 0 0 / 5%);
+  transform: translateY(-1px);
+}
+.product__img-slide:first-child {
+  margin-top: 0;
+}
+.product__img {
+  padding-top: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.product-info {
+}
+.product__header {
+  cursor: default;
+}
+.product-info__heading {
+  font-size: 25px;
+  font-weight: 700;
+}
+.product-info-description {
+  font-size: 15px;
+}
+.product-price-time-container {
+  cursor: default;
+}
+.product-price {
+  font-size: 15px;
+}
+.product-time {
+  display: flex;
+  width: 135px;
+  justify-content: center;
+  border-radius: 12px;
+  /* text-align: center; */
+  color: var(--white-color);
+  background-color: var(--black-color);
+  font-size: 15px;
+}
+.product-bid-container {
+  margin-top: 10px;
+  cursor: default;
+}
+.product-bid__header {
+  margin-bottom: 22px;
+}
+.product-bid__heading {
+  font-size: 25px;
+  margin-bottom: -4px;
+}
+.product-min-bid {
+  font-size: 14px;
+}
+.product-bid {
+  display: flex;
+  justify-content: space-between;
+}
+.product-bid__input {
+  width: 75%;
+  font-size: 1.2rem;
+  line-height: 12px;
+  border: 1px solid var(--bs-gray-dark);
+  border-radius: 8px;
+  padding: 0 8px;
+  box-shadow: 1px 1px 1px 0px grey;
+}
+.product-bid__input:focus-visible {
+  outline: transparent;
+}
+.product-bid__btn {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.product-other-auction-cotainer {
+  margin-top: 20px;
+}
+.product-description-container {
+  margin-top: 20px;
+}
+.product-description {
+  cursor: default;
+}
+.product-description__heading {
+  font-size: 2.5rem;
+}
+.product-description-content {
+  font-size: 1.5rem;
+}
+.product-description__img {
+  cursor: pointer;
+  padding-top: 20%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top center;
+}

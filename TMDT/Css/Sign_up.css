@@ -1,0 +1,96 @@
+.sign-up__form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  transform: translateX(-50%) translateY(-50%);
+  /* margin: auto; */
+  background: white;
+  padding: 10px 20px 15px;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.sign-up__form {
+}
+.sign-up__header {
+  text-align: center;
+  cursor: default;
+}
+.sign-up-login {
+  text-align: center;
+  cursor: default;
+  padding-bottom: 10px;
+}
+.login__link {
+  text-decoration: underline;
+}
+.login__link:hover {
+  color: var(--primary-color);
+}
+.name__input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.name__input {
+  flex: 0 0 45%;
+}
+.input__heading {
+  font-size: 1.5rem;
+  padding: 0;
+  cursor: default;
+}
+.email__heading {
+}
+.sign-up__input {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 8px 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.sign-up__input:focus-visible {
+  outline: 0;
+}
+.email__input {
+}
+.password__heading {
+}
+.password__input {
+}
+.privacy-confirm__container {
+  margin: 15px 0 -7px 3px;
+}
+.privacy__checkbox {
+  transform: scale(1.5);
+}
+.privacy__label {
+  font-size: 15px;
+  margin-left: 8px;
+}
+.term__link {
+  color: var(--black-color);
+  text-decoration: underline;
+}
+.term__link:hover {
+  color: var(--primary-color);
+}
+.log-in-btn {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 25px;
+  border-radius: 7px;
+}
+.sign-up-google__heading {
+  /* width: 100%; */
+  text-align: center;
+  /* margin-top: 5px; */
+  margin: 10px 0;
+}
+.sign-up-google__btn {
+  color: white;
+  font-size: 15px;
+  margin: auto;
+  background-color: #ea4335;
+  padding: 10px;
+}

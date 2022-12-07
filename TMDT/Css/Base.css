@@ -21,6 +21,7 @@ html {
   line-height: 1.6rem;
 }
 body {
+  margin-top: 100px;
 }
 a {
   text-decoration: none;
@@ -48,6 +49,9 @@ a {
   border-radius: 40px;
   padding: 5px 12px;
 }
+.primary-btn:focus {
+  box-shadow: none;
+}
 footer {
   background-color: var(--black-color);
   color: var(--white-color);
@@ -55,4 +59,14 @@ footer {
   max-height: var(--footer-height);
   margin-top: 20px;
   position: relative;
+}
+@keyframes HoverGrow {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../Css/Base.css">
     <link rel="stylesheet" href="../Css/grid.css">
     <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/Header.css">
+    <link rel="stylesheet" href="../Css/Footer.css">
     <title>Home</title>
 
 </head>
@@ -33,19 +35,34 @@
                 </div>
                 <div class="col l-3 header-choices">
                     <div class="col l-4 header-choice__btn">
-                        <a href="#" class="link header-choice__link">
+                        <a href="#" class="link header-choice__link header-search__btn">
                             <i class="fa-solid fa-magnifying-glass header-choice__icon"></i>
                         </a>
                     </div>
                     <div class="col l-4 header-choice__btn">
-                        <a href="#" class="link header-choice__link">
+                        <a href="#" class="link header-choice__link header-cart__btn">
                             <i class="fa-solid fa-cart-shopping header-choice__icon"></i>
                         </a>
                     </div>
-                    <div class="col l-4 header-choice__btn">
-                        <a href="#" class="link header-choice__link">
+                    <div class="col l-4 header-choice__btn header-user__container">
+                        <a href="#" class="link header-choice__link header-user__btn">
                             <i class="fa-regular fa-user header-choice__icon"></i>
                         </a>
+                        <div class="header-user-choice__list">
+                            <div class="header-user-choice-up">
+                                <div class="header-user-greeting">
+                                    <h3 class="header-user__heading">Hello!</h3>
+                                    <p class="header-user__description">Access account and manage order</p>
+                                </div>
+                                <div class="header-user-login__btn-container">
+                                    <button class="header-user-login__btn js-login__btn">Login/Sign up</button>
+                                </div>
+                            </div>
+                            <div class="header-user-choice-bottom">
+                                <a href="#" class="header-user-order__btn">Orders</a>
+                                <a href="#" class="header-user-order__btn">Saved products</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,8 +169,8 @@
     <div class="grid wide">
         <div class="row">
             <div class="product-container">
-                <div class="product__header">
-                    <div class="col l-10 product__header-left">
+                <div class="product-item__header">
+                    <div class="col l-10 product-item__header-left">
                         <h3 class="product__heading">Live auction</h3>
                         <p class="product__description">
                             Explore on the best bidding watches marketplace.
@@ -161,8 +178,8 @@
                             We want to be a part of your smile, success and future growth.
                         </p>
                     </div>
-                    <div class="product__header-right">
-                        <button class="product__header-btn btn primary-btn">View all</button>
+                    <div class="product-item__header-right">
+                        <button class="product-item__header-btn btn primary-btn">View all</button>
                     </div>
                 </div>
             </div>
@@ -170,7 +187,7 @@
         <div class="productList__container">
             <div class="grid wide">
                 <div class="row">
-                    <a href="#" class="productItem__container col l-4">
+                    <a href="#" class="productItem__container col l-4 m-6 c-12">
                         <div class="productItem">
                             <div class="productItem__img"
                                 style="background-image: url(../Pictures/watch-png-25016.png);">
@@ -186,7 +203,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="productItem__container col l-4">
+                    <a href="#" class="productItem__container col l-4 m-6 c-12">
                         <div class="productItem">
                             <div class="productItem__img"
                                 style="background-image: url(https://randomwordgenerator.com/img/picture-generator/54e3d04b4951af14f1dc8460962e33791c3ad6e04e50744172287ad29448c7_640.jpg);">
@@ -202,7 +219,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="productItem__container col l-4">
+                    <a href="#" class="productItem__container col l-4 m-6 c-12">
                         <div class="productItem">
                             <div class="productItem__img"
                                 style="background-image: url(https://randomwordgenerator.com/img/picture-generator/57e8d1454b50a414f1dc8460962e33791c3ad6e04e50744172297bd59f4bc2_640.jpg);">
@@ -217,9 +234,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
-                <div class="row">
-                    <a href="#" class="productItem__container col l-4">
+                    <a href="#" class="productItem__container col l-4 m-6 c-12">
                         <div class="productItem">
                             <div class="productItem__img"
                                 style="background-image: url(https://randomwordgenerator.com/img/picture-generator/50e9d6454e57b10ff3d8992cc12c30771037dbf85254794e702672d3934d_640.jpg);">
@@ -235,7 +250,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="productItem__container col l-4">
+                    <a href="#" class="productItem__container col l-4 m-6 c-12">
                         <div class="productItem">
                             <div class="productItem__img"
                                 style="background-image: url(https://randomwordgenerator.com/img/picture-generator/53e1d6444b56ab14f1dc8460962e33791c3ad6e04e5074417c2f7cd39644c6_640.jpg);">
@@ -251,7 +266,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="productItem__container col l-4">
+                    <a href="#" class="productItem__container col l-4 m-6 c-12">
                         <div class="productItem">
                             <div class="productItem__img"
                                 style="background-image: url(https://randomwordgenerator.com/img/picture-generator/53e1d74b4850b10ff3d8992cc12c30771037dbf85257714d742d7ddd9545_640.jpg);">
@@ -271,6 +286,7 @@
 
         </div>
     </div>
+    <!-- Footer -->
     <footer>
         <div class="grid wide">
             <div class="row">
@@ -284,34 +300,34 @@
                 <div class="col l-7 info">
                     <div class="row teacher-info">
                         <a href="https://www.facebook.com/groups/608511260661326/user/596161424"
-                            class="link teacher-name">Lương Vĩ Minh</a>
+                            class="link teacher-name">Gv: Lương Vĩ Minh</a>
                     </div>
                     <div class="row students-info">
                         <a href="https://www.facebook.com/thomastheonefour.12" target="_blank"
                             class="col l-4 link student-info student1">
                             <div class="student-name student1-name">Nguyễn Minh Cương</div>
-                            <div class="student-id student1-id">19110000</div>
+                            <div class="student-id student1-id">19110016</div>
                         </a>
                         <a href="https://www.facebook.com/chienbeo17" target="_blank"
                             class="col l-4 link student-info student2">
                             <div class="student-name student2-name">Nguyễn Minh Chiến</div>
-                            <div class="student-id student2-id">19110000</div>
+                            <div class="student-id student2-id">19110173</div>
                         </a>
                         <a href="https://www.facebook.com/buep.303" target="_blank"
                             class="col l-4 link student-info student3">
                             <div class="student-name student3-name">Nguyễn Hữu Đăng</div>
-                            <div class="student-id student3-id">19110000</div>
+                            <div class="student-id student3-id">19110187</div>
                         </a>
                     </div>
                     <div class="row students-info">
                         <a href="https://www.facebook.com/PerfectVessel/" target="_blank"
                             class="col l-6 link student-info student4">
                             <div class="student-name student4-name">Nguyễn Văn Sơn Tùng</div>
-                            <div class="student-id student4-id">19110000</div>
+                            <div class="student-id student4-id">19110018</div>
                         </a>
                         <a href="" class="col l-6 link student-info student5" target="_blank">
-                            <div class="student-name student5-name">Thắng</div>
-                            <div class="student-id student5-id">19110000</div>
+                            <div class="student-name student5-name">Cao Xuân Thắng</div>
+                            <div class="student-id student5-id">19119222</div>
                         </a>
                     </div>
                 </div>
@@ -335,6 +351,32 @@
             </div>
         </div>
     </footer>
+    <!--Hidden layout -->
+    <div class="layout__overlay js-layout__overlay">
+        <div class="dark-layout js-dark-layout"></div>
+        <div class="login__form-container js-login__form-container">
+            <form action="submit" class="login__form">
+
+                <h1 class="login__header">Log in</h1>
+                <h3 class="login-signup">New member? <a href="#" class="signup__link"><strong>Sign up
+                            here!</strong></a>
+                </h3>
+                <div class="col l-12 input__heading email__heading">Enter your email</div>
+                <input type="email" class="col l-12 login__input email__input" placeholder="a123@email.com">
+                <div class="col l-12 input__heading password__heading">Enter your password</div>
+                <input type="password" class="col l-12 login__input password__input">
+
+            </form>
+            <a href="#" class="forgot-password__link">Forgot password?</a>
+            <button class="col l-12 btn primary-btn log-in-btn">Log In</button>
+            <div class="sign-up-google__heading">or sign up with</div>
+            <button class="col l-6 btn sign-up-google__btn">
+                <i class="fa-brands fa-google"></i>
+                SIGN UP WITH GOOGLE
+            </button>
+        </div>
+    </div>
+    <script src="../Js/Index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

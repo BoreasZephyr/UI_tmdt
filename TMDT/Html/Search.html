@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="../Css/Base.css">
+    <link rel="stylesheet" href="../Css/grid.css">
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/Search.css">
+    <link rel="stylesheet" href="../Css/Header.css">
+    <link rel="stylesheet" href="../Css/Footer.css">
+    <title>Search</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-3 header-logo-container">
+                    <div class="header-logo">
+                        <a href="#" class="header-logo__link">CDC Auction</a>
+                    </div>
+                </div>
+                <div class="col l-6 header__search-container">
+                    <input type="text" class="header__search" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                </div>
+                <div class="col l-3 header-choices">
+                    <div class="col l-4 header-choice__btn">
+                        <a href="#" class="link header-choice__link header-search__btn">
+                            <i class="fa-solid fa-magnifying-glass header-choice__icon"></i>
+                        </a>
+                    </div>
+                    <div class="col l-4 header-choice__btn">
+                        <a href="#" class="link header-choice__link header-cart__btn">
+                            <i class="fa-solid fa-cart-shopping header-choice__icon"></i>
+                        </a>
+                    </div>
+                    <div class="col l-4 header-choice__btn header-user__container">
+                        <a href="#" class="link header-choice__link header-user__btn">
+                            <i class="fa-regular fa-user header-choice__icon"></i>
+                        </a>
+                        <div class="header-user-choice__list">
+                            <div class="header-user-choice-up">
+                                <div class="header-user-greeting">
+                                    <h3 class="header-user__heading">Hello!</h3>
+                                    <p class="header-user__description">Access account and manage order</p>
+                                </div>
+                                <div class="header-user-login__btn-container">
+                                    <button class="header-user-login__btn">Login/Sign up</button>
+                                </div>
+                            </div>
+                            <div class="header-user-choice-bottom">
+                                <a href="#" class="header-user-order__btn">Orders</a>
+                                <a href="#" class="header-user-order__btn">Saved products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <!-- Nav bar -->
+    <div class="grid wide">
+        <div class="row">
+            <div class=" dropdown sort-container sort-brand-container">
+                <a class="btn btn-secondary dropdown-toggle sort__heading sort-brand__heading" href="#" role="button"
+                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Brand
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink sort-container sort-brand__container">
+                    <li><a class="dropdown-item sort__item sort-brand__item" href="#">Louis Vuitton</a></li>
+                    <li><a class="dropdown-item sort__item sort-brand__item" href="#">Rolex</a></li>
+                    <li><a class="dropdown-item sort__item sort-brand__item" href="#">Citizen</a></li>
+                    <li><a class="dropdown-item sort__item sort-brand__item" href="#">Casio</a></li>
+                </ul>
+            </div>
+
+            <div class=" dropdown sort-container sort-price-container">
+                <a class="btn btn-secondary dropdown-toggle sort__heading sort-price__heading" href="#" role="button"
+                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Price
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink sort-price__list">
+                    <li><a class="dropdown-item sort__item sort-price__item" href="#">100 - 400$</a></li>
+                    <li><a class="dropdown-item sort__item sort-price__item" href="#">400 - 1000$</a></li>
+                    <li><a class="dropdown-item sort__item sort-price__item" href="#">1000 - 5000$</a></li>
+                    <li><a class="dropdown-item sort__item sort-price__item" href="#">Over 5000$</a></li>
+                </ul>
+            </div>
+            <div class=" dropdown about-to-end__btn-container">
+                <a class="btn btn-secondary dropdown-toggle about-to-end__btn" href="#" role="button"
+                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    About to end
+                </a>
+            </div>
+            <div class=" dropdown go__btn-container">
+                <a class="btn primary-btn btn-secondary dropdown-toggle go__btn" href="#" role="button"
+                    id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Go
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Product list -->
+    <div class="grid wide">
+        <div class="row">
+            <a href="#" class="productItem__container col l-4 m-6 c-12">
+                <div class="productItem">
+                    <div class="productItem__img" style="background-image: url(../Pictures/watch-png-25016.png);">
+                    </div>
+                    <div class="productItem__info col l-12">
+                        <div class="productItem__name">Casio-MTP-VT01L-2B</div>
+                        <div class="productItem__date-remain">00H : 00M : 00S</div>
+                    </div>
+                    <div class="productItem-trade__info">
+                        <div class="productItem__price">400 $</div>
+                        <div class="productItem-pay__btn btn primary-btn">Place Bid</div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="productItem__container col l-4 m-6 c-12">
+                <div class="productItem">
+                    <div class="productItem__img"
+                        style="background-image: url(https://randomwordgenerator.com/img/picture-generator/57e8d34b4a57ad14f1dc8460962e33791c3ad6e04e50744172297cdd9349cc_640.jpg);">
+                    </div>
+                    <div class="productItem__info col l-12">
+                        <div class="productItem__name">Casio-MTP-VT01L-2B</div>
+                        <div class="productItem__date-remain">00H : 00M : 00S</div>
+                    </div>
+                    <div class="productItem-trade__info">
+                        <div class="productItem__price">400 $</div>
+                        <div class="productItem-pay__btn btn primary-btn">Place Bid</div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="productItem__container col l-4 m-6 c-12">
+                <div class="productItem">
+                    <div class="productItem__img"
+                        style="background-image: url(https://randomwordgenerator.com/img/picture-generator/53e3d7454351ac14f1dc8460962e33791c3ad6e04e507440762e7ad3954fcd_640.jpg);">
+                    </div>
+                    <div class="productItem__info col l-12">
+                        <div class="productItem__name">Casio-MTP-VT01L-2B</div>
+                        <div class="productItem__date-remain">00H : 00M : 00S</div>
+                    </div>
+                    <div class="productItem-trade__info">
+                        <div class="productItem__price">400 $</div>
+                        <div class="productItem-pay__btn btn primary-btn">Place Bid</div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="productItem__container col l-4 m-6 c-12">
+                <div class="productItem">
+                    <div class="productItem__img"
+                        style="background-image: url(https://randomwordgenerator.com/img/picture-generator/5ee9d14a4b5bb10ff3d8992cc12c30771037dbf85254784a722d73d79349_640.jpg);">
+                    </div>
+                    <div class="productItem__info col l-12">
+                        <div class="productItem__name">Casio-MTP-VT01L-2B</div>
+                        <div class="productItem__date-remain">00H : 00M : 00S</div>
+                    </div>
+                    <div class="productItem-trade__info">
+                        <div class="productItem__price">400 $</div>
+                        <div class="productItem-pay__btn btn primary-btn">Place Bid</div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="productItem__container col l-4 m-6 c-12">
+                <div class="productItem">
+                    <div class="productItem__img"
+                        style="background-image: url(https://randomwordgenerator.com/img/picture-generator/53e2d3474356aa14f1dc8460962e33791c3ad6e04e507749772f78d4924fc3_640.jpg);">
+                    </div>
+                    <div class="productItem__info col l-12">
+                        <div class="productItem__name">Casio-MTP-VT01L-2B</div>
+                        <div class="productItem__date-remain">00H : 00M : 00S</div>
+                    </div>
+                    <div class="productItem-trade__info">
+                        <div class="productItem__price">400 $</div>
+                        <div class="productItem-pay__btn btn primary-btn">Place Bid</div>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="productItem__container col l-4 m-6 c-12">
+                <div class="productItem">
+                    <div class="productItem__img"
+                        style="background-image: url(https://randomwordgenerator.com/img/picture-generator/57e2d5444851a414f1dc8460962e33791c3ad6e04e50744172287ad2914fc4_640.jpg);">
+                    </div>
+                    <div class="productItem__info col l-12">
+                        <div class="productItem__name">Casio-MTP-VT01L-2B</div>
+                        <div class="productItem__date-remain">00H : 00M : 00S</div>
+                    </div>
+                    <div class="productItem-trade__info">
+                        <div class="productItem__price">400 $</div>
+                        <div class="productItem-pay__btn btn primary-btn">Place Bid</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-3 logo-spkt">
+                    <a href="https://www.facebook.com/dhspkt.hcmute" class="link logo-spkt__link" target="_blank">
+                        <div class="logo-spkt__img"
+                            style="background-image: url(../Pictures/Logo-DH-Su-Pham-Ky-Thuat-TP-Ho-Chi-Minh-HCMUTE.webp);">
+                        </div>
+                    </a>
+                </div>
+                <div class="col l-7 info">
+                    <div class="row teacher-info">
+                        <a href="https://www.facebook.com/groups/608511260661326/user/596161424"
+                            class="link teacher-name">Gv: Lương Vĩ Minh</a>
+                    </div>
+                    <div class="row students-info">
+                        <a href="https://www.facebook.com/thomastheonefour.12" target="_blank"
+                            class="col l-4 link student-info student1">
+                            <div class="student-name student1-name">Nguyễn Minh Cương</div>
+                            <div class="student-id student1-id">19110016</div>
+                        </a>
+                        <a href="https://www.facebook.com/chienbeo17" target="_blank"
+                            class="col l-4 link student-info student2">
+                            <div class="student-name student2-name">Nguyễn Minh Chiến</div>
+                            <div class="student-id student2-id">19110173</div>
+                        </a>
+                        <a href="https://www.facebook.com/buep.303" target="_blank"
+                            class="col l-4 link student-info student3">
+                            <div class="student-name student3-name">Nguyễn Hữu Đăng</div>
+                            <div class="student-id student3-id">19110187</div>
+                        </a>
+                    </div>
+                    <div class="row students-info">
+                        <a href="https://www.facebook.com/PerfectVessel/" target="_blank"
+                            class="col l-6 link student-info student4">
+                            <div class="student-name student4-name">Nguyễn Văn Sơn Tùng</div>
+                            <div class="student-id student4-id">19110018</div>
+                        </a>
+                        <a href="" class="col l-6 link student-info student5" target="_blank">
+                            <div class="student-name student5-name">Cao Xuân Thắng</div>
+                            <div class="student-id student5-id">19119222</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col l-2 social-network">
+                    <a href="https://rr.noordstar.me/46f10c0d" target="_blank"
+                        class="link social-network__link fb__link">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://rr.noordstar.me/46f10c0d" target="_blank"
+                        class="link social-network__link instagram__link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://rr.noordstar.me/46f10c0d" target="_blank"
+                        class="link social-network__link twitter__link">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#" class="back-to-head link">
+                        <i class="fa-solid fa-angle-up"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

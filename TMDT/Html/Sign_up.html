@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"> -->
+    <link rel="stylesheet" href="../Css/Base.css">
+    <link rel="stylesheet" href="../Css/grid.css">
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/Sign_up.css">
+    <link rel="stylesheet" href="../Css/Header.css">
+    <link rel="stylesheet" href="../Css/Footer.css">
+    <title>Sign up</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-3 header-logo-container">
+                    <div class="header-logo">
+                        <a href="#" class="header-logo__link">CDC Auction</a>
+                    </div>
+                </div>
+                <div class="col l-6 header__search-container">
+                    <input type="text" class="header__search" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                </div>
+                <div class="col l-3 header-choices">
+                    <div class="col l-4 header-choice__btn">
+                        <a href="#" class="link header-choice__link header-search__btn">
+                            <i class="fa-solid fa-magnifying-glass header-choice__icon"></i>
+                        </a>
+                    </div>
+                    <div class="col l-4 header-choice__btn">
+                        <a href="#" class="link header-choice__link header-cart__btn">
+                            <i class="fa-solid fa-cart-shopping header-choice__icon"></i>
+                        </a>
+                    </div>
+                    <div class="col l-4 header-choice__btn header-user__container">
+                        <a href="#" class="link header-choice__link header-user__btn">
+                            <i class="fa-regular fa-user header-choice__icon"></i>
+                        </a>
+                        <div class="header-user-choice__list">
+                            <div class="header-user-choice-up">
+                                <div class="header-user-greeting">
+                                    <h3 class="header-user__heading">Hello!</h3>
+                                    <p class="header-user__description">Access account and manage order</p>
+                                </div>
+                                <div class="header-user-login__btn-container">
+                                    <button class="header-user-login__btn js-login__btn">Login/Sign up</button>
+                                </div>
+                            </div>
+                            <div class="header-user-choice-bottom">
+                                <a href="#" class="header-user-order__btn">Orders</a>
+                                <a href="#" class="header-user-order__btn">Saved products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <!-- Sign up -->
+    <div class="sign-up__form-container js-sign-up__form-container">
+        <form action="submit" class="sign-up__form">
+
+            <h1 class="sign-up__header">Sign up</h1>
+            <h3 class="sign-up-login">Already have a account? <a href="#" class="login__link js-login__link"><strong>Log
+                        in
+                        here!</strong></a>
+            </h3>
+            <div class="name__input-container">
+                <input type="text" class="col l-6 sign-up__input name__input first-name__input"
+                    placeholder="First name">
+                <input type="text" class="col l-6 sign-up__input name__input last-name__input" placeholder="Last name">
+            </div>
+            <div class="col l-12 input__heading email__heading">Enter your email</div>
+            <input type="email" class="col l-12 sign-up__input email__input" placeholder="a123@email.com">
+            <div class="col l-12 input__heading password__heading">Enter your password</div>
+            <input type="password" class="col l-12 sign-up__input password__input">
+            <div class="col l-12 input__heading confirm-password__heading">Confirm your password</div>
+            <input type="password" class="col l-12 sign-up__input confirm-password__input">
+
+        </form>
+        <div class="privacy-confirm__container">
+            <input type="checkbox" name="privacy__checkbox" id="privacy__checkbox" class="privacy__checkbox">
+            <label for="privacy__checkbox" class="privacy__label">I agree to <a href="#"
+                    class="term__link"><strong>Terms & Policy</strong></a> </label>
+        </div>
+        <button class="col l-12 btn primary-btn log-in-btn">Log In</button>
+        <div class="sign-up-google__heading">or sign up with</div>
+        <button class="col l-6 btn sign-up-google__btn">
+            <i class="fa-brands fa-google"></i>
+            SIGN UP WITH GOOGLE
+        </button>
+    </div>
+    <!--Hidden layout -->
+    <div class="layout__overlay js-layout__overlay">
+        <div class="dark-layout js-dark-layout"></div>
+        <div class="login__form-container js-login__form-container">
+            <form action="submit" class="login__form">
+
+                <h1 class="login__header">Log gin</h1>
+                <h3 class="login-signup">New member? <a href="#" class="signup__link"><strong>Sign up
+                            here!</strong></a>
+                </h3>
+                <div class="col l-12 input__heading email__heading">Enter your email</div>
+                <input type="email" class="col l-12 login__input email__input" placeholder="a123@email.com">
+                <div class="col l-12 input__heading password__heading">Enter your password</div>
+                <input type="password" class="col l-12 login__input password__input">
+
+            </form>
+            <a href="#" class="forgot-password__link">Forgot password?</a>
+            <button class="col l-12 btn primary-btn log-in-btn">Log In</button>
+            <div class="sign-up-google__heading">or sign up with</div>
+            <button class="col l-6 btn sign-up-google__btn">
+                <i class="fa-brands fa-google"></i>
+                SIGN UP WITH GOOGLE
+            </button>
+        </div>
+    </div>
+    <script src="../Js/Index.js"></script>
+</body>
+
+</html>

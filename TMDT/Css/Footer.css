@@ -1,0 +1,45 @@
+footer {
+}
+.logo-spkt {
+  min-height: var(--footer-height);
+  max-height: var(--footer-height);
+}
+.logo-spkt__link {
+  cursor: default;
+}
+.logo-spkt__img {
+  cursor: pointer;
+  min-height: var(--footer-height);
+  max-height: var(--footer-height);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.info {
+  margin-top: 10px;
+}
+.teacher-info {
+  text-align: center;
+}
+.teacher-name {
+  font-size: 3rem;
+}
+.student-info {
+  margin-top: 3px;
+  text-align: center;
+  font-size: 20px;
+}
+.student-name {
+}
+.student-id {
+}
+.social-network {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.social-network__link {
+  font-size: 3rem;
+}
+.back-to-head {
+  font-size: 3rem;
+}
