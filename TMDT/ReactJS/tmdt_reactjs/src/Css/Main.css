@@ -1,0 +1,229 @@
+.home__slider {
+  margin-top: calc(var(--header-height) + 20px);
+  min-height: 400px;
+  position: relative;
+}
+.slider-indicators {
+  position: absolute;
+  bottom: -50px;
+}
+.slider-indicators .slider-indicators__btn {
+  background-color: grey;
+}
+.slider-indicators__btn.active {
+  background-color: black;
+}
+
+.slider-content {
+  display: flex;
+  align-items: center;
+}
+.slider-content.row {
+  display: flex;
+}
+.slider-content__header {
+  color: #a9afc3;
+  font-size: 4rem;
+  cursor: default;
+  line-height: 48px;
+}
+.slider-content__header-1 {
+  font-weight: 400;
+}
+.slider-content__header-2 {
+  font-weight: 700;
+}
+.slider__btn {
+  font-size: 3rem;
+  font-weight: 600;
+  padding: 10px 15px;
+}
+.slider-content__img {
+  max-height: 400px;
+  min-height: 400px;
+  max-width: 350px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.carousel-item {
+  transition: transform 2s ease, opacity 0.5s ease-out;
+}
+.product-container {
+  width: 100%;
+  margin-top: 87px;
+}
+.product-item__header {
+  display: flex;
+  position: relative;
+}
+.product-item__header-left {
+}
+.product__heading {
+  font-size: 3rem;
+}
+.product__description {
+  font-size: 2.3rem;
+  line-height: 35px;
+}
+.product-item__header-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.product-item__header-btn {
+  font-size: 3rem;
+  font-weight: 500;
+  padding: 10px 16px;
+}
+
+.productItem {
+  min-height: 550px;
+  max-height: 550px;
+  margin-top: 10px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
+  transition: transform linear 0.1s;
+  will-change: transform;
+}
+.productItem:hover {
+  box-shadow: 0 20px 20px 0 rgb(0 0 0 / 5%);
+  transform: translateY(-1px);
+}
+.productItem__img {
+  min-height: 388px;
+  max-height: 388px;
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.productItem__info {
+  text-align: center;
+}
+.productItem__name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+.productItem__date-remain {
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+.productItem-trade__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px 6px;
+}
+.productItem__price {
+  font-size: 2.4rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+.productItem-pay__btn {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.layout__overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+}
+.layout__overlay.show {
+  display: block;
+}
+.dark-layout {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.login__form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  transform: translateX(-50%) translateY(-50%);
+  /* margin: auto; */
+  background: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.login__form {
+}
+.login__header {
+  text-align: center;
+  cursor: default;
+}
+.login-signup {
+  text-align: center;
+  cursor: default;
+}
+.signup__link {
+  text-decoration: underline;
+}
+.signup__link:hover {
+  color: var(--primary-color);
+}
+.input__heading {
+  font-size: 1.5rem;
+  padding: 0;
+  cursor: default;
+}
+.email__heading {
+}
+.login__input {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 8px 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.login__input:focus-visible {
+  outline: 0;
+}
+.email__input {
+}
+.password__heading {
+}
+.password__input {
+}
+.forgot-password__link {
+  font-size: 12px;
+  text-decoration: underline;
+  align-content: flex-end;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+.log-in-btn {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 25px;
+  border-radius: 7px;
+}
+.sign-up-google__heading {
+  /* width: 100%; */
+  text-align: center;
+  font-size: 15px;
+  /* margin-top: 5px; */
+  margin: 10px 0;
+  cursor: default;
+}
+.sign-up-google__btn {
+  color: white;
+  font-size: 15px;
+  margin: auto;
+  background-color: #ea4335;
+  padding: 10px;
+}

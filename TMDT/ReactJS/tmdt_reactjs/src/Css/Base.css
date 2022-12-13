@@ -1,0 +1,90 @@
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #333;
+  --primary-color: #f9395f;
+  --second-color: #fb6e2e;
+
+  --header-height: 87px;
+  --footer-height: 200px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  line-height: 1.6rem;
+}
+body {
+  margin-top: 100px;
+}
+a {
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.link {
+  color: var(--white-color);
+}
+.link:hover {
+  color: var(--primary-color);
+}
+.link:visited {
+  columns: var(--white-color);
+}
+.btn {
+  width: auto;
+  border: 0;
+}
+.btn:hover {
+  color: var(--black-color);
+  cursor: pointer;
+}
+.btn:focus {
+  box-shadow: 0;
+}
+.primary-btn {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border-radius: 40px;
+  padding: 5px 12px;
+}
+.primary-btn:focus {
+  box-shadow: none;
+}
+footer {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  min-height: var(--footer-height);
+  max-height: var(--footer-height);
+  margin-top: 20px;
+  position: relative;
+}
+@keyframes HoverGrow {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
