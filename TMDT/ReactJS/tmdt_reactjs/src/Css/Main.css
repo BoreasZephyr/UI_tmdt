@@ -3,14 +3,14 @@
   min-height: 400px;
   position: relative;
 }
-.slider-indicators {
+div.slider-indicators {
   position: absolute;
   bottom: -50px;
 }
-.slider-indicators .slider-indicators__btn {
+.slider-indicators button.slider-indicators__btn {
   background-color: grey;
 }
-.slider-indicators__btn.active {
+button.slider-indicators__btn.active {
   background-color: black;
 }
 
@@ -33,7 +33,7 @@
 .slider-content__header-2 {
   font-weight: 700;
 }
-.slider__btn {
+button.slider__btn {
   font-size: 3rem;
   font-weight: 600;
   padding: 10px 15px;
@@ -49,7 +49,7 @@
 .carousel-item {
   transition: transform 2s ease, opacity 0.5s ease-out;
 }
-.product-container {
+div.product-container {
   width: 100%;
   margin-top: 87px;
 }
@@ -72,9 +72,9 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.product-item__header-btn {
+button.product-item__header-btn {
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 10px 16px;
 }
 
@@ -125,7 +125,7 @@
   color: var(--primary-color);
   font-weight: 700;
 }
-.productItem-pay__btn {
+button.productItem-pay__btn {
   font-size: 1.5rem;
   font-weight: 600;
 }
@@ -169,7 +169,7 @@
   text-align: center;
   cursor: default;
 }
-.signup__link {
+h3 a.signup__link strong {
   text-decoration: underline;
 }
 .signup__link:hover {
@@ -206,7 +206,7 @@
   right: 0;
   margin-right: 20px;
 }
-.log-in-btn {
+button.log-in__btn {
   margin-top: 20px;
   width: 100%;
   font-size: 25px;
@@ -220,10 +220,14 @@
   margin: 10px 0;
   cursor: default;
 }
-.sign-up-google__btn {
+button.sign-up-google__btn {
+  display: block;
   color: white;
   font-size: 15px;
   margin: auto;
   background-color: #ea4335;
   padding: 10px;
+}
+button.sign-up-google__btn:hover {
+  background-color: #ea4335;
 }

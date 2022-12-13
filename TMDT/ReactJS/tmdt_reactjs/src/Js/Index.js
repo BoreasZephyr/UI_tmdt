@@ -12,6 +12,5 @@ export function hideLoginForm() {
 }
 
 loginBtn.addEventListener('click', showLoginForm);
-// loginLink.addEventListener('click', showLoginForm);
 
 darkLayout.addEventListener('click', hideLoginForm);

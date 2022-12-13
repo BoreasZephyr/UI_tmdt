@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
@@ -7,8 +8,11 @@ import Header from './Header';
 import Footer from './Footer';
 import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
-// import * as Login from '../Js/Index.js';
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
+import {Carousel, CarouselItemProps} from 'react-bootstrap'
+
 
 function Home(){
     return <div>
@@ -27,12 +31,12 @@ function Home(){
             <div className="row carousel-inner ">
                 <div className="carousel-item active  slider-content__container">
                     <div className="row">
-                        <div className="col l-8 slider-content slider-content-left">
+                        <div className="column l-8 slider-content slider-content-left">
                             <div className="row slider-content__header-container">
-                                <h2 className="col l-12 slider-content__header slider-content__header-1">Classic
+                                <h2 className="column l-12 slider-content__header slider-content__header-1">Classic
                                     series
                                 </h2>
-                                <h2 className="col l-12 slider-content__header slider-content__header-2">Time with
+                                <h2 className="column l-12 slider-content__header slider-content__header-2">Time with
                                     perfection.
                                     You choose</h2>
                                 <SpecialBtn className='slider__btn' value='Start exploring' />
@@ -41,7 +45,7 @@ function Home(){
 
                         <div style={{backgroundImage:
                             `url(https://randomwordgenerator.com/img/picture-generator/57e6d3404f56af14f1dc8460962e33791c3ad6e04e507440762a7cd49e45c4_640.jpg)`}}
-                            className="d-block w-100 col l-4 slider-content slider-content-right slider-content__img"
+                            className="d-block w-100 column l-4 slider-content slider-content-right slider-content__img"
                             alt="...">
 
                         </div>
@@ -49,12 +53,12 @@ function Home(){
                 </div>
                 <div className="carousel-item  slider-content__container">
                     <div className="row">
-                        <div className="col l-8 slider-content slider-content-left">
+                        <div className="column l-8 slider-content slider-content-left">
                             <div className="row slider-content__header-container">
-                                <h2 className="col l-12 slider-content__header slider-content__header-1">Classic
+                                <h2 className="column l-12 slider-content__header slider-content__header-1">Classic
                                     series
                                 </h2>
-                                <h2 className="col l-12 slider-content__header slider-content__header-2">Time with
+                                <h2 className="column l-12 slider-content__header slider-content__header-2">Time with
                                     perfection.
                                     You choosse</h2>
                                 <SpecialBtn className='slider__btn' value='Start exploring' />
@@ -63,7 +67,7 @@ function Home(){
 
                         <div style={{backgroundImage:
                             `url(https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg)`}}
-                            className="d-block w-100 col l-4 slider-content slider-content-right slider-content__img"
+                            className="d-block w-100 column l-4 slider-content slider-content-right slider-content__img"
                             alt="...">
 
                         </div>
@@ -71,12 +75,12 @@ function Home(){
                 </div>
                 <div className="carousel-item  slider-content__container">
                     <div className="row">
-                        <div className="col l-8 slider-content slider-content-left">
+                        <div className="column l-8 slider-content slider-content-left">
                             <div className="row slider-content__header-container">
-                                <h2 className="col l-12 slider-content__header slider-content__header-1">Classic
+                                <h2 className="column l-12 slider-content__header slider-content__header-1">Classic
                                     series
                                 </h2>
-                                <h2 className="col l-12 slider-content__header slider-content__header-2">Time
+                                <h2 className="column l-12 slider-content__header slider-content__header-2">Time
                                     with
                                     perfection.
                                     You choossse</h2>
@@ -85,7 +89,7 @@ function Home(){
                         </div>
                         <div style={{backgroundImage:
                             `url(https://randomwordgenerator.com/img/picture-generator/53e8d3424257b10ff3d8992cc12c30771037dbf85254794e702673dd9e4b_640.jpg)`}}
-                            className="d-block w-100 col l-4 slider-content slider-content-right slider-content__img"
+                            className="d-block w-100 column l-4 slider-content slider-content-right slider-content__img"
                             alt="...">
                         </div>
                     </div>
@@ -97,7 +101,7 @@ function Home(){
         <div className="row">
             <div class="product-container">
                 <div className="product-item__header">
-                    <div className="col l-10 product-item__header-left">
+                    <div className="column l-10 product-item__header-left">
                         <h3 className="product__heading">Live auction</h3>
                         <p className="product__description">
                             Explore on the best bidding watches marketplace.
@@ -132,6 +136,7 @@ function Home(){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script> */}
+        
 </div>
 }
 export default Home;
