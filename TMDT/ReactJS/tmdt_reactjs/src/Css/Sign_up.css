@@ -75,11 +75,15 @@
 .term__link:hover {
   color: var(--primary-color);
 }
-.log-in-btn {
+button.btn.sign-up-btn {
   margin-top: 20px;
   width: 100%;
   font-size: 25px;
   border-radius: 7px;
+}
+button.btn.sign-up-btn.disabled {
+  cursor: default;
+  background-color: grey;
 }
 .sign-up-google__heading {
   /* width: 100%; */

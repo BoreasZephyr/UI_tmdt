@@ -39,8 +39,9 @@
   color: var(--white-color);
   background-color: var(--black-color);
 }
-.about-to-end__btn:focus {
+a.about-to-end__btn:focus {
   box-shadow: none;
+  background-color: var(--black-color);
 }
 .about-to-end__btn::after {
   display: none;

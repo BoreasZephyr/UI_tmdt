@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../Css/grid.css">
+    <link rel="stylesheet" href="../Css/Base.css">
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/Profile_navbar.css">
     <style>
         * {
             box-sizing: border-box;
@@ -20,57 +23,30 @@
 </head>
 
 <body>
-    <div>
-        <header id='header'>
-            <div className="grid wide">
-                <div className="row">
-                    <div className="col l-3 header-logo-container">
-                        <div className="header-logo">
-                            <a href="#" className="header-logo__link">CDC Auction</a>
-                        </div>
-                    </div>
-                    <div className="col l-6 header__search-container">
-                        <input type="text" className="header__search" placeholder="Nhập sản phẩm bạn muốn tìm kiếm" />
-                    </div>
-                    <div className="col l-3 header-choices">
-                        <div className="col l-4 header-choice__btn">
-                            <a href="#" className="link header-choice__link header-search__btn">
-                                <FontAwesomeIcon icon={faMagnifyingGlass} className='header-choice__icon' />
-                                {/* <i className="fa-solid fa-magnifying-glass header-choice__icon"></i> */}
-                            </a>
-                        </div>
-                        <div className="col l-4 header-choice__btn">
-                            <a href="#" className="link header-choice__link header-cart__btn">
-                                <FontAwesomeIcon icon={faCartShopping} className='header-choice__icon' />
-                            </a>
-                        </div>
-                        <div className="col l-4 header-choice__btn header-user__container">
-                            <a href="#" className="link header-choice__link header-user__btn">
-                                <FontAwesomeIcon icon={faUser} className='header-choice__icon' />
-                                {/* <i className="fa-regular fa-user header-choice__icon"></i> */}
-                            </a>
-                            <div className="header-user-choice__list">
-                                <div className="header-user-choice-up">
-                                    <div className="header-user-greeting">
-                                        <h3 className="header-user__heading">Hello!</h3>
-                                        <p className="header-user__description">Access account and manage order</p>
-                                    </div>
-                                    <div className="header-user-login__btn-container">
-                                        <button className="header-user-login__btn js-login__btn"
-                                            onClick={showLoginForm}>Login/Sign up</button>
-                                    </div>
-                                </div>
-                                <div className="header-user-choice-bottom">
-                                    <a href="#" className="header-user-order__btn">Orders</a>
-                                    <a href="#" className="header-user-order__btn">Saved products</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <div class="column l-2 profile__nav-container">
+        <a href="#" class="js-nav__link nav__link nav__link-profile active"
+            onclick="toggleActiveNavLink(event)">Profile</a>
+        <a href="#" class="js-nav__link nav__link nav__link-change-password" onclick="toggleActiveNavLink(event)">Change
+            password</a>
+        <a href="#" class="js-nav__link nav__link nav__link-products" onclick="toggleActiveNavLink(event)">Products</a>
+        <a href="#" class="js-nav__link nav__link nav__link-won=products" onclick="toggleActiveNavLink(event)">Won
+            products</a>
+        <a href="#" class="js-nav__link nav__link nav__link-score" onclick="toggleActiveNavLink(event)">Score</a>
+        <a href="#" class="js-nav__link nav__link nav__link-my=products" onclick="toggleActiveNavLink(event)">My
+            products</a>
     </div>
+    <script>
+
+        const navLinks = document.querySelectorAll('.js-nav__link')
+
+        function toggleActiveNavLink(event) {
+            for (var navLink of navLinks) {
+                if (navLink.classList.contains('active')) navLink.classList.remove('active')
+            }
+            event.target.classList.add('active')
+        }
+
+    </script>
 </body>
 
 </html>

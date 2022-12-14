@@ -1,0 +1,40 @@
+.profile__nav-container {
+  padding: 5px 0;
+  box-shadow: 2px 2px 6px 0px black;
+}
+.nav__link {
+  display: block;
+  font-size: 1.7rem;
+  color: var(--black-color);
+  text-align: center;
+  border-radius: 5px;
+  padding: 4px 0;
+  margin-bottom: 2px;
+}
+.nav__link:last-child {
+  margin-bottom: 0;
+}
+a.nav__link:hover {
+  color: var(--black-color);
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.nav__link.active {
+  background: var(--primary-color);
+  color: var(--white-color);
+}
+.nav__link.active:hover {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+.nav__link-profile {
+}
+.nav__link-change-password {
+}
+.nav__link-products {
+}
+.nav__link-won-products {
+}
+.nav__link-score {
+}
+.nav__link-my-products {
+}

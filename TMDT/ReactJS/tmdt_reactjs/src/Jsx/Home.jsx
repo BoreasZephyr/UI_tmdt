@@ -8,7 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
