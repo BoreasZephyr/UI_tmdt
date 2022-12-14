@@ -1,3 +1,15 @@
+.react-multi-carousel-list {
+  height: 50rem;
+}
+
+.btn_top5 {
+  background-color: grey
+}
+
+.btn_top5-active {
+  background-color: black
+}
+
 .home__slider {
   margin-top: calc(var(--header-height) + 20px);
   min-height: 400px;
