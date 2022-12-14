@@ -27,16 +27,18 @@ function Header(){
     function hideLoginForm() {
       layoutOverlay.classList.remove('show');
     }
-    function validateEmail(){
+    function Validate(){
         var mailFormat=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-        if(!loginEmailInput.value.match(mailFormat) || loginPasswordInput.value ==='' || loginPasswordInput.value === null){
-            alert('Check your Log in fields again please!')
+        if(!loginEmailInput.value) alert('Please fill out the email field! ')
+        else if(!loginEmailInput.value.match(mailFormat)){
+            alert('Your email is not match the format!')
         }
+        else if(!loginPasswordInput.value) alert('Please fill out the password field!')
     }
 
     loginBtn.addEventListener('click', showLoginForm)
     darkLayout.addEventListener('click', hideLoginForm)
-    loginBtnSubmit.addEventListener('click', validateEmail)
+    loginBtnSubmit.addEventListener('click', Validate)
     })
     return <div>
     <header id='header'>

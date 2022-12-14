@@ -12,7 +12,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  text-decoration: none !important;
+  /* text-decoration: none !important; */
 }
 html {
   box-sizing: border-box;
@@ -60,7 +60,7 @@ button.btn:hover {
   cursor: pointer;
 }
 button.btn:focus {
-  box-shadow: 0;
+  box-shadow: 0 !important;
 }
 .btn.primary-btn {
   background-color: var(--primary-color);
