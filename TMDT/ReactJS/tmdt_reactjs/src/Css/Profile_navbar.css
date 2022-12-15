@@ -1,4 +1,6 @@
 .profile__nav-container {
+  position: absolute;
+  width: 16.66666667%;
   padding: 5px 0;
   box-shadow: 2px 2px 6px 0px black;
 }

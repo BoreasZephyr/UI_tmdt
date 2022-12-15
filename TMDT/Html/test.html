@@ -23,29 +23,19 @@
 </head>
 
 <body>
-    <div class="column l-2 profile__nav-container">
-        <a href="#" class="js-nav__link nav__link nav__link-profile active"
-            onclick="toggleActiveNavLink(event)">Profile</a>
-        <a href="#" class="js-nav__link nav__link nav__link-change-password" onclick="toggleActiveNavLink(event)">Change
-            password</a>
-        <a href="#" class="js-nav__link nav__link nav__link-products" onclick="toggleActiveNavLink(event)">Products</a>
-        <a href="#" class="js-nav__link nav__link nav__link-won=products" onclick="toggleActiveNavLink(event)">Won
-            products</a>
-        <a href="#" class="js-nav__link nav__link nav__link-score" onclick="toggleActiveNavLink(event)">Score</a>
-        <a href="#" class="js-nav__link nav__link nav__link-my=products" onclick="toggleActiveNavLink(event)">My
-            products</a>
-    </div>
+    <input type="file" onChange={this.onImageChange} className="filetype" id="group_image" accept="image/png" />
+    <img id="target" src={this.state.image} />
     <script>
 
-        const navLinks = document.querySelectorAll('.js-nav__link')
-
-        function toggleActiveNavLink(event) {
-            for (var navLink of navLinks) {
-                if (navLink.classList.contains('active')) navLink.classList.remove('active')
+        onImageChange = (event) => {
+            if (event.target.files && event.target.files[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.setState({ image: e.target.result });
+                };
+                reader.readAsDataURL(event.target.files[0]);
             }
-            event.target.classList.add('active')
         }
-
     </script>
 </body>
 

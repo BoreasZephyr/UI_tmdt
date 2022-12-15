@@ -1,9 +1,13 @@
-.sign-up__form-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40%;
-  transform: translateX(-50%);
+.profile-main-content {
+  margin-left: 16.66666667%;
+}
+.profile__form-container {
+  --profile-form-container-size: 50%;
+  /* position: absolute;
+    top: 50%;
+    left: 50%; */
+  width: var(--profile-form-container-size);
+  transform: translateX(calc(var(--profile-form-container-size) / 2));
   /* margin: auto; */
   background: white;
   padding: 10px 20px 15px;
@@ -11,13 +15,13 @@
   border: 1px solid grey;
 }
 
-.sign-up__form {
+.profile__form {
 }
-.sign-up__header {
+.profile__header {
   text-align: center;
   cursor: default;
 }
-.sign-up-login {
+.profile-login {
   text-align: center;
   cursor: default;
   padding-bottom: 10px;
@@ -42,14 +46,14 @@
 }
 .email__heading {
 }
-.sign-up__input {
+.profile__input {
   width: 100%;
   font-size: 1.5rem;
   padding: 8px 5px;
   border: 1px solid gray;
   border-radius: 5px;
 }
-.sign-up__input:focus-visible {
+.profile__input:focus-visible {
   outline: 0;
 }
 .email__input {
@@ -75,23 +79,23 @@
 .term__link:hover {
   color: var(--primary-color);
 }
-button.btn.sign-up-btn {
+button.btn.profile__btn {
   margin-top: 20px;
   width: 100%;
   font-size: 25px;
   border-radius: 7px;
 }
-button.btn.sign-up-btn.disabled {
+button.btn.profile__btn.disabled {
   cursor: default;
   background-color: grey;
 }
-.sign-up-google__heading {
+.profile-google__heading {
   /* width: 100%; */
   text-align: center;
   /* margin-top: 5px; */
   margin: 10px 0;
 }
-.sign-up-google__btn {
+.profile-google__btn {
   color: white;
   font-size: 15px;
   margin: auto;

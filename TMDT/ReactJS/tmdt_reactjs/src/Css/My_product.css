@@ -1,0 +1,13 @@
+.my-product-item-container {
+  margin-top: 10px;
+}
+.my-product-item-container:first-child {
+  margin-top: 0;
+}
+.Add-product__btn {
+  font-size: 1.5rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: -60px;
+  right: 0;
+}
