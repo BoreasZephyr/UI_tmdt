@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -15,7 +15,11 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Top5 from './Top5';
-import { useEffect } from 'react';
+
+import {
+  useGetProductsQuery,
+  useGetTop5ProductsQuery,
+} from '../services/productApis';
 
 const responsive = {
   desktop: {
@@ -50,9 +54,15 @@ const CustomDot = ({ index, onClick, active }) => {
 };
 
 function Home() {
+  const { data: top5Data, isFetching: isFetchingTop5Data } =
+    useGetTop5ProductsQuery();
+
+  const { data: productsData, isFetching } = useGetProductsQuery({ page: 1 });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
+
   return (
     <div>
       <Header />
@@ -169,24 +179,25 @@ function Home() {
         </div>
       </div>
       <div className="grid wide" style={{ paddingTop: '100px' }}>
-        <Carousel
-          responsive={responsive}
-          swipeable={false}
-          draggable={false}
-          showDots={true}
-          infinite={true}
-          autoPlaySpeed={1000}
-          arrows={false}
-          customDot={<CustomDot />}
-          dotListClass="carousel-indicators slider-indicators"
-        >
-          <Top5 url="https://randomwordgenerator.com/img/picture-generator/54e3d04b4951af14f1dc8460962e33791c3ad6e04e50744172287ad29448c7_640.jpg" />
-          <Top5 url="https://randomwordgenerator.com/img/picture-generator/55e4d4414856ae14f1dc8460962e33791c3ad6e04e50744172287ed39645c3_640.jpg" />
-          <Top5 url="https://randomwordgenerator.com/img/picture-generator/53e2d6414255af14f1dc8460962e33791c3ad6e04e50744075277cd39e48c3_640.jpg" />
-          <Top5 url="https://randomwordgenerator.com/img/picture-generator/54e9d447425aae14f1dc8460962e33791c3ad6e04e5074417c2f7cd39e4dc4_640.jpg" />
-          <Top5 url="https://randomwordgenerator.com/img/picture-generator/54e1d1434951b10ff3d8992cc12c30771037dbf852547848702e7ed19f4c_640.jpg" />
-          <Top5 url="https://randomwordgenerator.com/img/picture-generator/54e3d0434c54a414f1dc8460962e33791c3ad6e04e50744172287ed2904cc1_640.jpg" />
-        </Carousel>
+        {!isFetchingTop5Data ? (
+          <Carousel
+            responsive={responsive}
+            swipeable={false}
+            draggable={false}
+            showDots={true}
+            infinite={true}
+            autoPlaySpeed={1000}
+            arrows={false}
+            customDot={<CustomDot />}
+            dotListClass="carousel-indicators slider-indicators"
+          >
+            {top5Data?.top5Products.map((product, i) => (
+              <Top5 key={i} product={product} />
+            ))}
+          </Carousel>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="grid wide">
         <div className="row">
@@ -212,12 +223,9 @@ function Home() {
       </div>
       <div className="grid wide">
         <div className="row">
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e3d04b4951af14f1dc8460962e33791c3ad6e04e50744172287ad29448c7_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/55e4d4414856ae14f1dc8460962e33791c3ad6e04e50744172287ed39645c3_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/53e2d6414255af14f1dc8460962e33791c3ad6e04e50744075277cd39e48c3_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e9d447425aae14f1dc8460962e33791c3ad6e04e5074417c2f7cd39e4dc4_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e1d1434951b10ff3d8992cc12c30771037dbf852547848702e7ed19f4c_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e3d0434c54a414f1dc8460962e33791c3ad6e04e50744172287ed2904cc1_640.jpg" />
+          {productsData?.products.map((product, i) => (
+            <ProductItem key={i} product={product} />
+          ))}
         </div>
       </div>
       <Footer />
