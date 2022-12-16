@@ -43,6 +43,9 @@ p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+textarea {
+  resize: none;
+}
 .link {
   color: var(--white-color);
 }

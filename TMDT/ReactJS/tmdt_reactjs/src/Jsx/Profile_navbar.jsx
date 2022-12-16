@@ -50,13 +50,13 @@ function ProfileNavbar() {
         >
           Products
         </a>
-        <a
-          href="#"
+        <Link
+          to="/WonProducts"
           className="js-nav__link nav__link nav__link-won=products"
           onClick={(event) => toggleActiveNavLink(event)}
         >
           Won products
-        </a>
+        </Link>
         <Link
           to="/UserScore"
           className="js-nav__link nav__link nav__link-score"

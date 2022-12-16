@@ -1,0 +1,42 @@
+.won-product-item-container {
+  display: flex;
+  cursor: pointer;
+  /* margin-right: -14px; */
+  background-color: #d6d6d6;
+  padding: 10px 0 10px 10px;
+  border-radius: 16px;
+  color: var(--black-color);
+}
+.won-product-item-container:hover {
+  color: var(--black-color);
+  background-color: #bababa;
+}
+.won-product-item__img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin: auto;
+  border-radius: 12px;
+  min-height: 100px;
+  max-height: 100px;
+}
+.won-product-info-container {
+}
+.won-product-heading {
+  font-size: 2.2rem;
+}
+.won-product-description {
+  font-size: 1.5rem;
+}
+.view-won-product-item__btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.view-won-product-item__btn-container button.view-won-product-item__btn {
+  font-size: 1.5rem;
+  font-weight: 600;
+  height: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+}

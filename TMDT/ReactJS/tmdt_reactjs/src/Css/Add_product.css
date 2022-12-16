@@ -1,0 +1,94 @@
+.add-product__form {
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 10px 20px 16px;
+}
+.add-product__heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 32px;
+}
+.add-product-main-content {
+}
+
+.add-product__img-container {
+  border: 1px solid #707070;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add-product__img {
+  padding-top: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+.add-product-main__img {
+  padding-top: 119%;
+}
+.add-product-right {
+}
+.add-product-header {
+}
+.add-product__input {
+  font-size: 1.5rem;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 3px 12px;
+}
+.add-product__input:focus-visible {
+  outline: 0;
+}
+.add-product-name__input {
+}
+.add-product-start-price__input {
+}
+.add-product-step-price__input {
+}
+.add-product-date__input {
+}
+.add-product-description__input {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+.add-product-description__input:focus-visible {
+  outline: 0;
+}
+.add-product-short-description__input {
+}
+.add-product-details-description__input {
+}
+.add-product-bottom {
+  margin-top: 20px;
+}
+.add-product-sub__img-list {
+}
+.add-product-sub__img {
+}
+.add-product__btn-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 10px;
+}
+.add-product__btn {
+  font-size: 15px;
+  background-color: #eae6e6;
+  padding: 10px;
+  border-radius: 25px;
+  margin-left: 5px;
+  font-weight: 600;
+}
+.add-product__btn:hover {
+  background-color: #bbb8b8;
+}
+.add-product__btn:focus {
+  box-shadow: 0 0 0 0;
+}
+.cancel-add-product__btn {
+}
+.add-product-save__btn {
+}

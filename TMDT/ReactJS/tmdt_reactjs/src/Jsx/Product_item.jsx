@@ -14,7 +14,7 @@ function ProductItem({ product }) {
   return (
     <>
       <Link
-        to={`/products/${product?._id}`}
+        to={`/Products/${product?._id}`}
         className="productItem__container column l-4 m-6 c-12"
       >
         <div className="productItem">
