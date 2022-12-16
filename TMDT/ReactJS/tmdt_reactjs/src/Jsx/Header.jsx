@@ -119,7 +119,7 @@ function Header() {
               <input
                 type="text"
                 className="header__search"
-                placeholder="Nhập sản phẩm bạn muốn tìm kiếm"
+                placeholder="Find a product"
               />
             </div>
             <div className="column l-3 header-choices">

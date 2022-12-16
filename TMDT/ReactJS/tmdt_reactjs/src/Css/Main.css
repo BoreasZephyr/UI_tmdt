@@ -117,6 +117,15 @@ button.product-item__header-btn {
 .productItem__info {
   text-align: center;
 }
+.productTop5__name {
+  width: 220px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
 .productItem__name {
   font-size: 2rem;
   font-weight: 700;
