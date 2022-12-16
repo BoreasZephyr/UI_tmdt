@@ -47,5 +47,6 @@ footer {
   font-size: 3rem;
 }
 .back-to-top {
+  cursor: pointer;
   font-size: 3rem;
 }

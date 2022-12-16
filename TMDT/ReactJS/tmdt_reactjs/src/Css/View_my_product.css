@@ -1,0 +1,94 @@
+.update-product__form {
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 10px 20px 16px;
+}
+.update-product__heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 32px;
+}
+.update-product-main-content {
+}
+
+.update-product__img-container {
+  border: 1px solid #707070;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.update-product__img {
+  padding-top: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+.update-product-main__img {
+  padding-top: 119%;
+}
+.update-product-right {
+}
+.update-product-header {
+}
+.update-product__input {
+  font-size: 1.5rem;
+  border: 1px solid #707070;
+  border-radius: 5px;
+  padding: 3px 12px;
+}
+.update-product__input:focus-visible {
+  outline: 0;
+}
+.update-product-name__input {
+}
+.update-product-start-price__input {
+}
+.update-product-step-price__input {
+}
+.update-product-date__input {
+}
+.update-product-description__input {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+.update-product-description__input:focus-visible {
+  outline: 0;
+}
+.update-product-short-description__input {
+}
+.update-product-details-description__input {
+}
+.update-product-bottom {
+  margin-top: 20px;
+}
+.update-product-sub__img-list {
+}
+.update-product-sub__img {
+}
+.update-product__btn-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 10px;
+}
+.update-product__btn {
+  font-size: 15px;
+  background-color: #eae6e6;
+  padding: 10px;
+  border-radius: 25px;
+  margin-left: 5px;
+  font-weight: 600;
+}
+.update-product__btn:hover {
+  background-color: #bbb8b8;
+}
+.update-product__btn:focus {
+  box-shadow: 0 0 0 0;
+}
+.cancel-update-product__btn {
+}
+.update-product-save__btn {
+}

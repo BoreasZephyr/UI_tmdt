@@ -6,16 +6,21 @@ header {
   top: 0;
   z-index: 10;
 }
+.header-logo-container {
+  position: relative;
+}
 .header-logo {
-  font-size: 4.5rem;
-  color: var(--white-color);
-  line-height: var(--header-height);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  transform: translateY(-9%);
 }
 .header-logo__link {
-  color: var(--white-color);
 }
 .header-logo__link:hover {
-  color: var(--white-color);
+}
+.header-logo__svg {
+  transform: scale(0.75);
 }
 .header__search {
   --header-search-height: 50px;
@@ -100,6 +105,11 @@ header {
 }
 .header-user__heading {
   margin: 0;
+}
+.header-user__link {
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: underline;
 }
 .header-user__description {
   margin: 0;
