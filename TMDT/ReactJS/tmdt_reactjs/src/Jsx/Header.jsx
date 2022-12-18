@@ -5,13 +5,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import React, { useEffect, useState, useRef } from 'react';
-
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Header.css';
 import { Link } from 'react-router-dom';
 import SpecialBtn from './Special_btn';
+import { useLoginMutation } from '../services/authApis';
 // import Profile from './Profile';
 
 function Header() {
@@ -20,12 +20,16 @@ function Header() {
     password: '',
   });
 
-  // init ref variables 
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  // init ref variables
   const layoutOverlay = useRef(null); // --> ref to "js-layout__overlay" div
   const loginEmailInput = useRef(null); // --> ref to "js-email__input" input
   const loginPasswordInput = useRef(null); // --> ref to "js-password__input" input
 
-  function Validate(e) {
+  async function Validate(e) {
     e.preventDefault();
     const mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
@@ -37,6 +41,17 @@ function Header() {
       alert('Please fill out the password field!');
     } else {
       console.log(formData);
+      const res = await login(formData);
+
+      console.log(res);
+
+      if(res?.error) {
+        const { error: { data } } = res;
+        alert(data.errMessage);
+      } else {
+        localStorage.setItem('user', JSON.stringify(res?.data.user));
+        window.location.reload();
+      }
     }
   }
 
@@ -134,12 +149,13 @@ function Header() {
               </div>
               <div className="column l-4 header-choice__btn">
                 <Link
-                  to="/Cart"
+                  to={user ? `/Cart` : '/'}
                   className="link header-choice__link header-cart__btn"
                 >
                   <FontAwesomeIcon
                     icon={faCartShopping}
                     className="header-choice__icon"
+                    onClick={!user ? showLoginForm : () => {}}
                   />
                 </Link>
               </div>
@@ -155,18 +171,7 @@ function Header() {
                   {/* <i className="fa-regular fa-user header-choice__icon"></i> */}
                 </a>
                 <div className="header-user-choice__list">
-                  <div className="header-user-choice-up">
-                    {/* <div className="header-user-greeting">
-                      <h3 className="header-user__heading">
-                        Hello!{' '}
-                        <Link to="/Profile">
-                          <span className="header-user__link">ST</span>
-                        </Link>
-                      </h3>
-                      <p className="header-user__description">
-                        Access account and manage order
-                      </p>
-                    </div> */}
+                  {!user ? (
                     <div className="header-user-login__btn-container">
                       <button
                         className="header-user-login__btn js-login__btn"
@@ -175,15 +180,35 @@ function Header() {
                         Login/Sign up
                       </button>
                     </div>
-                  </div>
-                  <div className="header-user-choice-bottom">
-                    <a href="#" className="header-user-order__btn">
-                      Orders
-                    </a>
-                    <a href="#" className="header-user-order__btn">
-                      Saved products
-                    </a>
-                  </div>
+                  ) : (
+                    <div className="header-user-choice-up">
+                      <div className="header-user-greeting">
+                        <h3 className="header-user__heading">
+                          Hello!{' '}
+                          <Link to="/Profile">
+                            <span className="header-user__link">
+                              {user.firstName}
+                            </span>
+                          </Link>
+                        </h3>
+                        <p className="header-user__description">
+                          Access account and manage order
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {user ? (
+                    <div className="header-user-choice-bottom">
+                      <a href="#" className="header-user-order__btn">
+                        Orders
+                      </a>
+                      <a href="#" className="header-user-order__btn">
+                        Saved products
+                      </a>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>
@@ -235,6 +260,7 @@ function Header() {
               type="submit"
               value="Log In"
               validate={Validate}
+              isLoading={isLoading}
             />
             {/* <button className="column l-12 btn primary-btn log-in__btn js-login__btn-submit">
             Log In

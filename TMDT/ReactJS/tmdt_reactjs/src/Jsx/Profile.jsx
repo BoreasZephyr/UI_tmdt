@@ -58,7 +58,6 @@ function Profile() {
   });
   return (
     <>
-      <Header />
       <ProfileNavbar />
       <div className="grid wide">
         <div className="row">

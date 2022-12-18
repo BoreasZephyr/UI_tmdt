@@ -96,8 +96,6 @@ function SignUp() {
   });
   return (
     <>
-      {/* Header */}
-      <Header />
       {/* Sign up form */}
       <div className="sign-up__form-container js-sign-up__form-container">
         <form action="submit" className="sign-up__form">

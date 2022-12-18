@@ -4,7 +4,13 @@ import '../Css/Main.css';
 
 function SpecialBtn(props) {
   return (
-    <button className={`btn primary-btn ${props.className}`} type={props.type} reference={props.ref} onClick={props.validate}>
+    <button
+      className={`btn primary-btn ${props.className}`}
+      type={props.type}
+      reference={props.ref}
+      onClick={props.validate}
+      disabled={props.isLoading}
+    >
       {props.value}
     </button>
   );

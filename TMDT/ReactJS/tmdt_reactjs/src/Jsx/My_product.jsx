@@ -21,7 +21,6 @@ import { useEffect } from 'react';
 function MyProduct() {
   return (
     <>
-      <Header />
       <ProfileNavbar />
       <div className="grid wide" style={{ position: 'relative' }}>
         <div className="row">

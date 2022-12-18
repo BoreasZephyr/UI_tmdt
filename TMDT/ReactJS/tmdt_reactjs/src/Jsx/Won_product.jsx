@@ -23,7 +23,6 @@ import { useEffect } from 'react';
 function WonProduct() {
   return (
     <>
-      <Header />
       <ProfileNavbar />
       <div className="grid wide" style={{ position: 'relative' }}>
         <div className="row">

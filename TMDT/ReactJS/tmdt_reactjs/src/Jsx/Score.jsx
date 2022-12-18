@@ -17,7 +17,6 @@ import ProfileNavbar from './Profile_navbar';
 function UserScore() {
   return (
     <>
-      <Header />
       <ProfileNavbar />
       <div className="grid wide">
         <div className="row">

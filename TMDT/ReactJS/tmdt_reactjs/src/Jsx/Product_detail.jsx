@@ -32,7 +32,6 @@ function ProductDetail() {
   return (
     <div>
       {/* Header */}
-      <Header />
       <div className="grid wide">
         {/* Product info */}
         <div className="row">

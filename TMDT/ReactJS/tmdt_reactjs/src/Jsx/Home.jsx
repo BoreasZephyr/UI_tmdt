@@ -49,7 +49,6 @@ function Home() {
 
   return (
     <div>
-      <Header />
       <div className="grid wide">
         <div
           id="carouselExampleIndicators"
