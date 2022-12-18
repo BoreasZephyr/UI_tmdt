@@ -4,52 +4,49 @@ import {
   faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import React, { Component } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Header.css';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SpecialBtn from './Special_btn';
-import Profile from './Profile';
+// import Profile from './Profile';
 
 function Header() {
-  useEffect(() => {
-    const loginBtn = document.querySelector('.js-login__btn');
-    const loginBtnSubmit = document.querySelector('.js-login__btn-submit');
-    const layoutOverlay = document.querySelector('.js-layout__overlay');
-    const darkLayout = document.querySelector('.js-dark-layout');
-    const loginEmailInput = document.querySelector('.js-email__input');
-    const loginPasswordInput = document.querySelector('.js-password__input');
-    const loginForm = document.querySelector('.js-login__form-container');
-    // const loginLink = document.querySelector('.js-login__link');
-
-    function showLoginForm() {
-      layoutOverlay.classList.add('show');
-    }
-    function hideLoginForm() {
-      layoutOverlay.classList.remove('show');
-    }
-    function Validate(e) {
-      var mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-      if (!loginEmailInput.value) {
-        alert('Please fill out the email field! ');
-        e.preventDefault();
-      } else if (!loginEmailInput.value.match(mailFormat)) {
-        alert('Your email is not match the format!');
-        e.preventDefault();
-      } else if (!loginPasswordInput.value) {
-        alert('Please fill out the password field!');
-        e.preventDefault();
-      }
-    }
-
-    loginBtn.addEventListener('click', showLoginForm);
-    darkLayout.addEventListener('click', hideLoginForm);
-    loginBtnSubmit.addEventListener('click', Validate);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
   });
+
+  // init ref variables 
+  const layoutOverlay = useRef(null); // --> ref to "js-layout__overlay" div
+  const loginEmailInput = useRef(null); // --> ref to "js-email__input" input
+  const loginPasswordInput = useRef(null); // --> ref to "js-password__input" input
+
+  function Validate(e) {
+    e.preventDefault();
+    const mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+    if (!loginEmailInput.current.value) {
+      alert('Please fill out the email field!');
+    } else if (!loginEmailInput.current.value.match(mailFormat)) {
+      alert('Your email is not match the format!');
+    } else if (!loginPasswordInput.current.value) {
+      alert('Please fill out the password field!');
+    } else {
+      console.log(formData);
+    }
+  }
+
+  function showLoginForm() {
+    layoutOverlay.current.classList.add('show');
+  }
+  function hideLoginForm() {
+    layoutOverlay.current.classList.remove('show');
+  }
+
   return (
     <div>
       <header id="header">
@@ -159,7 +156,7 @@ function Header() {
                 </a>
                 <div className="header-user-choice__list">
                   <div className="header-user-choice-up">
-                    <div className="header-user-greeting">
+                    {/* <div className="header-user-greeting">
                       <h3 className="header-user__heading">
                         Hello!{' '}
                         <Link to="/Profile">
@@ -169,9 +166,12 @@ function Header() {
                       <p className="header-user__description">
                         Access account and manage order
                       </p>
-                    </div>
+                    </div> */}
                     <div className="header-user-login__btn-container">
-                      <button className="header-user-login__btn js-login__btn">
+                      <button
+                        className="header-user-login__btn js-login__btn"
+                        onClick={showLoginForm}
+                      >
                         Login/Sign up
                       </button>
                     </div>
@@ -190,8 +190,11 @@ function Header() {
           </div>
         </div>
       </header>
-      <div className="layout__overlay js-layout__overlay">
-        <div className="dark-layout js-dark-layout"></div>
+      <div className="layout__overlay js-layout__overlay" ref={layoutOverlay}>
+        <div
+          className="dark-layout js-dark-layout"
+          onClick={hideLoginForm}
+        ></div>
         <div className="login__form-container js-login__form-container">
           <form action="submit" className="login__form">
             <h1 className="login__header">Log in</h1>
@@ -208,6 +211,10 @@ function Header() {
               type="email"
               className="column l-12 login__input email__input js-email__input"
               placeholder="a123@email.com"
+              ref={loginEmailInput}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
             />
             <div className="column l-12 input__heading password__heading">
               Enter your password
@@ -215,6 +222,10 @@ function Header() {
             <input
               type="password"
               className="column l-12 login__input password__input js-password__input"
+              ref={loginPasswordInput}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, password: e.target.value }))
+              }
             />
             <a href="#" className="forgot-password__link">
               Forgot password?
@@ -223,6 +234,7 @@ function Header() {
               className=" log-in__btn js-login__btn-submit"
               type="submit"
               value="Log In"
+              validate={Validate}
             />
             {/* <button className="column l-12 btn primary-btn log-in__btn js-login__btn-submit">
             Log In

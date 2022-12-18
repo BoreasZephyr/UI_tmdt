@@ -163,7 +163,7 @@ function Home() {
         </div>
       </div>
       <div className="grid wide" style={{ paddingTop: '100px' }}>
-        {!isFetchingTop5Data ? (
+        {!isFetchingTop5Data && top5Data?.top5Products.length ? (
           <Carousel
             responsive={{
               desktop: {
