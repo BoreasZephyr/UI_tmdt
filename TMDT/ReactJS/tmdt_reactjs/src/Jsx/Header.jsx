@@ -100,7 +100,7 @@ function Header({ showLoginForm, closeLoginForm, user }) {
               </div>
               <div className="column l-4 header-choice__btn">
                 <Link
-                  to={user ? `/Cart` : '/'}
+                  to="/Cart"
                   className="link header-choice__link header-cart__btn"
                 >
                   <FontAwesomeIcon

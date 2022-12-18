@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Home from './Jsx/Home';
 import ProductDetail from './Jsx/Product_detail';
 import SignUp from './Jsx/Sign_up';
@@ -42,7 +42,7 @@ function App() {
         />
         <Route path="/Products/:id" element={<ProductDetail user={user} showLoginForm={showLoginForm} />} />
         <Route
-          path="/SignUp"
+          path="/SignUp"  
           element={!user ? <SignUp showLoginForm={showLoginForm} /> : <Navigate replace to="/" />}
         />
         <Route
