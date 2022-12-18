@@ -43,9 +43,17 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
     }
   }
 
+  function closeAndReset() {
+    hideLoginForm();
+
+    loginEmailInput.current.value = null;
+    loginPasswordInput.current.value = null;
+    setFormData(prev => ({ ...prev, email: '', password: '' }));
+  }
+
   return (
     <div className="layout__overlay js-layout__overlay" ref={ref}>
-      <div className="dark-layout js-dark-layout" onClick={hideLoginForm}></div>
+      <div className="dark-layout js-dark-layout" onClick={closeAndReset}></div>
       <div className="login__form-container js-login__form-container">
         <form
           action="submit"
@@ -56,7 +64,7 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
           <h1 className="login__header">Log in</h1>
           <h3 className="login-signup">
             New member?{' '}
-            <Link to="/SignUp" href="#" className="signup__link" onClick={hideLoginForm}>
+            <Link to="/SignUp" href="#" className="signup__link" onClick={closeAndReset}>
               <strong>Sign up here!</strong>
             </Link>
           </h3>
