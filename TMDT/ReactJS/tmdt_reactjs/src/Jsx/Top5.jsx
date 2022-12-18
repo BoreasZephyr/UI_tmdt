@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Countdown from 'react-countdown';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
+import { Completionist } from './EndTime';
+// const Completionist = () => <span>You are good to go!</span>;
 
 function Top5({ product }) {
   return (
@@ -27,7 +30,11 @@ function Top5({ product }) {
           </div>
         </div>
         <div className="productItem__info">
-          <div className="productItem__date-remain">00H : 00M : 00S</div>
+          <div className="productItem__date-remain">
+            <Countdown date={Date.parse(product?.endTime)} daysInHours={true} key={product?._id}>
+              <Completionist />
+            </Countdown>
+          </div>
         </div>
       </div>
     </Link>

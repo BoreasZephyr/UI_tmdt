@@ -2,6 +2,16 @@
   height: 50rem;
 }
 
+.item{
+  /* padding: 0 5rem; */
+}
+
+.react-multi-carousel-item--active {
+  /* width: 500px;
+  height: 800px;
+  margin: 0 auto; */
+}
+
 .btn_top5 {
   background-color: grey
 }

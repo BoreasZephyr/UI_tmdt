@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -8,12 +8,13 @@ import Header from './Header';
 import Footer from './Footer';
 import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
-import { useEffect } from 'react';
 import {
   useGetProductQuery,
   useGetProductsQuery,
 } from '../services/productApis';
 import { useParams } from 'react-router-dom';
+import Countdown from 'react-countdown';
+import { Completionist } from './EndTime';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -22,7 +23,7 @@ function ProductDetail() {
     useGetProductQuery(id);
 
   const { data: relativeProducts, isFetching: isFetchingRelativeProduct } =
-    useGetProductsQuery({ category: productData?.product.category });
+    useGetProductsQuery({ limit: 3, category: productData?.product.category });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,7 +78,11 @@ function ProductDetail() {
                       }).format(productData?.product.currentPrice)}
                     </strong>
                   </div>
-                  <div className="product-time">Time left: 16:30:28</div>
+                  <div className="product-time">Time left:&nbsp;
+                    <Countdown date={Date.parse(productData?.product.endTime)} daysInHours={true} key={productData?.product._id}>
+                      <Completionist />
+                    </Countdown>
+                  </div>
                 </div>
                 <div className="product-bid-container">
                   <div className="product-bid__header">

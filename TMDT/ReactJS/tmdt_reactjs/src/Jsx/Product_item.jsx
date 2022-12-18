@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Countdown from 'react-countdown';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -9,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import {  } from '@fortawesome/free-brands-svg-icons';
 // import {  } from '@fortawesome/free-solid-svg-icons';
 import SpecialBtn from './Special_btn';
+import { Completionist } from './EndTime';
 
 function ProductItem({ product }) {
   return (
@@ -24,7 +26,11 @@ function ProductItem({ product }) {
           ></div>
           <div className="productItem__info column l-12">
             <div className="productItem__name">{product?.name}</div>
-            <div className="productItem__date-remain">00H : 00M : 00S</div>
+            <div className="productItem__date-remain">
+              <Countdown date={Date.parse(product?.endTime)} daysInHours={true} key={product?._id}>
+                <Completionist />
+              </Countdown>
+            </div>
           </div>
           <div className="productItem-trade__info">
             <div className="productItem__price">

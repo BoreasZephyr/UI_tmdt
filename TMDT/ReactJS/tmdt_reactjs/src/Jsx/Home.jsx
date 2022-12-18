@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -21,21 +21,6 @@ import {
   useGetTop5ProductsQuery,
 } from '../services/productApis';
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 5,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
-
 const CustomDot = ({ index, onClick, active }) => {
   return (
     <button
@@ -45,7 +30,6 @@ const CustomDot = ({ index, onClick, active }) => {
           ? 'slider-indicators__btn btn-top5-active active'
           : 'slider-indicators__btn inactive'
       }
-      aria-current="true"
       style={{ padding: '1.5px 16px', margin: '0px 2px', border: 'none' }}
     >
       {React.Children.toArray()[index]}
@@ -181,14 +165,31 @@ function Home() {
       <div className="grid wide" style={{ paddingTop: '100px' }}>
         {!isFetchingTop5Data ? (
           <Carousel
-            responsive={responsive}
+            responsive={{
+              desktop: {
+                breakpoint: { max: 3000, min: 1024 },
+                items: 3,
+              },
+              tablet: {
+                breakpoint: { max: 1024, min: 464 },
+                items: 2,
+              },
+              mobile: {
+                breakpoint: { max: 464, min: 0 },
+                items: 1,
+              },
+            }}
             swipeable={false}
             draggable={false}
             showDots={true}
             infinite={true}
-            autoPlaySpeed={1000}
+            autoPlay={true}
+            autoPlaySpeed={5000}
+            slidesToSlide={true}
+            centerMode={true}
             arrows={false}
             customDot={<CustomDot />}
+            // partialVisbile={true}
             dotListClass="carousel-indicators slider-indicators"
           >
             {top5Data?.top5Products.map((product, i) => (
@@ -238,7 +239,7 @@ function Home() {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script> */}
-    </div>
+    </div >
   );
 }
 export default Home;

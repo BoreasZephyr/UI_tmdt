@@ -1,0 +1,1 @@
+export const Completionist = () => <span>Expired</span>
