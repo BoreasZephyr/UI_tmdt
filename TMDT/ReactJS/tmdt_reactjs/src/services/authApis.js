@@ -11,10 +11,18 @@ const auth = auction.injectEndpoints({
             body: formData,
         }),
     }),
+    register: builder.mutation({
+      query: (formData) => ({
+          url: '/register',
+          method: 'POST',
+          body: formData,
+      }),
+  })
   }),
   overrideExisting: false,
 });
 
 export const {
     useLoginMutation,
+    useRegisterMutation,
 } = auth;

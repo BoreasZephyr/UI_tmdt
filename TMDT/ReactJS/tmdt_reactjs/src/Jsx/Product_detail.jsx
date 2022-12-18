@@ -16,7 +16,7 @@ import { useParams } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { Completionist } from './EndTime';
 
-function ProductDetail() {
+function ProductDetail({ user, showLoginForm }) {
   const { id } = useParams();
 
   const { data: productData, isFetching: isFetchingProduct } =
@@ -105,6 +105,7 @@ function ProductDetail() {
                     <SpecialBtn
                       className="product-bid__btn"
                       value="Place bid"
+                      onClick={!user ? showLoginForm : () => {}}
                     />
                     {/* <button class="btn primary-btn product-bid__btn">Place bid</button> */}
                   </div>

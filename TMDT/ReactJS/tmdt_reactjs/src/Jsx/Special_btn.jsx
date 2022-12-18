@@ -7,9 +7,8 @@ function SpecialBtn(props) {
     <button
       className={`btn primary-btn ${props.className}`}
       type={props.type}
-      reference={props.ref}
-      onClick={props.validate}
-      disabled={props.isLoading}
+      disabled={props.isDisabled}
+      onClick={props.onClick}
     >
       {props.value}
     </button>

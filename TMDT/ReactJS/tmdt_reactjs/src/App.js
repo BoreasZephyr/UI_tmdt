@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route, Routes, Navigate } from 'react-router-dom';
@@ -14,24 +15,35 @@ import ViewMyProduct from './Jsx/View-my-product';
 import WonProduct from './Jsx/Won_product';
 import AddProduct from './Jsx/Add_product';
 import Cart from './Jsx/Cart';
+import SignIn from './Jsx/Sign_in';
 import Header from './Jsx/Header';
 
 function App() {
   const user = JSON.parse(localStorage.getItem('user'));
+  const layoutOverlay = useRef(null); // --> ref to "js-layout__overlay" div
+
+  function showLoginForm() {
+    layoutOverlay.current.classList.add('show');
+  }
+
+  function hideLoginForm() {
+    layoutOverlay.current.classList.remove('show');
+  }
 
   return (
     <>
-      <Header />
+      <Header showLoginForm={showLoginForm} user={user} />
+      <SignIn ref={layoutOverlay} hideLoginForm={hideLoginForm} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/Cart"
           element={user ? <Cart /> : <Navigate replace to="/" />}
         />
-        <Route path="/Products/:id" element={<ProductDetail />} />
+        <Route path="/Products/:id" element={<ProductDetail user={user} showLoginForm={showLoginForm} />} />
         <Route
           path="/SignUp"
-          element={!user ? <SignUp /> : <Navigate replace to="/" />}
+          element={!user ? <SignUp showLoginForm={showLoginForm} /> : <Navigate replace to="/" />}
         />
         <Route
           path="/Navbar"
