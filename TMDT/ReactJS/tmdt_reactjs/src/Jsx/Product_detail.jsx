@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useRef, useState } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -15,19 +15,62 @@ import {
 import { useParams } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { Completionist } from './EndTime';
+import { useBidProductMutation } from '../services/productApis';
 
 function ProductDetail({ user, showLoginForm }) {
   const { id } = useParams();
 
+  const bidInput = useRef(null);
+
+  // apis call
   const { data: productData, isFetching: isFetchingProduct } =
     useGetProductQuery(id);
 
   const { data: relativeProducts, isFetching: isFetchingRelativeProduct } =
     useGetProductsQuery({ limit: 3, category: productData?.product.category });
 
+  const [bidProduct, { isLoading }] = useBidProductMutation();
+
+  // Bid formData
+  const [bidData, setBidData] = useState({
+    bidPrice: 0,
+  });
+
+  useEffect(() => {
+    if (!isFetchingProduct)
+      setBidData((prev) => ({
+        ...prev,
+        bidPrice: productData?.product.currentPrice + productData?.product.step,
+      }));
+  }, [productData, isFetchingProduct]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
+
+  const handleBidChange = (e) => {
+    const numberRegex = /^\d+$/;
+    if (e.target.value.match(numberRegex) && e.target.value < 10000000000) {
+      setBidData((prev) => ({ ...prev, bidPrice: e.target.value }));
+    }
+  };
+
+  const handleBidPrice = async () => {
+    try {
+      console.log('bid run');
+      const res = await bidProduct({ id, formData: bidData });
+
+      // Check bid error
+      if (res?.error) {
+        const {
+          error: { data },
+        } = res;
+        alert(data.message);
+      } else {
+        alert(`Place $${bidData.bidPrice} for product success`);
+      }
+    } catch (error) {}
+  };
 
   return (
     <div>
@@ -69,7 +112,7 @@ function ProductDetail({ user, showLoginForm }) {
                 </div>
                 <div className="product-price-time-container">
                   <div className="product-price">
-                    Biding price:{' '}
+                    Curent price:{' '}
                     <strong>
                       {Intl.NumberFormat('en-US', {
                         style: 'currency',
@@ -77,8 +120,31 @@ function ProductDetail({ user, showLoginForm }) {
                       }).format(productData?.product.currentPrice)}
                     </strong>
                   </div>
-                  <div className="product-time">Time left:&nbsp;
-                    <Countdown date={Date.parse(productData?.product.endTime)} daysInHours={true} key={productData?.product._id}>
+                  <div className="product-price">
+                    Price holder:{' '}
+                    <strong>
+                      {productData?.product.priceHolder ? (
+                        user &&
+                        user._id === productData?.product.priceHolder._id ? (
+                          'You'
+                        ) : (
+                          <>
+                            {productData?.product.priceHolder.firstName}{' '}
+                            {productData?.product.priceHolder.lastName}
+                          </>
+                        )
+                      ) : (
+                        'No current price holder'
+                      )}
+                    </strong>
+                  </div>
+                  <div className="product-time">
+                    Time left:&nbsp;
+                    <Countdown
+                      date={Date.parse(productData?.product.endTime)}
+                      daysInHours={true}
+                      key={productData?.product._id}
+                    >
                       <Completionist />
                     </Countdown>
                   </div>
@@ -87,7 +153,7 @@ function ProductDetail({ user, showLoginForm }) {
                   <div className="product-bid__header">
                     <div className="product-bid__heading">Bid now</div>
                     <div className="product-min-bid">
-                      Minium Bid amount:{' '}
+                      Minimum Step price:{' '}
                       <span className="product-min-bid-value">
                         {Intl.NumberFormat('en-US', {
                           style: 'currency',
@@ -99,13 +165,17 @@ function ProductDetail({ user, showLoginForm }) {
                   <div className="product-bid">
                     <input
                       type="text"
+                      ref={bidInput}
                       className="product-bid__input"
                       placeholder="$0.00"
+                      onChange={handleBidChange}
+                      value={bidData.bidPrice}
                     />
                     <SpecialBtn
                       className="product-bid__btn"
                       value="Place bid"
-                      onClick={!user ? showLoginForm : () => {}}
+                      onClick={!user ? showLoginForm : handleBidPrice}
+                      isDisabled={isLoading}
                     />
                     {/* <button class="btn primary-btn product-bid__btn">Place bid</button> */}
                   </div>

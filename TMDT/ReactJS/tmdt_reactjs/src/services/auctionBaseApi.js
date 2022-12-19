@@ -4,6 +4,6 @@ import baseQuery from './serviceConfig';
 export const auction = createApi({
     reducerPath: 'auction',
     baseQuery: fetchBaseQuery(baseQuery),
-    tagTypes: [],
+    tagTypes: ['Product'],
     endpoints: () => ({}),
 });

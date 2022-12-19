@@ -30,12 +30,22 @@ const product = auction.injectEndpoints({
 
         return baseProductApi;
       },
+      providesTags: ['Product'],
     }),
     getProduct: builder.query({
       query: (id) => `product/${id}`,
+      providesTags: ['Product'],
     }),
     getTop5Products: builder.query({
       query: () => `/products/top5`,
+    }),
+    bidProduct: builder.mutation({
+      query: ({ id, formData }) => ({
+        url: `/product/${id}/bid`,
+        method: 'PUT',
+        body: formData,
+      }),
+      invalidatesTags: ['Product'],
     }),
   }),
   overrideExisting: false,
@@ -45,4 +55,5 @@ export const {
   useGetProductsQuery,
   useGetProductQuery,
   useGetTop5ProductsQuery,
+  useBidProductMutation,
 } = product;
