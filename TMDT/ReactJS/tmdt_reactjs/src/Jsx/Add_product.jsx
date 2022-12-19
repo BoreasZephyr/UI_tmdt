@@ -71,6 +71,17 @@ function AddProduct() {
     subImgInput2.addEventListener('change', (e) => {
       const [file] = subImgInput2.files;
       var fileURL = URL.createObjectURL(file);
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          console.log(reader.result)
+        }
+      };
+
+      reader.readAsDataURL(e.target.files[0]);
+
       if (file) subImg2.style.backgroundImage = `url(${fileURL})`;
       //   if (file) alert(fileURL);
     });
@@ -198,7 +209,7 @@ function AddProduct() {
                 </div>
               </div>
               <div className="add-product__btn-container">
-                <Link to="/MyProducts">
+                <Link to="/my-products">
                   <button className="btn add-product__btn cancel-add-product__btn">
                     Cancel
                   </button>

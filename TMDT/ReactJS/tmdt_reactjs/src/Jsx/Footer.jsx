@@ -56,15 +56,15 @@ function Footer() {
                 <div className="student-id student1-id">19110016</div>
               </a>
               <a
-                href="https://www.facebook.com/chienbeo17"
+                href="https://www.facebook.com/thang.caoxuan.568"
                 target="_blank"
                 rel="noreferrer"
                 className="column l-4 link student-info student2"
               >
                 <div className="student-name student2-name">
-                  Nguyễn Minh Chiến
+                  Cao Xuân Thắng
                 </div>
-                <div className="student-id student2-id">19110173</div>
+                <div className="student-id student2-id">19119222</div>
               </a>
               <a
                 href="https://www.facebook.com/buep.303"
@@ -90,9 +90,9 @@ function Footer() {
                 </div>
                 <div className="student-id student4-id">19110018</div>
               </a>
-              <a href="#" className="column l-6 link student-info student5">
-                <div className="student-name student5-name">Cao Xuân Thắng</div>
-                <div className="student-id student5-id">19119222</div>
+              <a href="https://www.facebook.com/chienbeo17" className="column l-6 link student-info student5">
+                <div className="student-name student5-name">Nguyễn Minh Chiến</div>
+                <div className="student-id student5-id">19110173</div>
               </a>
             </div>
           </div>

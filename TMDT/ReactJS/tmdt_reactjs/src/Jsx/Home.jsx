@@ -9,7 +9,7 @@ import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel';
@@ -94,6 +94,7 @@ function Home() {
                     <SpecialBtn
                       className="slider__btn"
                       value="Start exploring"
+                      onClick={() => navigate('/products')}
                     />
                   </div>
                 </div>

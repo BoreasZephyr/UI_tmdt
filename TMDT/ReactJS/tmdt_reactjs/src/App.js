@@ -37,6 +37,7 @@ function App() {
       <SignIn ref={layoutOverlay} hideLoginForm={hideLoginForm} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Search />} />
         <Route
           path="/cart"
           element={user ? <Cart /> : <Navigate replace to="/" />}

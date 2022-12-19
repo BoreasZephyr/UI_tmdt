@@ -51,7 +51,7 @@ function ProductDetail({ user, showLoginForm }) {
   const handleBidChange = (e) => {
     const numberRegex = /^[0-9]*$/;
     // e.target.value is string, js comparator is absolute, so that engine converts to same data type (number)
-    if(e.target.value.match(numberRegex) && e.target.value < 10000000000) {
+    if (e.target.value.match(numberRegex) && e.target.value < 10000000000) {
       setBidData((prev) => ({ ...prev, bidPrice: parseInt(e.target.value) }));
     }
   };
@@ -185,13 +185,42 @@ function ProductDetail({ user, showLoginForm }) {
             </div>
           </div>
         </div>
-        {/* Product other auction */}
         <div className="row">
-          {relativeProducts?.products
-            ?.filter((product) => product._id !== id)
-            .map((product, i) => (
-              <ProductItem key={i} product={product} />
-            ))}
+          <div className="col l-12 product-description-container">
+            <div className="row">
+              <div className="col l-9 product-description">
+                <h3 className="product-description__heading">
+                  {productData?.product.name}
+                </h3>
+                <p className="product-description-content">
+                  {productData?.product.description}
+                </p>
+              </div>
+              <div
+                className="col l-3 product-description__img"
+                style={{
+                  backgroundImage: `url(${productData?.product.images[0].url})`,
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+        {/* Product other auction */}
+        <div className="col l-12 product-other-auction-cotainer">
+          <div className="row">
+            <div className="col l-12 product-other-auction__header">
+              <h2 className="product-other-auction__heading" >
+                Other products
+              </h2>
+            </div>
+          </div>
+          <div className="row">
+            {relativeProducts?.products
+              ?.filter((product) => product._id !== id)
+              .map((product, i) => (
+                <ProductItem key={i} product={product} />
+              ))}
+          </div>
         </div>
       </div>
       {/* Footer */}

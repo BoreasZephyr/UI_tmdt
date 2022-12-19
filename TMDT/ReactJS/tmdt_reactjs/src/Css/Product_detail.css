@@ -119,3 +119,6 @@
   background-size: contain;
   background-position: top center;
 }
+.product-other-auction__heading {
+  font-size: 3rem;
+}

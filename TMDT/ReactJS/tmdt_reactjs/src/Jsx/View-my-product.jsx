@@ -197,7 +197,7 @@ function ViewMyProduct() {
                 </div>
               </div>
               <div className="update-product__btn-container">
-                <Link to="/MyProducts">
+                <Link to="/my-products">
                   <button className="btn update-product__btn cancel-update-product__btn">
                     Cancel
                   </button>
