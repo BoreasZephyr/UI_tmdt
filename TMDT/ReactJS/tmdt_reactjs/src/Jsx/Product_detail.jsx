@@ -31,9 +31,9 @@ function ProductDetail({ user, showLoginForm }) {
 
   const [bidProduct, { isLoading }] = useBidProductMutation();
 
-  // Bid formData
+  // Bid formData, default is 0 (number)
   const [bidData, setBidData] = useState({
-    bidPrice: '',
+    bidPrice: 0,
   });
 
   useEffect(() => {
@@ -50,8 +50,9 @@ function ProductDetail({ user, showLoginForm }) {
 
   const handleBidChange = (e) => {
     const numberRegex = /^[0-9]*$/;
-    if (e.target.value.match(numberRegex) && e.target.value < 10000000000) {
-      setBidData((prev) => ({ ...prev, bidPrice: e.target.value }));
+    // e.target.value is string, js comparator is absolute, so that engine converts to same data type (number)
+    if(e.target.value.match(numberRegex) && e.target.value < 10000000000) {
+      setBidData((prev) => ({ ...prev, bidPrice: parseInt(e.target.value) }));
     }
   };
 
@@ -169,7 +170,7 @@ function ProductDetail({ user, showLoginForm }) {
                       className="product-bid__input"
                       placeholder="$0.00"
                       onChange={handleBidChange}
-                      value={bidData.bidPrice}
+                      value={bidData.bidPrice ? bidData.bidPrice : ''}
                     />
                     <SpecialBtn
                       className="product-bid__btn"
