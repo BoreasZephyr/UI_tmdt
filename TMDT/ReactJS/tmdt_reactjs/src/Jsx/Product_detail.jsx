@@ -33,7 +33,7 @@ function ProductDetail({ user, showLoginForm }) {
 
   // Bid formData
   const [bidData, setBidData] = useState({
-    bidPrice: 0,
+    bidPrice: '',
   });
 
   useEffect(() => {
@@ -49,7 +49,7 @@ function ProductDetail({ user, showLoginForm }) {
   }, []);
 
   const handleBidChange = (e) => {
-    const numberRegex = /^\d+$/;
+    const numberRegex = /^[0-9]*$/;
     if (e.target.value.match(numberRegex) && e.target.value < 10000000000) {
       setBidData((prev) => ({ ...prev, bidPrice: e.target.value }));
     }

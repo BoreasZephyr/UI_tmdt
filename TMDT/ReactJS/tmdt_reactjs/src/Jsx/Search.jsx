@@ -7,14 +7,17 @@ import '../Css/Search.css';
 import Footer from './Footer';
 import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { useSearchParams } from 'react-router-dom';
+import { useGetProductsQuery } from '../services/productApis';
 
 function Search() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { data: productsData, isFetching } = useGetProductsQuery({ keyword: searchParams.get('keyword') });
+
   return (
     <div>
-      {/* Header */}
-      {/* Nav bar */}
       <div className="grid wide">
         <div className="row">
           <div className=" dropdown sort-container sort-brand-container">
@@ -147,12 +150,9 @@ function Search() {
       {/* Product list */}
       <div className="grid wide">
         <div className="row">
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/57e8d34b4a57ad14f1dc8460962e33791c3ad6e04e50744172297cdd9349cc_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e1dd404c51ab14f1dc8460962e33791c3ad6e04e5074417d2e7ed6924bc4_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/57e1dd424d51ac14f1dc8460962e33791c3ad6e04e50744172297cdc9f4fc7_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e7d1404857a814f1dc8460962e33791c3ad6e04e5074417c2d78d19e44cd_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/57e2d1454256ac14f1dc8460962e33791c3ad6e04e507749772f79dd9f4ec6_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/55e0dd424357ac14f1dc8460962e33791c3ad6e04e507441722a72d3904ccc_640.jpg" />
+          {productsData?.products.map((product, i) => (
+            <ProductItem key={i} product={product} />
+          ))}
         </div>
       </div>
       {/* Footer */}
