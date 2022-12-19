@@ -64,7 +64,7 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
           <h1 className="login__header">Log in</h1>
           <h3 className="login-signup">
             New member?{' '}
-            <Link to="/SignUp" href="#" className="signup__link" onClick={closeAndReset}>
+            <Link to="/signup" href="#" className="signup__link" onClick={closeAndReset}>
               <strong>Sign up here!</strong>
             </Link>
           </h3>

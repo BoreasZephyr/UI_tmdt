@@ -4,7 +4,6 @@ import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Search.css';
-import Header from './Header';
 import Footer from './Footer';
 import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
@@ -15,7 +14,6 @@ function Search() {
   return (
     <div>
       {/* Header */}
-      <Header />
       {/* Nav bar */}
       <div className="grid wide">
         <div className="row">

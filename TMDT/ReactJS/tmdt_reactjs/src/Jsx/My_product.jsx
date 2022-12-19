@@ -45,7 +45,7 @@ function MyProduct() {
             />
           </div>
         </div>
-        <Link to="/AddProduct">
+        <Link to="/add-product">
           <SpecialBtn className="Add-product__btn" value="Add product" />
         </Link>
       </div>

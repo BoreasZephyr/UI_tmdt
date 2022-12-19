@@ -100,7 +100,7 @@ function Header({ showLoginForm, closeLoginForm, user }) {
               </div>
               <div className="column l-4 header-choice__btn">
                 <Link
-                  to="/Cart"
+                  to="/cart"
                   className="link header-choice__link header-cart__btn"
                 >
                   <FontAwesomeIcon
@@ -136,7 +136,7 @@ function Header({ showLoginForm, closeLoginForm, user }) {
                       <div className="header-user-greeting">
                         <h3 className="header-user__heading">
                           Hello!{' '}
-                          <Link to="/Profile">
+                          <Link to="/profile">
                             <span className="header-user__link">
                               {user.firstName}
                             </span>

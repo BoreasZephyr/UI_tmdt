@@ -11,7 +11,7 @@ import { Completionist } from './EndTime';
 function Top5({ product }) {
   return (
     <Link
-      to={`/Products/${product?._id}`}
+      to={`/products/${product?._id}`}
     >
       <div style={{ margin: '0 8px' }}>
         <div className="productItem__info">
