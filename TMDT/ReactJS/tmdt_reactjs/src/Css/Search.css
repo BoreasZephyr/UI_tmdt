@@ -72,3 +72,20 @@ button.go__btn {
 .sort-price__heading {
   width: 120px;
 }
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+.page-link {
+  padding: 8px 16px;
+  font-size: 20px;
+  color: var(--black-color);
+}
+.page-link:hover {
+  color: var(--black-color);
+}
+.page-item.active .page-link {
+  background-color: var(--primary-color) ;
+  border-color: var(--primary-color) ;
+}
