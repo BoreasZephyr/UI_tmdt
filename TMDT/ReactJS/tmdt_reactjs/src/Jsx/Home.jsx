@@ -43,6 +43,8 @@ function Home() {
 
   const { data: productsData, isFetching } = useGetProductsQuery({ });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -212,7 +214,7 @@ function Home() {
                   We want to be a part of your smile, success and future growth.
                 </p>
               </div>
-              <div className="product-item__header-right">
+              <div className="product-item__header-right" onClick={() => navigate('/products')}>
                 <SpecialBtn
                   className="product-item__header-btn"
                   value="View all"
