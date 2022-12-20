@@ -37,6 +37,13 @@ const product = auction.injectEndpoints({
     getTop5Products: builder.query({
       query: () => `/products/top5`,
     }),
+    addProduct: builder.mutation({
+      query: (formData) => ({
+        url: "/product/new",
+        method: "POST",
+        body: formData,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -45,4 +52,5 @@ export const {
   useGetProductsQuery,
   useGetProductQuery,
   useGetTop5ProductsQuery,
+  useAddProductMutation,
 } = product;

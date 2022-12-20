@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Add_product.css';
 
-import Header from './Header';
 import SpecialBtn from './Special_btn';
 import ProfileNavbar from './Profile_navbar';
-
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
 
-// import { Carousel, CarouselItemProps } from 'react-bootstrap'
-import { useEffect } from 'react';
-
 function AddProduct() {
+  const [formData, setFormData] = useState({
+    name: '',
+    minPrice: '',
+    step: '',
+    description: '',
+    category: '',
+    images: [],
+    endTime: '',
+    shortDecription: ''
+  })
+
+  const imgs = [];
+
+  const nameInput = useRef(null);
+  const minPriceInput = useRef(null);
+  const stepInput = useRef(null);
+  const descriptionInput = useRef(null);
+  const categoryInput = useRef(null);
+  const [imagesInput, setImagesInput] = useState([]);
+  const endTimeInput = useRef(null);
+  const shortDescriptionInput = useRef(null);
+
   useEffect(() => {
     // Biến input hình
     const mainImgInput = document.querySelector(
@@ -81,13 +97,20 @@ function AddProduct() {
       //   if (file) alert(fileURL);
     });
   });
+
+  async function Validate(e) {
+    e.preventDefault();
+    console.log(formData);
+    console.log(imagesInput)
+    console.log(nameInput);
+  }
   return (
     <>
       <ProfileNavbar />
       <div className="grid wide">
         <div className="row">
           <div className="column l-10 profile-main-content">
-            <form action="" className="add-product__form">
+            <form onSubmit={Validate} className="add-product__form">
               <div className="row">
                 <h1 className="column l-12 add-product__heading">
                   Add product
@@ -98,9 +121,6 @@ function AddProduct() {
                       <div className="add-product__img-container">
                         <div
                           className="add-product__img add-product-main__img js-add-product-main__img"
-                          //   style={{
-                          //     backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/5ee1d0474b50b10ff3d8992cc12c30771037dbf85254794e732c79dc944c_640.jpg)`,
-                          //   }}
                         ></div>
                       </div>
                     </div>
@@ -115,26 +135,31 @@ function AddProduct() {
                               type="text"
                               className="column l-3 add-product__input add-product-name__input"
                               placeholder="Product name"
-                              //   defaultValue="Casio-MTP-VT01L-2B"
+                              ref={nameInput}
+                              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                             />
                             <input
                               type="number"
                               className="column l-2 add-product__input add-product-start-price__input"
                               placeholder="Start price"
                               datatype="currency"
-                              //   defaultValue="500"
+                              ref={minPriceInput}
+                              onChange={(e) => setFormData(prev => ({ ...prev, minPrice: e.target.value }))}
                             />
                             <input
                               type="number"
                               className="column l-2 add-product__input add-product-step-price__input"
                               placeholder="Step price"
                               datatype="currency"
-                              //   defaultValue="250"
+                              ref={stepInput}
+                              onChange={(e) => setFormData(prev => ({ ...prev, step: e.target.value }))}
                             />
                             <input
                               type="date"
                               name=""
                               className="column l-3 add-product__input add-product-date__input"
+                              ref={endTimeInput}
+                              onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
                             />
                           </div>
                         </div>
@@ -144,14 +169,16 @@ function AddProduct() {
                             rows="3"
                             className="column l-12 add-product-description__input add-product-short-description__input"
                             placeholder="Short description"
-                            // defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            ref={shortDescriptionInput}
+                            onChange={(e) => setFormData(prev => ({ ...prev, shortDecription: e.target.value }))}
                           ></textarea>
                           <textarea
                             name=""
                             rows="5"
                             className="column l-12 add-product-description__input add-product-details-description__input"
                             placeholder="Defaults description"
-                            // defaultValue="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                            ref={descriptionInput}
+                            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                           ></textarea>
                         </div>
                       </div>
@@ -167,9 +194,6 @@ function AddProduct() {
                         <div className="add-product__img-container add-product-sub__img-container">
                           <div
                             className="column add-product__img add-product-sub__img js-add-product-sub__img1"
-                            // style={{
-                            //   backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/55e5d1424951ab14f1dc8460962e33791c3ad6e04e50744172297ed2914cc2_640.jpg)`,
-                            // }}
                           ></div>
                         </div>
                       </div>
@@ -177,9 +201,6 @@ function AddProduct() {
                         <div className="add-product__img-container add-product-sub__img-container">
                           <div
                             className="column add-product__img add-product-sub__img js-add-product-sub__img2"
-                            // style={{
-                            //   backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/54e9dd444e55aa14f1dc8460962e33791c3ad6e04e5074417d2d73d39f4ec1_640.jpg)`,
-                            // }}
                           ></div>
                         </div>
                       </div>
@@ -187,9 +208,6 @@ function AddProduct() {
                         <div className="add-product__img-container add-product-sub__img-container">
                           <div
                             className="column add-product__img add-product-sub__img js-add-product-sub__img3"
-                            // style={{
-                            //   backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/52e7d3464a52a414f1dc8460962e33791c3ad6e04e50744172297cd6944bc2_640.jpg)`,
-                            // }}
                           ></div>
                         </div>
                       </div>
@@ -213,24 +231,44 @@ function AddProduct() {
                   type="file"
                   className="add-product-main-img__input js-add-product-main-img__input"
                   style={{ display: 'none' }}
+                  // ref={(img) => {
+                  //   setImagesInput(prev => ({ ...prev }));
+                  // }}
+                  onChange={(e) => {
+                    setImagesInput(prev => ([...prev, e.target]));
+                    setFormData(prev => ({ ...prev, images: imagesInput }));
+                  }}
                 />
                 <input
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input1 js-add-product-sub-img__input1"
                   style={{ display: 'none' }}
+
+                  onChange={(e) => {
+                    setImagesInput(prev => ([...prev, e.target]));
+                    setFormData(prev => ({ ...prev, images: imagesInput }));
+                  }}
                 />
                 <input
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input2 js-add-product-sub-img__input2"
                   style={{ display: 'none' }}
+                // ref={(img) => {
+                //   imagesInput.current[2] = img;
+                //   imgs.push(img);
+                // }}
                 />
                 <input
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input3 js-add-product-sub-img__input3"
                   style={{ display: 'none' }}
+                // ref={(img) => {
+                //   imagesInput.current[3] = img;
+                //   imgs.push(img);
+                // }}
                 />
               </div>
             </form>
