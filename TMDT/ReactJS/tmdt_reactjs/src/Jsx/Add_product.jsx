@@ -113,7 +113,17 @@ function AddProduct({ showCheckoutForm }) {
       <div className="grid wide">
         <div className="row">
           <div className="column l-10 profile-main-content">
-            <form onSubmit={Validate} className="add-product__form">
+            <form onSubmit={Validate}
+              className="add-product__form"
+              onChange={() => {
+                addImage(
+                  mainImage.current.files[0],
+                  subImage1.current.files[0],
+                  subImage2.current.files[0],
+                  subImage3.current.files[0],
+                )
+              }}
+              >
               <div className="row">
                 <h1 className="column l-12 add-product__heading">
                   Add product
