@@ -30,10 +30,10 @@ function AddProduct({ showCheckoutForm }) {
     minPrice: '',
     step: '',
     description: '',
-    category: '',
+    category: '6397027f1486b02abc2c3cc5',
     images: [],
     endTime: '',
-    shortDecription: '',
+    shortDescription: '',
   })
 
   const [imagesInput, setImagesInput] = useState([]);
@@ -62,6 +62,23 @@ function AddProduct({ showCheckoutForm }) {
 
   const [addProduct] = useAddProductMutation();
 
+  const addImage = (...imgs) => {
+    console.log('run add img')
+    if(formData.images.length <= 4) {
+      imgs.forEach(img => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setFormData(prev => ({ ...prev, images: [...prev.images, reader.result] }))
+          }
+        };
+  
+        reader.readAsDataURL(img);
+      })
+    }
+  }
+
   async function onToken(token) {
     const product = {
       name: formData.name,
@@ -71,25 +88,13 @@ function AddProduct({ showCheckoutForm }) {
       category: formData.category,
       images: [...formData.images],
       endTime: formData.endTime,
-      shortDecription: formData.shortDecription,
+      shortDescription: formData.shortDescription,
       token,
     };
 
-    const res = await addProduct(product);
-  }
+    console.log(product);
 
-  const addImage = (...imgs) => {
-    imgs.forEach(img => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setFormData(prev => ({ ...prev, images: [...prev.images, reader.result] }))
-        }
-      };
-
-      reader.readAsDataURL(img);
-    })
+    // const res = await addProduct(product);
   }
 
   function Validate(e) {
@@ -165,7 +170,7 @@ function AddProduct({ showCheckoutForm }) {
                             className="column l-12 add-product-description__input add-product-short-description__input"
                             placeholder="Short description"
                             ref={shortDescriptionInput}
-                            onChange={(e) => setFormData(prev => ({ ...prev, shortDecription: e.target.value }))}
+                            onChange={(e) => setFormData(prev => ({ ...prev, shortDescription: e.target.value }))}
                           ></textarea>
                           <textarea
                             name=""
@@ -236,10 +241,12 @@ function AddProduct({ showCheckoutForm }) {
                     type="submit"
                     className="add-product__btn add-product-save__btn"
                     onClick={() => {
-                      addImage(mainImage.current.files[0],
+                      addImage(
+                        mainImage.current.files[0],
                         subImage1.current.files[0],
                         subImage2.current.files[0],
-                        subImage3.current.files[0])
+                        subImage3.current.files[0],
+                      )
                     }}
                   />
                 </StripeCheckout>

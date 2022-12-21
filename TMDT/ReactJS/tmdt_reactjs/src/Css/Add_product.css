@@ -91,4 +91,5 @@
 .cancel-add-product__btn {
 }
 .add-product-save__btn {
+  padding: 10px !important;
 }

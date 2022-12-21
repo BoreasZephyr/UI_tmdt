@@ -19,7 +19,7 @@ function Top5({ product }) {
         </div>
         <div
           className="productItem__img"
-          style={{ backgroundImage: `url(${product?.images[0].url})` }}
+          style={{ backgroundImage: `url(${product?.images[0]?.url})` }}
         ></div>
         <div className="productItem__info">
           <div className="productItem__name">

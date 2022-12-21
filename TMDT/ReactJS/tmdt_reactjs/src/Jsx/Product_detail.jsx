@@ -84,12 +84,12 @@ function ProductDetail({ user, showLoginForm }) {
               <div className="col l-6 product__img-container">
                 <div className="row">
                   <div className="col l-3 product__img-slide-container">
-                    {productData?.product.images.map(({ url }, i) => (
+                    {productData?.product.images.map((img, i) => (
                       <div
                         key={i}
                         className="product__img-slide product__img-slide2"
                         style={{
-                          backgroundImage: `url(${url})`,
+                          backgroundImage: `url(${img?.url})`,
                         }}
                       ></div>
                     ))}
@@ -97,7 +97,7 @@ function ProductDetail({ user, showLoginForm }) {
                   <div
                     className="col l-9 product__img"
                     style={{
-                      backgroundImage: `url(${productData?.product.images[0].url})`,
+                      backgroundImage: `url(${productData?.product.images[0]?.url})`,
                     }}
                   ></div>
                 </div>
@@ -199,7 +199,7 @@ function ProductDetail({ user, showLoginForm }) {
               <div
                 className="col l-3 product-description__img"
                 style={{
-                  backgroundImage: `url(${productData?.product.images[0].url})`,
+                  backgroundImage: `url(${productData?.product.images[0]?.url})`,
                 }}
               ></div>
             </div>
