@@ -1,22 +1,88 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useRef, useEffect } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Search.css';
-import Header from './Header';
 import Footer from './Footer';
-import SpecialBtn from './Special_btn';
 import ProductItem from './Product_item';
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
+import SpecialBtn from './Special_btn';
+import { useSearchParams } from 'react-router-dom';
+import { useGetProductsQuery } from '../services/productApis';
+import { useGetCategoriesQuery } from '../services/categoryApis';
 
 function Search() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [sort, setSort] = useState(false);
+
+  const priceArr = [
+    {
+      minPrice: 100,
+      maxPrice: 400,
+    },
+    {
+      minPrice: 400,
+      maxPrice: 1000,
+    },
+    {
+      minPrice: 1000,
+      maxPrice: 5000,
+    },
+    {
+      minPrice: 5000,
+      maxPrice: null,
+    },
+  ];
+
+  const [brand, setBrand] = useState({
+    id: '',
+    name: 'Brand',
+  });
+
+  const [priceRange, setPriceRange] = useState({
+    minPrice: '',
+    maxPrice: '',
+  });
+
+  const brandLi = useRef(null);
+
+  useEffect(() => {
+    console.log('change');
+    setBrand((prev) => ({ ...prev, id: '', name: 'Brand' }));
+    setPriceRange((prev) => ({ ...prev, minPrice: '', maxPrice: '' }));
+  }, [searchParams]);
+
+  const { data: productsData, isFetching } = useGetProductsQuery({
+    keyword: searchParams.get('keyword'),
+    sortEnd: sort,
+    category: brand.id,
+    minPrice: priceRange.minPrice,
+    maxPrice: priceRange.maxPrice,
+  });
+
+  const { data: categoriesData, isFetching: isFetchingCategory } =
+    useGetCategoriesQuery();
+
+  const handleAboutToEndClick = () => {
+    setSort((prev) => !prev);
+  };
+
+  const handleChangeCate = (e) => {
+    console.log(e.target.id);
+    setBrand((prev) => ({
+      ...prev,
+      id: e.target.id,
+      name: e.target.innerText,
+    }));
+  };
+
+  const handlePriceChange = ({ minPrice, maxPrice }) => {
+    setPriceRange((prev) => ({ ...prev, minPrice, maxPrice }));
+  };
+
   return (
     <div>
-      {/* Header */}
-      <Header />
-      {/* Nav bar */}
       <div className="grid wide">
         <div className="row">
           <div className=" dropdown sort-container sort-brand-container">
@@ -28,45 +94,24 @@ function Search() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Brand
+              {brand.name}
             </a>
-
             <ul
               className="dropdown-menu"
               aria-labelledby="dropdownMenuLink sort-container sort-brand__container"
             >
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-brand__item"
-                  href="#"
-                >
-                  Louis Vuitton
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-brand__item"
-                  href="#"
-                >
-                  Rolex
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-brand__item"
-                  href="#"
-                >
-                  Citizen
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-brand__item"
-                  href="#"
-                >
-                  Casio
-                </a>
-              </li>
+              {categoriesData?.categories.map((category, i) => (
+                <li key={i}>
+                  <a
+                    id={category?._id}
+                    ref={brandLi}
+                    className="dropdown-item sort__item sort-brand__item"
+                    onClick={handleChangeCate}
+                  >
+                    {category?.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -79,82 +124,53 @@ function Search() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Price
+              {priceRange.minPrice
+                ? !priceRange.maxPrice
+                  ? `Above $${priceRange.minPrice}`
+                  : `$${priceRange.minPrice} - $${priceRange.maxPrice}`
+                : 'Price'}
             </a>
-
             <ul
               className="dropdown-menu"
               aria-labelledby="dropdownMenuLink sort-price__list"
             >
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-price__item"
-                  href="#"
-                >
-                  100 - 400$
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-price__item"
-                  href="#"
-                >
-                  400 - 1000$
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-price__item"
-                  href="#"
-                >
-                  1000 - 5000$
-                </a>
-              </li>
-              <li>
-                <a
-                  className="dropdown-item sort__item sort-price__item"
-                  href="#"
-                >
-                  Over 5000$
-                </a>
-              </li>
+              {priceArr.map((range, i) => (
+                <li key={i}>
+                  <a
+                    className="dropdown-item sort__item sort-price__item"
+                    onClick={() => handlePriceChange(range)}
+                  >
+                    {!range.maxPrice
+                      ? `Above $${range.minPrice}`
+                      : `$${range.minPrice} - $${range.maxPrice}`}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className=" dropdown about-to-end__btn-container">
+          <div
+            className="about-to-end__btn-container"
+            onClick={handleAboutToEndClick}
+          >
             <a
-              className="btn btn-secondary dropdown-toggle about-to-end__btn"
-              href="#"
+              className="btn btn-secondary about-to-end__btn"
               role="button"
-              id="dropdownMenuLink"
-              data-bs-toggle="dropdown"
+              // id="dropdownMenuLink"
+              // data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              About to end
+              End time sort
             </a>
           </div>
-          <div className=" dropdown go__btn-container">
-            <a
-              className="btn primary-btn btn-secondary dropdown-toggle go__btn"
-              href="#"
-              role="button"
-              id="dropdownMenuLink"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Go
-            </a>
-          </div>
+          {/* <SpecialBtn className="product-bid__btn go__btn" value="Go" /> */}
         </div>
       </div>
       {/* Product list */}
       <div className="grid wide">
         <div className="row">
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/57e8d34b4a57ad14f1dc8460962e33791c3ad6e04e50744172297cdd9349cc_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e1dd404c51ab14f1dc8460962e33791c3ad6e04e5074417d2e7ed6924bc4_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/57e1dd424d51ac14f1dc8460962e33791c3ad6e04e50744172297cdc9f4fc7_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/54e7d1404857a814f1dc8460962e33791c3ad6e04e5074417c2d78d19e44cd_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/57e2d1454256ac14f1dc8460962e33791c3ad6e04e507749772f79dd9f4ec6_640.jpg" />
-          <ProductItem url="https://randomwordgenerator.com/img/picture-generator/55e0dd424357ac14f1dc8460962e33791c3ad6e04e507441722a72d3904ccc_640.jpg" />
+          {productsData?.products.map((product, i) => (
+            <ProductItem key={i} product={product} />
+          ))}
         </div>
       </div>
       {/* Footer */}

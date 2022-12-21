@@ -4,15 +4,36 @@ import {
   faCartShopping,
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import Profile from './Profile';
 
 function Header({ showLoginForm, closeLoginForm, user }) {
+  const navigate = useNavigate();
+
+  const [query, setQuery] = useState('');
+
+  const handleChangeQuery = (e) => {
+    setQuery(e.target.value);
+  }
+
+  const handleSearch = () => {
+    if(query) {
+      navigate(`/search?keyword=${query}`);
+      setQuery('');
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if(e.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
   return (
     <div>
       <header id="header">
@@ -83,13 +104,16 @@ function Header({ showLoginForm, closeLoginForm, user }) {
                 type="text"
                 className="header__search"
                 placeholder="Find a product"
+                onChange={handleChangeQuery}
+                onKeyDown={handleKeyDown}
+                value={query}
               />
             </div>
             <div className="column l-3 header-choices">
               <div className="column l-4 header-choice__btn">
                 <a
-                  href="#"
                   className="link header-choice__link header-search__btn"
+                  onClick={handleSearch}
                 >
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
@@ -100,7 +124,7 @@ function Header({ showLoginForm, closeLoginForm, user }) {
               </div>
               <div className="column l-4 header-choice__btn">
                 <Link
-                  to="/Cart"
+                  to="/cart"
                   className="link header-choice__link header-cart__btn"
                 >
                   <FontAwesomeIcon
@@ -136,7 +160,7 @@ function Header({ showLoginForm, closeLoginForm, user }) {
                       <div className="header-user-greeting">
                         <h3 className="header-user__heading">
                           Hello!{' '}
-                          <Link to="/Profile">
+                          <Link to="/profile">
                             <span className="header-user__link">
                               {user.firstName}
                             </span>

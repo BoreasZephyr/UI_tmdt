@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Home from './Jsx/Home';
+import Search from './Jsx/Search';
 import ProductDetail from './Jsx/Product_detail';
 import SignUp from './Jsx/Sign_up';
 import ProfileNavbar from './Jsx/Profile_navbar';
@@ -36,50 +37,55 @@ function App() {
       <SignIn ref={layoutOverlay} hideLoginForm={hideLoginForm} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Search />} />
         <Route
-          path="/Cart"
+          path="/cart"
           element={user ? <Cart /> : <Navigate replace to="/" />}
         />
-        <Route path="/Products/:id" element={<ProductDetail user={user} showLoginForm={showLoginForm} />} />
+        <Route path="/products/:id" element={<ProductDetail user={user} showLoginForm={showLoginForm} />} />
         <Route
-          path="/SignUp"  
+          path="/signup"  
           element={!user ? <SignUp showLoginForm={showLoginForm} /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/Navbar"
+          path="/navbar"
           element={user ? <ProfileNavbar /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/Profile"
+          path="/profile"
           element={user ? <Profile /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/ChangePassWord"
+          path="/change-password"
           element={user ? <ChangePassWord /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/WonProducts"
+          path="/won-products"
           element={user ? <WonProduct /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/UserScore"
+          path="/user-score"
           element={user ? <UserScore /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/MyProducts"
+          path="/my-products"
           element={user ? <MyProduct /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/AddProduct"
-          element={user ? <AddProduct /> : <Navigate replace to="/" />}
+          path="/add-product"
+          element={user ? <AddProduct showCheckoutForm={showLoginForm} /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/ViewMyProduct"
+          path="/view-my-products"
           element={user ? <ViewMyProduct /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/MyProductItem"
+          path="/my-products-item"
           element={user ? <MyProductItem /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/search"
+          element={<Search />}
         />
       </Routes>
     </>

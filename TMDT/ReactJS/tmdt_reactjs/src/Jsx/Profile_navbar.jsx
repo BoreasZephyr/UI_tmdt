@@ -30,14 +30,14 @@ function ProfileNavbar() {
       {/* <div className="grid"> */}
       <div className="column l-2 profile__nav-container">
         <Link
-          to="/Profile"
+          to="/profile"
           className="js-nav__link nav__link nav__link-profile active"
           onClick={(event) => toggleActiveNavLink(event)}
         >
           Profile
         </Link>
         <Link
-          to="/ChangePassWord"
+          to="/change-password"
           className="js-nav__link nav__link nav__link-change-password"
           onClick={(event) => toggleActiveNavLink(event)}
         >
@@ -51,21 +51,21 @@ function ProfileNavbar() {
           Products
         </a>
         <Link
-          to="/WonProducts"
+          to="/won-products"
           className="js-nav__link nav__link nav__link-won=products"
           onClick={(event) => toggleActiveNavLink(event)}
         >
           Won products
         </Link>
         <Link
-          to="/UserScore"
+          to="/user-score"
           className="js-nav__link nav__link nav__link-score"
           onClick={(event) => toggleActiveNavLink(event)}
         >
           Score
         </Link>
         <Link
-          to="/MyProducts"
+          to="/my-products"
           className="js-nav__link nav__link nav__link-my-products"
           onClick={(event) => toggleActiveNavLink(event)}
         >

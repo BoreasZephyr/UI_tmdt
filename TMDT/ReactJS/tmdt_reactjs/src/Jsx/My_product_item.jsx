@@ -21,7 +21,7 @@ function MyProductItem(props) {
   return (
     <>
       <Link
-        to="/ViewMyProduct"
+        to="/view-my-products"
         className="column l-12 my-product-item-container"
       >
         <div
