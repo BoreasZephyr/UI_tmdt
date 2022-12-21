@@ -64,16 +64,18 @@ function AddProduct({ showCheckoutForm }) {
 
   const addImage = (...imgs) => {
     console.log('run add img')
-    if(formData.images.length <= 4) {
+    if (formData.images.length < 5) {
       imgs.forEach(img => {
+        
         const reader = new FileReader();
 
         reader.onload = () => {
           if (reader.readyState === 2) {
+            console.log(img)
             setFormData(prev => ({ ...prev, images: [...prev.images, reader.result] }))
           }
         };
-  
+
         reader.readAsDataURL(img);
       })
     }
@@ -107,7 +109,17 @@ function AddProduct({ showCheckoutForm }) {
       <div className="grid wide">
         <div className="row">
           <div className="column l-10 profile-main-content">
-            <form onSubmit={Validate} className="add-product__form">
+            <form onSubmit={Validate}
+              className="add-product__form"
+              onChange={() => {
+                addImage(
+                  mainImage.current.files[0],
+                  subImage1.current.files[0],
+                  subImage2.current.files[0],
+                  subImage3.current.files[0],
+                )
+              }}
+              >
               <div className="row">
                 <h1 className="column l-12 add-product__heading">
                   Add product
@@ -240,14 +252,6 @@ function AddProduct({ showCheckoutForm }) {
                     value="Checkout"
                     type="submit"
                     className="add-product__btn add-product-save__btn"
-                    onClick={() => {
-                      addImage(
-                        mainImage.current.files[0],
-                        subImage1.current.files[0],
-                        subImage2.current.files[0],
-                        subImage3.current.files[0],
-                      )
-                    }}
                   />
                 </StripeCheckout>
 
