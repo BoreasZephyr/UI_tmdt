@@ -6,7 +6,7 @@ const product = auction.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: ({
-        limit = 6,
+        limit = 3,
         page = 1,
         keyword,
         minPrice,

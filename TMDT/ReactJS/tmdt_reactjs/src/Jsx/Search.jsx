@@ -8,6 +8,7 @@ import Footer from './Footer';
 import ProductItem from './Product_item';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import SpecialBtn from './Special_btn';
+import ReactPaginate from 'react-paginate';
 import { useSearchParams } from 'react-router-dom';
 import { useGetProductsQuery } from '../services/productApis';
 import { useGetCategoriesQuery } from '../services/categoryApis';
@@ -15,6 +16,7 @@ import { useGetCategoriesQuery } from '../services/categoryApis';
 function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sort, setSort] = useState(false);
+  const [page, setPage] = useState(1);
 
   const priceArr = [
     {
@@ -47,39 +49,51 @@ function Search() {
 
   const brandLi = useRef(null);
 
-  useEffect(() => {
-    console.log('change');
-    setBrand((prev) => ({ ...prev, id: '', name: 'Brand' }));
-    setPriceRange((prev) => ({ ...prev, minPrice: '', maxPrice: '' }));
-  }, [searchParams]);
-
+  // api calls to get products
   const { data: productsData, isFetching } = useGetProductsQuery({
     keyword: searchParams.get('keyword'),
     sortEnd: sort,
     category: brand.id,
+    page,
     minPrice: priceRange.minPrice,
     maxPrice: priceRange.maxPrice,
   });
 
+  // api get categories
   const { data: categoriesData, isFetching: isFetchingCategory } =
     useGetCategoriesQuery();
 
+  // reset filter when search change
+  useEffect(() => {
+    setBrand((prev) => ({ ...prev, id: '', name: 'Brand' }));
+    setPriceRange((prev) => ({ ...prev, minPrice: '', maxPrice: '' }));
+  }, [searchParams]);
+
+  // handle about to end clicking
   const handleAboutToEndClick = () => {
     setSort((prev) => !prev);
   };
 
+  // change category dropdown
   const handleChangeCate = (e) => {
-    console.log(e.target.id);
     setBrand((prev) => ({
       ...prev,
       id: e.target.id,
       name: e.target.innerText,
     }));
+    setPage(1);
   };
 
+  // change price dropdown
   const handlePriceChange = ({ minPrice, maxPrice }) => {
     setPriceRange((prev) => ({ ...prev, minPrice, maxPrice }));
+    setPage(1);
   };
+
+  // Change page handle
+  const handlePageClick = (e) => {
+    setPage(e.selected + 1);
+  }
 
   return (
     <div>
@@ -173,6 +187,33 @@ function Search() {
           ))}
         </div>
       </div>
+      {!isFetching ? (
+        <nav className="pagination-container">
+          <ReactPaginate
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount={Math.ceil(productsData?.filteredProductsCount / productsData?.resPerPage)}
+            previousLabel="<"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            containerClassName="pagination"
+            activeClassName="active"
+            renderOnZeroPageCount={null}
+            forcePage={page - 1}
+          />
+        </nav>
+      ) : (
+        <></>
+      )}
       {/* Footer */}
       <Footer />
     </div>
