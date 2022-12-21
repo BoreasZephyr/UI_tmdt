@@ -31,12 +31,13 @@ function AddProduct({ showCheckoutForm }) {
     step: '',
     description: '',
     category: '6397027f1486b02abc2c3cc5',
-    images: [],
+    mainImage: '',
+    subImage1: '',
+    subImage2: '',
+    subImage3: '',
     endTime: '',
     shortDescription: '',
   })
-
-  const [imagesInput, setImagesInput] = useState([]);
 
   const nameInput = useRef(null);
   const minPriceInput = useRef(null);
@@ -54,30 +55,24 @@ function AddProduct({ showCheckoutForm }) {
     mainImgInput.click()
   }
 
-  const handleChange = (ImgInput, Img) => {
+  const handleChange = (ImgInput, Img, e) => {
     const [file] = ImgInput.files;
     const fileURL = URL.createObjectURL(file);
     if (file) Img.style.backgroundImage = `url(${fileURL})`;
+    
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setFormData(prev => ({ ...prev, [e.target.id]: reader.result }))
+
+      }
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   const [addProduct] = useAddProductMutation();
-
-  const addImage = (...imgs) => {
-    console.log('run add img')
-    if(formData.images.length <= 4) {
-      imgs.forEach(img => {
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          if (reader.readyState === 2) {
-            setFormData(prev => ({ ...prev, images: [...prev.images, reader.result] }))
-          }
-        };
-  
-        reader.readAsDataURL(img);
-      })
-    }
-  }
 
   async function onToken(token) {
     const product = {
@@ -86,7 +81,10 @@ function AddProduct({ showCheckoutForm }) {
       step: formData.step,
       description: formData.description,
       category: formData.category,
-      images: [...formData.images],
+      mainImage: formData.mainImage,
+      subImage1: formData.subImage1, 
+      subImage2: formData.subImage2,
+      subImage3: formData.subImage3,
       endTime: formData.endTime,
       shortDescription: formData.shortDescription,
       token,
@@ -94,7 +92,15 @@ function AddProduct({ showCheckoutForm }) {
 
     console.log(product);
 
-    // const res = await addProduct(product);
+    const res = await addProduct(product);
+
+    if(res?.error) {
+      const { error: { data } } = res;
+      alert(data.message);
+    } else {
+      alert('Auction product created');
+      window.location.reload();
+    }
   }
 
   function Validate(e) {
@@ -240,59 +246,60 @@ function AddProduct({ showCheckoutForm }) {
                     value="Checkout"
                     type="submit"
                     className="add-product__btn add-product-save__btn"
-                    onClick={() => {
-                      addImage(
-                        mainImage.current.files[0],
-                        subImage1.current.files[0],
-                        subImage2.current.files[0],
-                        subImage3.current.files[0],
-                      )
-                    }}
+                    onClick={() => console.log(formData)}
                   />
                 </StripeCheckout>
 
                 <input
+                  id='mainImage'
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-main-img__input js-add-product-main-img__input"
                   style={{ display: 'none' }}
                   ref={mainImage}
-                  onChange={() => handleChange(
+                  onChange={(e) => handleChange(
                     document.querySelector('.js-add-product-main-img__input'),
-                    document.querySelector('.js-add-product-main__img')
+                    document.querySelector('.js-add-product-main__img'),
+                    e
                   )}
                 />
                 <input
+                  id='subImage1'
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input1 js-add-product-sub-img__input1"
                   style={{ display: 'none' }}
                   ref={subImage1}
-                  onChange={() => handleChange(
+                  onChange={(e) => handleChange(
                     document.querySelector('.js-add-product-sub-img__input1'),
-                    document.querySelector('.js-add-product-sub__img1')
+                    document.querySelector('.js-add-product-sub__img1'),
+                    e
                   )}
                 />
                 <input
+                  id='subImage2'
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input2 js-add-product-sub-img__input2"
                   style={{ display: 'none' }}
                   ref={subImage2}
-                  onChange={() => handleChange(
+                  onChange={(e) => handleChange(
                     document.querySelector('.js-add-product-sub-img__input2'),
-                    document.querySelector('.js-add-product-sub__img2')
+                    document.querySelector('.js-add-product-sub__img2'),
+                    e
                   )}
                 />
                 <input
+                  id='subImage3'
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input3 js-add-product-sub-img__input3"
                   style={{ display: 'none' }}
                   ref={subImage3}
-                  onChange={() => handleChange(
+                  onChange={(e) => handleChange(
                     document.querySelector('.js-add-product-sub-img__input3'),
-                    document.querySelector('.js-add-product-sub__img3')
+                    document.querySelector('.js-add-product-sub__img3'),
+                    e
                   )}
                 />
               </div>

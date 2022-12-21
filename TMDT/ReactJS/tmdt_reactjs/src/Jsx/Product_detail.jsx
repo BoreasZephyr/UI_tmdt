@@ -11,7 +11,7 @@ import ProductItem from './Product_item';
 import {
   useGetProductQuery,
   useGetProductsQuery,
-  useBidProductMutation
+  useBidProductMutation,
 } from '../services/productApis';
 import { useParams } from 'react-router-dom';
 import Countdown from 'react-countdown';
@@ -84,20 +84,29 @@ function ProductDetail({ user, showLoginForm }) {
               <div className="col l-6 product__img-container">
                 <div className="row">
                   <div className="col l-3 product__img-slide-container">
-                    {productData?.product.images.map((img, i) => (
-                      <div
-                        key={i}
-                        className="product__img-slide product__img-slide2"
-                        style={{
-                          backgroundImage: `url(${img?.url})`,
-                        }}
-                      ></div>
-                    ))}
+                    <div
+                      className="product__img-slide product__img-slide2"
+                      style={{
+                        backgroundImage: `url(${productData?.product?.subImage1?.url})`,
+                      }}
+                    />
+                    <div
+                      className="product__img-slide product__img-slide2"
+                      style={{
+                        backgroundImage: `url(${productData?.product?.subImage2?.url})`,
+                      }}
+                    />
+                    <div
+                      className="product__img-slide product__img-slide2"
+                      style={{
+                        backgroundImage: `url(${productData?.product?.subImage3?.url})`,
+                      }}
+                    />                    
                   </div>
                   <div
                     className="col l-9 product__img"
                     style={{
-                      backgroundImage: `url(${productData?.product.images[0]?.url})`,
+                      backgroundImage: `url(${productData?.product?.mainImage.url})`,
                     }}
                   ></div>
                 </div>
@@ -199,7 +208,7 @@ function ProductDetail({ user, showLoginForm }) {
               <div
                 className="col l-3 product-description__img"
                 style={{
-                  backgroundImage: `url(${productData?.product.images[0]?.url})`,
+                  backgroundImage: `url(${productData?.product.mainImage.url})`,
                 }}
               ></div>
             </div>
@@ -209,9 +218,7 @@ function ProductDetail({ user, showLoginForm }) {
         <div className="col l-12 product-other-auction-cotainer">
           <div className="row">
             <div className="col l-12 product-other-auction__header">
-              <h2 className="product-other-auction__heading" >
-                Other products
-              </h2>
+              <h2 className="product-other-auction__heading">Other products</h2>
             </div>
           </div>
           <div className="row">
