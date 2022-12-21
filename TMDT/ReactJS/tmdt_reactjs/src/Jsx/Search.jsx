@@ -95,6 +95,10 @@ function Search() {
     setPage(e.selected + 1);
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
   return (
     <div>
       <div className="grid wide">

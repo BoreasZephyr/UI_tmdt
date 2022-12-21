@@ -27,7 +27,7 @@ function ProductDetail({ user, showLoginForm }) {
     useGetProductQuery(id);
 
   const { data: relativeProducts, isFetching: isFetchingRelativeProduct } =
-    useGetProductsQuery({ limit: 3, category: productData?.product.category });
+    useGetProductsQuery({ limit: 4, category: productData?.product.category });
 
   const [bidProduct, { isLoading }] = useBidProductMutation();
 

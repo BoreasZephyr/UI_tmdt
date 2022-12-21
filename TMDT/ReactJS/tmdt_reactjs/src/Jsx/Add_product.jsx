@@ -314,7 +314,7 @@ function AddProduct({ showCheckoutForm }) {
                       value="Checkout"
                       // type="submit"
                       className="add-product__btn add-product-save__btn"
-                      onClick={Validate}
+                      onClick={Val}
                     />
                   </StripeCheckout>
                 ) : (
