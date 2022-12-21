@@ -37,7 +37,7 @@ function AddProduct({ showCheckoutForm }) {
     subImage3: '',
     endTime: '',
     shortDescription: '',
-  })
+  });
 
   const nameInput = useRef(null);
   const minPriceInput = useRef(null);
@@ -52,27 +52,26 @@ function AddProduct({ showCheckoutForm }) {
   const shortDescriptionInput = useRef(null);
 
   const handleClick = (mainImgInput) => {
-    mainImgInput.click()
-  }
+    mainImgInput.click();
+  };
 
   const handleChange = (ImgInput, Img, e) => {
     const [file] = ImgInput.files;
     const fileURL = URL.createObjectURL(file);
     if (file) Img.style.backgroundImage = `url(${fileURL})`;
-    
+
     const reader = new FileReader();
 
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setFormData(prev => ({ ...prev, [e.target.id]: reader.result }))
-
+        setFormData((prev) => ({ ...prev, [e.target.id]: reader.result }));
       }
     };
 
     reader.readAsDataURL(e.target.files[0]);
   };
 
-  const [addProduct] = useAddProductMutation();
+  const [addProduct, { isLoading }] = useAddProductMutation();
 
   async function onToken(token) {
     const product = {
@@ -82,7 +81,7 @@ function AddProduct({ showCheckoutForm }) {
       description: formData.description,
       category: formData.category,
       mainImage: formData.mainImage,
-      subImage1: formData.subImage1, 
+      subImage1: formData.subImage1,
       subImage2: formData.subImage2,
       subImage3: formData.subImage3,
       endTime: formData.endTime,
@@ -94,8 +93,10 @@ function AddProduct({ showCheckoutForm }) {
 
     const res = await addProduct(product);
 
-    if(res?.error) {
-      const { error: { data } } = res;
+    if (res?.error) {
+      const {
+        error: { data },
+      } = res;
       alert(data.message);
     } else {
       alert('Auction product created');
@@ -105,6 +106,23 @@ function AddProduct({ showCheckoutForm }) {
 
   function Validate(e) {
     e.preventDefault();
+
+    if (
+      !formData.name ||
+      !formData.minPrice ||
+      !formData.step ||
+      !formData.description ||
+      !formData.category ||
+      !formData.mainImage ||
+      !formData.subImage1 ||
+      !formData.subImage2 ||
+      !formData.subImage3 ||
+      !formData.shortDescription ||
+      !formData.endTime
+    ) {
+      alert('Please fill out all fields');
+      return e.stopPropagation();
+    }
   }
 
   return (
@@ -113,17 +131,10 @@ function AddProduct({ showCheckoutForm }) {
       <div className="grid wide">
         <div className="row">
           <div className="column l-10 profile-main-content">
-            <form onSubmit={Validate}
+            <form
+              // onSubmit={Validate}
               className="add-product__form"
-              onChange={() => {
-                addImage(
-                  mainImage.current.files[0],
-                  subImage1.current.files[0],
-                  subImage2.current.files[0],
-                  subImage3.current.files[0],
-                )
-              }}
-              >
+            >
               <div className="row">
                 <h1 className="column l-12 add-product__heading">
                   Add product
@@ -134,9 +145,13 @@ function AddProduct({ showCheckoutForm }) {
                       <div className="add-product__img-container">
                         <div
                           className="add-product__img add-product-main__img js-add-product-main__img"
-                          onClick={() => handleClick(
-                            document.querySelector('.js-add-product-main-img__input')
-                          )}
+                          onClick={() =>
+                            handleClick(
+                              document.querySelector(
+                                '.js-add-product-main-img__input'
+                              )
+                            )
+                          }
                         ></div>
                       </div>
                     </div>
@@ -152,7 +167,12 @@ function AddProduct({ showCheckoutForm }) {
                               className="column l-3 add-product__input add-product-name__input"
                               placeholder="Product name"
                               ref={nameInput}
-                              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  name: e.target.value,
+                                }))
+                              }
                             />
                             <input
                               type="number"
@@ -160,7 +180,12 @@ function AddProduct({ showCheckoutForm }) {
                               placeholder="Start price"
                               datatype="currency"
                               ref={minPriceInput}
-                              onChange={(e) => setFormData(prev => ({ ...prev, minPrice: e.target.value }))}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  minPrice: e.target.value,
+                                }))
+                              }
                             />
                             <input
                               type="number"
@@ -168,14 +193,24 @@ function AddProduct({ showCheckoutForm }) {
                               placeholder="Step price"
                               datatype="currency"
                               ref={stepInput}
-                              onChange={(e) => setFormData(prev => ({ ...prev, step: e.target.value }))}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  step: e.target.value,
+                                }))
+                              }
                             />
                             <input
                               type="date"
                               name=""
                               className="column l-3 add-product__input add-product-date__input"
                               ref={endTimeInput}
-                              onChange={(e) => setFormData(prev => ({ ...prev, endTime: e.target.value }))}
+                              onChange={(e) =>
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  endTime: e.target.value,
+                                }))
+                              }
                             />
                           </div>
                         </div>
@@ -186,7 +221,12 @@ function AddProduct({ showCheckoutForm }) {
                             className="column l-12 add-product-description__input add-product-short-description__input"
                             placeholder="Short description"
                             ref={shortDescriptionInput}
-                            onChange={(e) => setFormData(prev => ({ ...prev, shortDescription: e.target.value }))}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                shortDescription: e.target.value,
+                              }))
+                            }
                           ></textarea>
                           <textarea
                             name=""
@@ -194,7 +234,12 @@ function AddProduct({ showCheckoutForm }) {
                             className="column l-12 add-product-description__input add-product-details-description__input"
                             placeholder="Defaults description"
                             ref={descriptionInput}
-                            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                description: e.target.value,
+                              }))
+                            }
                           ></textarea>
                         </div>
                       </div>
@@ -210,9 +255,13 @@ function AddProduct({ showCheckoutForm }) {
                         <div className="add-product__img-container add-product-sub__img-container">
                           <div
                             className="column add-product__img add-product-sub__img js-add-product-sub__img1"
-                            onClick={() => handleClick(
-                              document.querySelector('.js-add-product-sub-img__input1')
-                            )}
+                            onClick={() =>
+                              handleClick(
+                                document.querySelector(
+                                  '.js-add-product-sub-img__input1'
+                                )
+                              )
+                            }
                           ></div>
                         </div>
                       </div>
@@ -220,9 +269,13 @@ function AddProduct({ showCheckoutForm }) {
                         <div className="add-product__img-container add-product-sub__img-container">
                           <div
                             className="column add-product__img add-product-sub__img js-add-product-sub__img2"
-                            onClick={() => handleClick(
-                              document.querySelector('.js-add-product-sub-img__input2')
-                            )}
+                            onClick={() =>
+                              handleClick(
+                                document.querySelector(
+                                  '.js-add-product-sub-img__input2'
+                                )
+                              )
+                            }
                           ></div>
                         </div>
                       </div>
@@ -230,9 +283,13 @@ function AddProduct({ showCheckoutForm }) {
                         <div className="add-product__img-container add-product-sub__img-container">
                           <div
                             className="column add-product__img add-product-sub__img js-add-product-sub__img3"
-                            onClick={() => handleClick(
-                              document.querySelector('.js-add-product-sub-img__input3')
-                            )}
+                            onClick={() =>
+                              handleClick(
+                                document.querySelector(
+                                  '.js-add-product-sub-img__input3'
+                                )
+                              )
+                            }
                           ></div>
                         </div>
                       </div>
@@ -246,77 +303,94 @@ function AddProduct({ showCheckoutForm }) {
                     Cancel
                   </button>
                 </Link>
-                <StripeCheckout
-                  amount={formData.minPrice * 0.02 * 100}
-                  token={onToken}
-                  currency="USD"
-                  stripeKey='pk_test_51LhTmHDGOQhsYLL1AGMaaqbRNEB4CKIIou69IljUChMBjvkf1OQEa1SMjADKv3x9vs8Z1IOceHacX7LhfFX1ZvdU00lyYntqcX'
-                >
+                {!isLoading ? (
+                  <StripeCheckout
+                    amount={formData.minPrice * 0.02 * 100}
+                    token={onToken}
+                    currency="USD"
+                    stripeKey="pk_test_51LhTmHDGOQhsYLL1AGMaaqbRNEB4CKIIou69IljUChMBjvkf1OQEa1SMjADKv3x9vs8Z1IOceHacX7LhfFX1ZvdU00lyYntqcX"
+                  >
+                    <SpecialBtn
+                      value="Checkout"
+                      // type="submit"
+                      className="add-product__btn add-product-save__btn"
+                      onClick={Validate}
+                    />
+                  </StripeCheckout>
+                ) : (
                   <SpecialBtn
                     value="Checkout"
-                    type="submit"
+                    // type="submit"
                     className="add-product__btn add-product-save__btn"
-                    onClick={() => console.log(formData)}
+                    // onClick={() => console.log(formData)}
+                    isDisabled={true}
                   />
-                </StripeCheckout>
-
+                )}
                 <input
-                  id='mainImage'
+                  id="mainImage"
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-main-img__input js-add-product-main-img__input"
                   style={{ display: 'none' }}
                   ref={mainImage}
-                  onChange={(e) => handleChange(
-                    document.querySelector('.js-add-product-main-img__input'),
-                    document.querySelector('.js-add-product-main__img'),
-                    e
-                  )}
+                  onChange={(e) =>
+                    handleChange(
+                      document.querySelector('.js-add-product-main-img__input'),
+                      document.querySelector('.js-add-product-main__img'),
+                      e
+                    )
+                  }
                 />
                 <input
-                  id='subImage1'
+                  id="subImage1"
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input1 js-add-product-sub-img__input1"
                   style={{ display: 'none' }}
                   ref={subImage1}
-                  onChange={(e) => handleChange(
-                    document.querySelector('.js-add-product-sub-img__input1'),
-                    document.querySelector('.js-add-product-sub__img1'),
-                    e
-                  )}
+                  onChange={(e) =>
+                    handleChange(
+                      document.querySelector('.js-add-product-sub-img__input1'),
+                      document.querySelector('.js-add-product-sub__img1'),
+                      e
+                    )
+                  }
                 />
                 <input
-                  id='subImage2'
+                  id="subImage2"
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input2 js-add-product-sub-img__input2"
                   style={{ display: 'none' }}
                   ref={subImage2}
-                  onChange={(e) => handleChange(
-                    document.querySelector('.js-add-product-sub-img__input2'),
-                    document.querySelector('.js-add-product-sub__img2'),
-                    e
-                  )}
+                  onChange={(e) =>
+                    handleChange(
+                      document.querySelector('.js-add-product-sub-img__input2'),
+                      document.querySelector('.js-add-product-sub__img2'),
+                      e
+                    )
+                  }
                 />
                 <input
-                  id='subImage3'
+                  id="subImage3"
                   accept="image/png, image/jpeg"
                   type="file"
                   className="add-product-sub-img__input3 js-add-product-sub-img__input3"
                   style={{ display: 'none' }}
                   ref={subImage3}
-                  onChange={(e) => handleChange(
-                    document.querySelector('.js-add-product-sub-img__input3'),
-                    document.querySelector('.js-add-product-sub__img3'),
-                    e
-                  )}
+                  onChange={(e) =>
+                    handleChange(
+                      document.querySelector('.js-add-product-sub-img__input3'),
+                      document.querySelector('.js-add-product-sub__img3'),
+                      e
+                    )
+                  }
                 />
               </div>
             </form>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 }
