@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -11,13 +11,15 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
-import { useEffect } from 'react';
 import ProfileNavbar from './Profile_navbar';
 
 function UserScore() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <>
-      <ProfileNavbar />
+      <ProfileNavbar No="nav__link-5" />
       <div className="grid wide">
         <div className="row">
           <div className="column l-10 profile-main-content">

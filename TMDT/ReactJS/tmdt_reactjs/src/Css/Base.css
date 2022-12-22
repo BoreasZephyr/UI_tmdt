@@ -25,6 +25,13 @@ body {
   position: relative;
   margin-top: 100px;
 }
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+#content-wrap {
+  padding-bottom: calc(var(--footer-height) + 10px);
+}
 a {
   text-decoration: none;
 }

@@ -7,6 +7,7 @@ import '../Css/Add_product.css';
 
 import SpecialBtn from './Special_btn';
 import ProfileNavbar from './Profile_navbar';
+
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
 import PaymentForm from './PaymentStripe';
@@ -122,7 +123,9 @@ function AddProduct({ showCheckoutForm }) {
       return e.stopPropagation();
     }
   }
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <>
       <ProfileNavbar />

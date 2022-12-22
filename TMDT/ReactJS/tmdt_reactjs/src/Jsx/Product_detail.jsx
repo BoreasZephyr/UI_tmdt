@@ -23,7 +23,7 @@ function ProductDetail({ user, showLoginForm }) {
 
   const bidInput = useRef(null);
 
-  const [formData, setFormData] = useState()
+  const [formData, setFormData] = useState();
 
   // apis call
   const { data: productData, isFetching: isFetchingProduct } =
@@ -34,7 +34,7 @@ function ProductDetail({ user, showLoginForm }) {
 
   const [bidProduct, { isLoading }] = useBidProductMutation();
 
-  const [createCart] = useNewCartMutation()
+  const [createCart] = useNewCartMutation();
 
   // Bid formData, default is 0 (number)
   const [bidData, setBidData] = useState({
@@ -52,15 +52,14 @@ function ProductDetail({ user, showLoginForm }) {
         image: productData?.product.mainImage,
         price: productData?.product.minPrice,
         product: productData?.product,
-        user: JSON.parse(localStorage.getItem("user")),
-      })
+        user: JSON.parse(localStorage.getItem('user')),
+      });
     }
   }, [productData, isFetchingProduct]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   const handleBidChange = (e) => {
     const numberRegex = /^[0-9]*$/;
     // e.target.value is string, js comparator is absolute, so that engine converts to same data type (number)
@@ -82,7 +81,7 @@ function ProductDetail({ user, showLoginForm }) {
       } else {
         alert(`Place $${bidData.bidPrice} for product success`);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const handleAddToCart = async () => {
@@ -90,13 +89,14 @@ function ProductDetail({ user, showLoginForm }) {
       const res = await createCart(formData);
 
       if (res?.error) {
-        const { error: { data } } = res;
+        const {
+          error: { data },
+        } = res;
         alert(data.message);
       } else {
         window.location.reload();
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (
@@ -161,7 +161,7 @@ function ProductDetail({ user, showLoginForm }) {
                     <strong>
                       {productData?.product.priceHolder ? (
                         user &&
-                          user._id === productData?.product.priceHolder._id ? (
+                        user._id === productData?.product.priceHolder._id ? (
                           'You'
                         ) : (
                           <>
@@ -200,15 +200,17 @@ function ProductDetail({ user, showLoginForm }) {
                   </div>
                   {isFetchingProduct ? (
                     <></>
-                  ) : new Date(productData?.product.endTime).getTime() - Date.now() <= 0 ? (
+                  ) : new Date(productData?.product.endTime).getTime() -
+                      Date.now() <=
+                    0 ? (
                     user &&
-                      productData?.product.priceHolder?._id === user._id ? (
+                    productData?.product.priceHolder?._id === user._id ? (
                       <div style={{ marginTop: '8px' }}>
                         <SpecialBtn
                           className="product-bid__btn"
                           value={'Add to Cart'}
                           onClick={handleAddToCart}
-                        // isDisabled={}
+                          // isDisabled={}
                         />
                       </div>
                     ) : (

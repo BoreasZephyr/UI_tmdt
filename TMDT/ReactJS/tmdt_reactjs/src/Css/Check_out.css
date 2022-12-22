@@ -1,10 +1,12 @@
 .order-summary-container {
-  float: right;
+  --order-summary-container-width: 505px;
   border: 1px solid #333;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 20px;
   cursor: default;
+  width: var(--order-summary-container-width);
+  margin-left: calc(1200px - var(--order-summary-container-width));
 }
 .order-summary__heading {
 }

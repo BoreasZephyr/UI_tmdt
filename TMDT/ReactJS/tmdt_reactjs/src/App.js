@@ -19,6 +19,7 @@ import Cart from './Jsx/Cart';
 import SignIn from './Jsx/Sign_in';
 import Header from './Jsx/Header';
 import CheckOut from './Jsx/Check_out';
+import Footer from './Jsx/Footer';
 
 function App() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -34,77 +35,80 @@ function App() {
 
   return (
     <>
-      <Header showLoginForm={showLoginForm} user={user} />
-      <SignIn ref={layoutOverlay} hideLoginForm={hideLoginForm} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Search />} />
-        <Route
-          path="/cart"
-          element={user ? <Cart /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/products/:id"
-          element={<ProductDetail user={user} showLoginForm={showLoginForm} />}
-        />
-        <Route
-          path="/signup"
-          element={
-            !user ? (
-              <SignUp showLoginForm={showLoginForm} />
-            ) : (
-              <Navigate replace to="/" />
-            )
-          }
-        />
-        <Route
-          path="/navbar"
-          element={user ? <ProfileNavbar /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/profile"
-          element={user ? <Profile /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/change-password"
-          element={user ? <ChangePassWord /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/won-products"
-          element={user ? <WonProduct /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/user-score"
-          element={user ? <UserScore /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/my-products"
-          element={user ? <MyProduct /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/add-product"
-          element={
-            user ? (
-              <AddProduct showCheckoutForm={showLoginForm} />
-            ) : (
-              <Navigate replace to="/" />
-            )
-          }
-        />
-        <Route
-          path="/view-my-products"
-          element={user ? <ViewMyProduct /> : <Navigate replace to="/" />}
-        />
-        <Route
-          path="/my-products-item"
-          element={user ? <MyProductItem /> : <Navigate replace to="/" />}
-        />
-        <Route path="/search" element={<Search />} />
-        <Route
-          path="/check-out"
-          element={user ? <CheckOut /> : <Navigate replace to="/" />}
-        />
-      </Routes>
+      <div id="page-container">
+        <Header showLoginForm={showLoginForm} user={user} />
+        <div id="content-wrap">
+          <SignIn ref={layoutOverlay} hideLoginForm={hideLoginForm} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Search />} />
+            <Route
+              path="/cart"
+              element={user ? <Cart /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/products/:id"
+              element={
+                <ProductDetail user={user} showLoginForm={showLoginForm} />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                !user ? (
+                  <SignUp showLoginForm={showLoginForm} />
+                ) : (
+                  <Navigate replace to="/" />
+                )
+              }
+            />
+            <Route
+              path="/profile"
+              element={user ? <Profile /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/change-password"
+              element={user ? <ChangePassWord /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/won-products"
+              element={user ? <WonProduct /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/user-score"
+              element={user ? <UserScore /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/my-products"
+              element={user ? <MyProduct /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/add-product"
+              element={
+                user ? (
+                  <AddProduct showCheckoutForm={showLoginForm} />
+                ) : (
+                  <Navigate replace to="/" />
+                )
+              }
+            />
+            <Route
+              path="/view-my-products"
+              element={user ? <ViewMyProduct /> : <Navigate replace to="/" />}
+            />
+            <Route
+              path="/my-products-item"
+              element={user ? <MyProductItem /> : <Navigate replace to="/" />}
+            />
+            <Route path="/search" element={<Search />} />
+            <Route
+              path="/check-out"
+              element={user ? <CheckOut /> : <Navigate replace to="/" />}
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </>
   );
 }

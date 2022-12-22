@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -16,12 +16,13 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Top5 from './Top5';
-import { useEffect } from 'react';
 import { useGetCartQuery } from '../services/cartApis';
 
 function Cart() {
   const { data: carts, isFetching: isFetchingCarts } = useGetCartQuery();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <>
       <Header />

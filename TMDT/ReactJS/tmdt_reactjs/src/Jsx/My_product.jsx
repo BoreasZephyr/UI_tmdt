@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -20,10 +20,12 @@ import { useGetMyProductsQuery } from '../services/productApis';
 
 function MyProduct() {
   const { data: myProductsData, isFetching } = useGetMyProductsQuery();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <>
-      <ProfileNavbar />
+      <ProfileNavbar No="nav__link-6" />
       <div className="grid wide" style={{ position: 'relative' }}>
         <div className="row">
           <div className="column l-10 profile-main-content">

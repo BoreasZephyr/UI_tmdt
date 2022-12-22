@@ -44,6 +44,7 @@ header {
 .header-choice__btn {
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
 .header-choice__btn .header-choice__link {

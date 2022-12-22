@@ -1,4 +1,8 @@
 footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: var(--footer-height);
 }
 .logo-spkt {
   min-height: var(--footer-height);

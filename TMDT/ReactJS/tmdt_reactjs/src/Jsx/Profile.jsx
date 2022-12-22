@@ -11,7 +11,10 @@ import ProductItem from './Product_item';
 import ProfileNavbar from './Profile_navbar';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
-import { useGetProfileQuery, useUpdateProfileMutation } from '../services/authApis';
+import {
+  useGetProfileQuery,
+  useUpdateProfileMutation,
+} from '../services/authApis';
 
 function Profile() {
   const { data: profile, isFetching: isFetchingProfile } = useGetProfileQuery();
@@ -28,10 +31,9 @@ function Profile() {
         email: profile?.user.email,
         address: profile?.user.address,
         phoneNumber: profile?.user.phoneNumber,
-      })
+      });
     }
-
-  }, [!isFetchingProfile])
+  }, [!isFetchingProfile]);
 
   const firstNameInput = useRef(null);
   const lastNameInput = useRef(null);
@@ -46,8 +48,10 @@ function Profile() {
     const nameFormat = /^[a-zA-Z]*$/;
     const mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
-    if (!firstNameInput.current.value) alert('Please fill out your first name!');
-    else if (!lastNameInput.current.value) alert('Please fill out your last name!');
+    if (!firstNameInput.current.value)
+      alert('Please fill out your first name!');
+    else if (!lastNameInput.current.value)
+      alert('Please fill out your last name!');
     else if (
       !(
         firstNameInput.current.value.match(nameFormat) &&
@@ -68,26 +72,33 @@ function Profile() {
         const res = await updateProfile(formData);
 
         if (res?.error) {
-          const { error: { data } } = res;
+          const {
+            error: { data },
+          } = res;
           alert(data.message);
         } else {
           window.location.reload();
         }
-      } catch (error) {
-
-      }
+      } catch (error) {}
     }
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <>
-      <ProfileNavbar />
+      <ProfileNavbar No="nav__link-1" />
       <div className="grid wide">
         <div className="row">
           <div className="column l-10 profile-main-content">
             {/* Profile form */}
             <div className="profile__form-container js-profile__form-container">
-              <form action="submit" onSubmit={ValidateProfileForm} className="profile__form">
+              <form
+                action="submit"
+                onSubmit={ValidateProfileForm}
+                className="profile__form"
+              >
                 <div className="name__input-container">
                   <input
                     type="text"
@@ -97,7 +108,10 @@ function Profile() {
                     defaultValue={profile?.user.firstName}
                     ref={firstNameInput}
                     onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, firstName: e.target.value }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        firstName: e.target.value,
+                      }))
                     }
                   />
                   <input
@@ -108,7 +122,10 @@ function Profile() {
                     defaultValue={profile?.user.lastName}
                     ref={lastNameInput}
                     onChange={(e) => {
-                      setFormData((prev) => ({ ...prev, lastName: e.target.value }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        lastName: e.target.value,
+                      }));
                     }}
                   />
                 </div>
@@ -137,7 +154,10 @@ function Profile() {
                   defaultValue={profile?.user.address}
                   ref={addressInput}
                   onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, address: e.target.value }))
+                    setFormData((prev) => ({
+                      ...prev,
+                      address: e.target.value,
+                    }))
                   }
                 />
                 <div className="column l-12 input__heading phone-number__heading">
@@ -151,7 +171,10 @@ function Profile() {
                   defaultValue={profile?.user.phoneNumber}
                   ref={phoneNumberInput}
                   onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, phoneNumber: e.target.value }))
+                    setFormData((prev) => ({
+                      ...prev,
+                      phoneNumber: e.target.value,
+                    }))
                   }
                 />
                 <SpecialBtn
