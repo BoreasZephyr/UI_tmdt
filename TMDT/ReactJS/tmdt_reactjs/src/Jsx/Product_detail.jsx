@@ -73,9 +73,7 @@ function ProductDetail({ user, showLoginForm }) {
     } catch (error) {}
   };
 
-  const handleAddToCart = async () => {
-
-  };
+  const handleAddToCart = async () => {};
 
   return (
     <div>
@@ -176,38 +174,11 @@ function ProductDetail({ user, showLoginForm }) {
                       </span>
                     </div>
                   </div>
-                  <div className="product-bid">
-                    <input
-                      type="text"
-                      ref={bidInput}
-                      className="product-bid__input"
-                      placeholder="$0.00"
-                      onChange={handleBidChange}
-                      value={bidData.bidPrice ? bidData.bidPrice : ''}
-                    />
-                    <SpecialBtn
-                      className="product-bid__btn"
-                      value={
-                        !isFetchingProduct
-                          ? new Date(productData?.product.endTime).getTime() - Date.now() > 0
-                            ? 'Place bid'
-                            : 'Auction ended'
-                          : 'Loading'
-                      }
-                      onClick={!user ? showLoginForm : handleBidPrice}
-                      isDisabled={
-                        !isFetchingProduct &&
-                        new Date(productData?.product.endTime).getTime() - Date.now() > 0
-                          ? isLoading
-                          : true
-                      }
-                    />
-                    {/* <button class="btn primary-btn product-bid__btn">Place bid</button> */}
-                  </div>
-                  {
+                  {isFetchingProduct ? (
+                    <></>
+                  ) : new Date(productData?.product.endTime).getTime() - Date.now() <= 0 ? (
                     user &&
-                    productData?.product.priceHolder?._id === user._id &&
-                    new Date(productData?.product.endTime).getTime() - Date.now() <= 0 ? (
+                    productData?.product.priceHolder?._id === user._id ? (
                       <div style={{ marginTop: '8px' }}>
                         <SpecialBtn
                           className="product-bid__btn"
@@ -217,9 +188,27 @@ function ProductDetail({ user, showLoginForm }) {
                         />
                       </div>
                     ) : (
-                      <></>
+                      <div className="product-bid__heading">Auction Ended</div>
                     )
-                  }
+                  ) : (
+                    <div className="product-bid">
+                      <input
+                        type="text"
+                        ref={bidInput}
+                        className="product-bid__input"
+                        placeholder="$0.00"
+                        onChange={handleBidChange}
+                        value={bidData.bidPrice ? bidData.bidPrice : ''}
+                      />
+                      <SpecialBtn
+                        className="product-bid__btn"
+                        value={'Place bid'}
+                        onClick={!user ? showLoginForm : handleBidPrice}
+                        isDisabled={isLoading}
+                      />
+                      {/* <button class="btn primary-btn product-bid__btn">Place bid</button> */}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
