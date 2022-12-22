@@ -73,6 +73,10 @@ function ProductDetail({ user, showLoginForm }) {
     } catch (error) {}
   };
 
+  const handleAddToCart = async () => {
+
+  };
+
   return (
     <div>
       {/* Header */}
@@ -101,7 +105,7 @@ function ProductDetail({ user, showLoginForm }) {
                       style={{
                         backgroundImage: `url(${productData?.product?.subImage3?.url})`,
                       }}
-                    />                    
+                    />
                   </div>
                   <div
                     className="col l-9 product__img"
@@ -183,12 +187,39 @@ function ProductDetail({ user, showLoginForm }) {
                     />
                     <SpecialBtn
                       className="product-bid__btn"
-                      value="Place bid"
+                      value={
+                        !isFetchingProduct
+                          ? new Date(productData?.product.endTime).getTime() - Date.now() > 0
+                            ? 'Place bid'
+                            : 'Auction ended'
+                          : 'Loading'
+                      }
                       onClick={!user ? showLoginForm : handleBidPrice}
-                      isDisabled={isLoading}
+                      isDisabled={
+                        !isFetchingProduct &&
+                        new Date(productData?.product.endTime).getTime() - Date.now() > 0
+                          ? isLoading
+                          : true
+                      }
                     />
                     {/* <button class="btn primary-btn product-bid__btn">Place bid</button> */}
                   </div>
+                  {
+                    user &&
+                    productData?.product.priceHolder?._id === user._id &&
+                    new Date(productData?.product.endTime).getTime() - Date.now() <= 0 ? (
+                      <div style={{ marginTop: '8px' }}>
+                        <SpecialBtn
+                          className="product-bid__btn"
+                          value={'Add to Cart'}
+                          onClick={handleAddToCart}
+                          // isDisabled={}
+                        />
+                      </div>
+                    ) : (
+                      <></>
+                    )
+                  }
                 </div>
               </div>
             </div>
