@@ -56,6 +56,10 @@ const product = auction.injectEndpoints({
       }),
       invalidatesTags: ["Product"],
     }),
+    getMyProducts: builder.query({
+      query: () => 'products/by-user',
+      providesTags: ["Product"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -66,4 +70,5 @@ export const {
   useGetTop5ProductsQuery,
   useAddProductMutation,
   useBidProductMutation,
+  useGetMyProductsQuery,
 } = product;
