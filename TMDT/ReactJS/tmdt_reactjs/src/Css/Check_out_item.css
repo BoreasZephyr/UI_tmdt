@@ -1,0 +1,26 @@
+.check-out-item-container {
+  background: #d6d6d6;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 10px;
+  cursor: default;
+}
+.check-out-item__img {
+  padding-top: 68%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+.check-out-item-content {
+}
+.check-out-item__heading {
+  font-weight: 700;
+  font-size: 3rem;
+}
+.check-out-item-description {
+  font-size: 2rem;
+}
+.check-out-item-price {
+  color: var(--primary-color);
+  font-size: 2rem;
+}

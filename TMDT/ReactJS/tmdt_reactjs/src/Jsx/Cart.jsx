@@ -20,41 +20,42 @@ import { useEffect } from 'react';
 import { useGetCartQuery } from '../services/cartApis';
 
 function Cart() {
-    const { data: carts, isFetching: isFetchingCarts } = useGetCartQuery();
+  const { data: carts, isFetching: isFetchingCarts } = useGetCartQuery();
 
-    return (
-        <>
-            <Header />
-            <div className="grid wide">
-                <h1 className="cart__heading">Your cart</h1>
-                <div className="column l-5 cart-container">
-                    {!isFetchingCarts && carts.length ?
-                        (
-                            <>
-                                {carts.map((cart, i) => (
-                                    <div key={i} className='row'>
-                                        <CartItem
-                                            heading={cart.name}
-                                            price={cart.price}
-                                            imgURL={cart.image}
-                                        />
-                                        <SpecialBtn className="cart-payment__btn" value="Payment" />
-                                    </div>
-                                ))}
-                            </>
-                        ) : (
-                            <div className='row'>
-                                <CartItem
-                                    heading="Casio"
-                                    price="5000"
-                                    imgURL="https://randomwordgenerator.com/img/picture-generator/5ee3dc414954b10ff3d8992cc12c30771037dbf85254794e732f7ad7934e_640.jpg"
-                                />
-                                <SpecialBtn className="cart-payment__btn" value="Payment" />
-                            </div>
-                        )}
+  return (
+    <>
+      <Header />
+      <div className="grid wide">
+        <h1 className="cart__heading">Your cart</h1>
+        <div className="column l-5 cart-container">
+          {!isFetchingCarts && carts.length ? (
+            <>
+              {carts.map((cart, i) => (
+                <div key={i} className="row">
+                  <CartItem
+                    heading={cart.name}
+                    price={cart.price}
+                    imgURL={cart.image}
+                  />
+                  <SpecialBtn className="cart-payment__btn" value="Payment" />
                 </div>
+              ))}
+            </>
+          ) : (
+            <div className="row">
+              <CartItem
+                heading="Casio"
+                price="5000"
+                imgURL="https://randomwordgenerator.com/img/picture-generator/5ee3dc414954b10ff3d8992cc12c30771037dbf85254794e732f7ad7934e_640.jpg"
+              />
+              <Link to="/check-out">
+                <SpecialBtn className="cart-payment__btn" value="Payment" />
+              </Link>
             </div>
-        </>
-    );
+          )}
+        </div>
+      </div>
+    </>
+  );
 }
 export default Cart;

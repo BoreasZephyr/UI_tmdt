@@ -18,6 +18,7 @@ import AddProduct from './Jsx/Add_product';
 import Cart from './Jsx/Cart';
 import SignIn from './Jsx/Sign_in';
 import Header from './Jsx/Header';
+import CheckOut from './Jsx/Check_out';
 
 function App() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -99,6 +100,10 @@ function App() {
           element={user ? <MyProductItem /> : <Navigate replace to="/" />}
         />
         <Route path="/search" element={<Search />} />
+        <Route
+          path="/check-out"
+          element={user ? <CheckOut /> : <Navigate replace to="/" />}
+        />
       </Routes>
     </>
   );
