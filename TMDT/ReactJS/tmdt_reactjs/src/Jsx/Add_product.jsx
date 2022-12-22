@@ -89,8 +89,6 @@ function AddProduct({ showCheckoutForm }) {
       token,
     };
 
-    console.log(product);
-
     const res = await addProduct(product);
 
     if (res?.error) {

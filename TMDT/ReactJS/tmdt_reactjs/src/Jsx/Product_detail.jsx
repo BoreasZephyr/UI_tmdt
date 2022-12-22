@@ -16,11 +16,14 @@ import {
 import { useParams } from 'react-router-dom';
 import Countdown from 'react-countdown';
 import { Completionist } from './EndTime';
+import { useNewCartMutation } from '../services/cartApis';
 
 function ProductDetail({ user, showLoginForm }) {
   const { id } = useParams();
 
   const bidInput = useRef(null);
+
+  const [formData, setFormData] = useState()
 
   // apis call
   const { data: productData, isFetching: isFetchingProduct } =
@@ -31,17 +34,27 @@ function ProductDetail({ user, showLoginForm }) {
 
   const [bidProduct, { isLoading }] = useBidProductMutation();
 
+  const [createCart] = useNewCartMutation()
+
   // Bid formData, default is 0 (number)
   const [bidData, setBidData] = useState({
     bidPrice: 0,
   });
 
   useEffect(() => {
-    if (!isFetchingProduct)
+    if (!isFetchingProduct) {
       setBidData((prev) => ({
         ...prev,
         bidPrice: productData?.product.currentPrice + productData?.product.step,
       }));
+      setFormData({
+        name: productData?.product.name,
+        image: productData?.product.mainImage,
+        price: productData?.product.minPrice,
+        product: productData?.product,
+        user: JSON.parse(localStorage.getItem("user")),
+      })
+    }
   }, [productData, isFetchingProduct]);
 
   useEffect(() => {
@@ -58,7 +71,6 @@ function ProductDetail({ user, showLoginForm }) {
 
   const handleBidPrice = async () => {
     try {
-      console.log('bid run');
       const res = await bidProduct({ id, formData: bidData });
 
       // Check bid error
@@ -70,10 +82,22 @@ function ProductDetail({ user, showLoginForm }) {
       } else {
         alert(`Place $${bidData.bidPrice} for product success`);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
-  const handleAddToCart = async () => {};
+  const handleAddToCart = async () => {
+    try {
+      const res = await createCart(formData);
+
+      if (res?.error) {
+        const { error: { data } } = res;
+        alert(data.message);
+      } else {
+        window.location.reload();
+      }
+    } catch (error) {
+    }
+  };
 
   return (
     <div>
@@ -137,7 +161,7 @@ function ProductDetail({ user, showLoginForm }) {
                     <strong>
                       {productData?.product.priceHolder ? (
                         user &&
-                        user._id === productData?.product.priceHolder._id ? (
+                          user._id === productData?.product.priceHolder._id ? (
                           'You'
                         ) : (
                           <>
@@ -178,13 +202,13 @@ function ProductDetail({ user, showLoginForm }) {
                     <></>
                   ) : new Date(productData?.product.endTime).getTime() - Date.now() <= 0 ? (
                     user &&
-                    productData?.product.priceHolder?._id === user._id ? (
+                      productData?.product.priceHolder?._id === user._id ? (
                       <div style={{ marginTop: '8px' }}>
                         <SpecialBtn
                           className="product-bid__btn"
                           value={'Add to Cart'}
                           onClick={handleAddToCart}
-                          // isDisabled={}
+                        // isDisabled={}
                         />
                       </div>
                     ) : (
