@@ -165,36 +165,6 @@ function Home() {
         </div>
       </div>
       <div className="grid wide" style={{ paddingTop: '100px' }}>
-        {/* <Carousel responsive={{
-          desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3,
-          },
-          tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2,
-          },
-          mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-          },
-        }}
-          swipeable={false}
-          draggable={false}
-          showDots={true}
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={5000}
-          slidesToSlide={true}
-          centerMode={true}
-          arrows={false}
-          >
-          <img src='https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg'/>
-          <img src='https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg'/>
-          <img src='https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg'/>
-          <img src='https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg'/>
-          <img src='https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg'/>
-        </Carousel> */}
         {!isFetchingTop5Data && top5Data?.top5Products.length ? (
           <Carousel
             responsive={{
