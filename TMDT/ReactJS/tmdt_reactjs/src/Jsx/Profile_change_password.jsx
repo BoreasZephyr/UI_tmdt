@@ -79,6 +79,7 @@ function ChangePassWord() {
                   type="password"
                   name=""
                   className="column l-12 profile__input change-password__input change-old-password__input js-change-old-password__input"
+                  placeholder='Old password'
                 />
                 <div className="column l-12 input__heading change-password__heading">
                   Enter your new password
@@ -87,6 +88,7 @@ function ChangePassWord() {
                   type="password"
                   name=""
                   className="column l-12 profile__input change-password__input change-new-password__input js-change-new-password__input"
+                  placeholder='New password'
                 />
                 <div className="column l-12 input__heading change-password__heading">
                   Confirm your new password
@@ -95,6 +97,7 @@ function ChangePassWord() {
                   type="password"
                   name=""
                   className="column l-12 profile__input change-password__input change-confirm-password__input js-change-confirm-password__input"
+                  placeholder='Confirm password'
                 />
                 <SpecialBtn
                   className="profile__btn change-password__btn js-profile-save-changes__btn"
