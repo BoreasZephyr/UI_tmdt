@@ -42,10 +42,19 @@ function App() {
           path="/cart"
           element={user ? <Cart /> : <Navigate replace to="/" />}
         />
-        <Route path="/products/:id" element={<ProductDetail user={user} showLoginForm={showLoginForm} />} />
         <Route
-          path="/signup"  
-          element={!user ? <SignUp showLoginForm={showLoginForm} /> : <Navigate replace to="/" />}
+          path="/products/:id"
+          element={<ProductDetail user={user} showLoginForm={showLoginForm} />}
+        />
+        <Route
+          path="/signup"
+          element={
+            !user ? (
+              <SignUp showLoginForm={showLoginForm} />
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
         />
         <Route
           path="/navbar"
@@ -73,7 +82,13 @@ function App() {
         />
         <Route
           path="/add-product"
-          element={user ? <AddProduct showCheckoutForm={showLoginForm} /> : <Navigate replace to="/" />}
+          element={
+            user ? (
+              <AddProduct showCheckoutForm={showLoginForm} />
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
         />
         <Route
           path="/view-my-products"
@@ -83,10 +98,7 @@ function App() {
           path="/my-products-item"
           element={user ? <MyProductItem /> : <Navigate replace to="/" />}
         />
-        <Route
-          path="/search"
-          element={<Search />}
-        />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </>
   );

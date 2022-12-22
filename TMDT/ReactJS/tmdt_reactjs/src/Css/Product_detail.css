@@ -16,7 +16,7 @@
   border: 1px solid #707070;
   border-radius: 3px;
   margin-top: 5px;
-  cursor: pointer;
+  cursor: default;
   transition: transform linear 0.1s;
   will-change: transform;
 }
@@ -33,7 +33,7 @@
   background-size: cover;
   background-position: top center;
   border-radius: 3px;
-  cursor: pointer;
+  cursor: default;
 }
 .product-info {
 }
@@ -113,7 +113,7 @@
   font-size: 1.5rem;
 }
 .product-description__img {
-  cursor: pointer;
+  cursor: default;
   padding-top: 20%;
   background-repeat: no-repeat;
   background-size: contain;
