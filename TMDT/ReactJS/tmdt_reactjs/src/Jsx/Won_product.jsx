@@ -18,33 +18,37 @@ import { Link } from 'react-router-dom';
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css';
-import { useEffect } from 'react';
+import { useGetWonProductsQuery } from '../services/productApis';
 
 function WonProduct() {
+  const { data: wonProductsData, isFetching } = useGetWonProductsQuery();
+
   return (
     <>
       <ProfileNavbar />
       <div className="grid wide" style={{ position: 'relative' }}>
         <div className="row">
           <div className="column l-10 profile-main-content">
-            <WonProductItem
-              url="https://randomwordgenerator.com/img/picture-generator/55e1d6434c57aa14f1dc8460962e33791c3ad6e04e5074417c2f7dd59f4ac1_640.jpg"
-              className="my-product-item"
-              heading="Heading"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            />
-            <WonProductItem
-              url="https://randomwordgenerator.com/img/picture-generator/55e1dd43435bab14f1dc8460962e33791c3ad6e04e507441722872d6954bcd_640.jpg"
-              className="my-product-item"
-              heading="Something"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            />
-            <WonProductItem
-              url="https://randomwordgenerator.com/img/picture-generator/54e4d14b4f56ad14f1dc8460962e33791c3ad6e04e507440752f78d09548c4_640.jpg"
-              className="my-product-item"
-              heading="Heading gi do"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            />
+            {wonProductsData?.products.length ? (
+              wonProductsData?.products.map((product, i) => (
+                <WonProductItem
+                  key={i}
+                  url={product?.mainImage.url}
+                  className="my-product-item"
+                  heading={product?.name}
+                  description={product?.description}
+                  proId={product?._id}
+                />
+              ))
+            ) : (
+              <div className="grid wide">
+                <div className="row">
+                  <div className="column l-10 profile-main-content">
+                    <h1 className="user-score">You haven't won any products</h1>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
