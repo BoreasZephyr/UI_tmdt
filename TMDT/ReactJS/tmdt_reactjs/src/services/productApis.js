@@ -54,7 +54,6 @@ const product = auction.injectEndpoints({
         method: "POST",
         body: formData,
       }),
-      invalidatesTags: ["Product"],
     }),
     getMyProducts: builder.query({
       query: () => 'products/by-user',

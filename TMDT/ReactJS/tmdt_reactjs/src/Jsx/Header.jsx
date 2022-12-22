@@ -10,9 +10,11 @@ import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Header.css';
 import { Link, useNavigate } from 'react-router-dom';
-// import Profile from './Profile';
+import { useGetProfileQuery } from '../services/authApis';
 
 function Header({ showLoginForm, closeLoginForm, user }) {
+  const { data: profile, isFetching: isFetchingProfile } = useGetProfileQuery({skip: !user});
+
   const navigate = useNavigate();
 
   const [query, setQuery] = useState('');
@@ -162,7 +164,7 @@ function Header({ showLoginForm, closeLoginForm, user }) {
                           Hello!{' '}
                           <Link to="/profile">
                             <span className="header-user__link">
-                              {user.firstName}
+                              {profile?.user.firstName}
                             </span>
                           </Link>
                         </h3>

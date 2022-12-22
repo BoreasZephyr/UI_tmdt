@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -11,51 +11,75 @@ import ProductItem from './Product_item';
 import ProfileNavbar from './Profile_navbar';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
-
-// import { Carousel, CarouselItemProps } from 'react-bootstrap'
-import { useEffect } from 'react';
+import { useGetProfileQuery, useUpdateProfileMutation } from '../services/authApis';
 
 function Profile() {
-  useEffect(() => {
-    const firstNameInput = document.querySelector('.js-first-name__input');
-    const lastNameInput = document.querySelector('.js-last-name__input');
-    const profileEmailInput = document.querySelector(
-      '.js-profile-email__input'
-    );
-    const profileAddressInput = document.querySelector(
-      '.js-profile-address__input'
-    );
-    const profilePhoneNumberInput = document.querySelector(
-      '.js-profile-phone-number__input'
-    );
-    const profileSaveButton = document.querySelector(
-      '.js-profile-save-changes__btn'
-    );
-    function ValidateProfileForm() {
-      var phoneFormat = /^\d{10}$/;
-      var nameFormat = /^[a-zA-Z]*$/;
-      var mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+  const { data: profile, isFetching: isFetchingProfile } = useGetProfileQuery();
 
-      if (!firstNameInput.value) alert('Please fill out your first name!');
-      else if (!lastNameInput.value) alert('Please fill out your last name!');
-      else if (
-        !(
-          firstNameInput.value.match(nameFormat) &&
-          lastNameInput.value.match(nameFormat)
-        )
-      )
-        alert('You know name not written like that right?!');
-      else if (!profileEmailInput.value) alert('Please fill out your email!');
-      else if (!profileEmailInput.value.match(mailFormat))
-        alert('How on Earth email written like that?!');
-      else if (!profileAddressInput.value) alert('Are you homeless?');
-      else if (!profilePhoneNumberInput.value)
-        alert('How shipper gonna call you?');
-      else if (!profilePhoneNumberInput.value.match(phoneFormat))
-        alert('No one in Viet Name has phone number like that!');
+  const [updateProfile, { isLoading }] = useUpdateProfileMutation();
+
+  const [formData, setFormData] = useState();
+
+  useEffect(() => {
+    if (!isFetchingProfile) {
+      setFormData({
+        firstName: profile?.user.firstName,
+        lastName: profile?.user.lastName,
+        email: profile?.user.email,
+        address: profile?.user.address,
+        phoneNumber: profile?.user.phoneNumber,
+      })
     }
-    profileSaveButton.addEventListener('click', ValidateProfileForm);
-  });
+
+  }, [!isFetchingProfile])
+
+  const firstNameInput = useRef(null);
+  const lastNameInput = useRef(null);
+  const emailInput = useRef(null);
+  const addressInput = useRef(null);
+  const phoneNumberInput = useRef(null);
+
+  async function ValidateProfileForm(e) {
+    e.preventDefault();
+
+    const phoneFormat = /^\d{10}$/;
+    const nameFormat = /^[a-zA-Z]*$/;
+    const mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+    if (!firstNameInput.current.value) alert('Please fill out your first name!');
+    else if (!lastNameInput.current.value) alert('Please fill out your last name!');
+    else if (
+      !(
+        firstNameInput.current.value.match(nameFormat) &&
+        lastNameInput.current.value.match(nameFormat)
+      )
+    )
+      alert('You know name not written like that right?!');
+    else if (!emailInput.current.value) alert('Please fill out your email!');
+    else if (!emailInput.current.value.match(mailFormat))
+      alert('How on Earth email written like that?!');
+    else if (!addressInput.current.value) alert('Are you homeless?');
+    else if (!phoneNumberInput.current.value)
+      alert('How shipper gonna call you?');
+    else if (!phoneNumberInput.current.value.match(phoneFormat))
+      alert('No one in Viet Name has phone number like that!');
+    else {
+      try {
+        const res = await updateProfile(formData);
+
+        if (res?.error) {
+          const { error: { data } } = res;
+          alert(data.message);
+        } else {
+          localStorage.setItem('user', JSON.stringify(profile?.user));
+          window.location.reload();
+        }
+      } catch (error) {
+
+      }
+    }
+  }
+
   return (
     <>
       <ProfileNavbar />
@@ -64,19 +88,29 @@ function Profile() {
           <div className="column l-10 profile-main-content">
             {/* Profile form */}
             <div className="profile__form-container js-profile__form-container">
-              <form action="submit" className="profile__form">
+              <form action="submit" onSubmit={ValidateProfileForm} className="profile__form">
                 <div className="name__input-container">
                   <input
                     type="text"
                     name=""
                     className="column l-6 profile__input name__input first-name__input js-first-name__input"
                     placeholder="First name"
+                    defaultValue={profile?.user.firstName}
+                    ref={firstNameInput}
+                    onChange={(e) =>
+                      setFormData((prev) => ({ ...prev, firstName: e.target.value }))
+                    }
                   />
                   <input
                     type="text"
                     name=""
                     className="column l-6 profile__input name__input last-name__input js-last-name__input"
                     placeholder="Last name"
+                    defaultValue={profile?.user.lastName}
+                    ref={lastNameInput}
+                    onChange={(e) => {
+                      setFormData((prev) => ({ ...prev, lastName: e.target.value }))
+                    }}
                   />
                 </div>
                 <div className="column l-12 input__heading email__heading">
@@ -86,7 +120,12 @@ function Profile() {
                   type="email"
                   name=""
                   className="column l-12 profile__input email__input js-profile-email__input"
-                  placeholder="a123@gmail.com"
+                  placeholder="Enter your email"
+                  defaultValue={profile?.user.email}
+                  ref={emailInput}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, email: e.target.value }))
+                  }
                 />
                 <div className="column l-12 input__heading address__heading">
                   Enter your address
@@ -95,7 +134,12 @@ function Profile() {
                   type="text"
                   name=""
                   className="column l-12 profile__input address__input js-profile-address__input"
-                  placeholder="So 1 VVN, thanh pho Thu Duc, thanh pho Ho Chi Minh"
+                  placeholder="Enter your address"
+                  defaultValue={profile?.user.address}
+                  ref={addressInput}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, address: e.target.value }))
+                  }
                 />
                 <div className="column l-12 input__heading phone-number__heading">
                   Phone number
@@ -104,13 +148,20 @@ function Profile() {
                   type="tel"
                   name=""
                   className="column l-12 profile__input phone-number__input js-profile-phone-number__input"
-                  placeholder="0123456789"
+                  placeholder="Enter your phone number"
+                  defaultValue={profile?.user.phoneNumber}
+                  ref={phoneNumberInput}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, phoneNumber: e.target.value }))
+                  }
+                />
+                <SpecialBtn
+                  className="profile__btn js-profile-save-changes__btn"
+                  value="Save changes"
+                  type="submit"
+                  isDisabled={isLoading}
                 />
               </form>
-              <SpecialBtn
-                className="profile__btn js-profile-save-changes__btn"
-                value="Save changes"
-              />
             </div>
           </div>
         </div>
