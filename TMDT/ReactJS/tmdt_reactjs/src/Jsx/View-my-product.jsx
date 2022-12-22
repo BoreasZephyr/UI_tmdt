@@ -172,26 +172,6 @@ function ViewMyProduct() {
                           ></div>
                         </div>
                       </div>
-                      <div className="column l-4">
-                        <div className="update-product__img-container update-product-sub__img-container">
-                          <div
-                            className="column update-product__img update-product-sub__img js-update-product-sub__img2"
-                            style={{
-                              backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/54e9dd444e55aa14f1dc8460962e33791c3ad6e04e5074417d2d73d39f4ec1_640.jpg)`,
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                      <div className="column l-4">
-                        <div className="update-product__img-container update-product-sub__img-container">
-                          <div
-                            className="column update-product__img update-product-sub__img js-update-product-sub__img3"
-                            style={{
-                              backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/52e7d3464a52a414f1dc8460962e33791c3ad6e04e50744172297cd6944bc2_640.jpg)`,
-                            }}
-                          ></div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

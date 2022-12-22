@@ -17,11 +17,11 @@ import 'react-multi-carousel/lib/styles.css';
 import { useEffect } from 'react';
 import ProfileNavbar from './Profile_navbar';
 
-function MyProductItem(props) {
+function MyProductItem(props, key) {
   return (
-    <>
       <Link
-        to="/view-my-products"
+        key={key}
+        to={`/products/${props.proId}`}
         className="column l-12 my-product-item-container"
       >
         <div
@@ -38,7 +38,6 @@ function MyProductItem(props) {
           <SpecialBtn className="view-my-product-item__btn" value="View" />
         </div>
       </Link>
-    </>
   );
 }
 
