@@ -71,7 +71,6 @@ function Profile() {
           const { error: { data } } = res;
           alert(data.message);
         } else {
-          localStorage.setItem('user', JSON.stringify(profile?.user));
           window.location.reload();
         }
       } catch (error) {

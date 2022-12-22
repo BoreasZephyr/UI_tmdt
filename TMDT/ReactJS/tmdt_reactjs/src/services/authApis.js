@@ -20,7 +20,7 @@ const auth = auction.injectEndpoints({
     }),
     getProfile: builder.query({
       query: () => "/me",
-      providesTags: ["CurrentUser"],
+      providesTags: ["Profile"],
     }),
     updateProfile: builder.mutation({
       query: (formData) => ({
@@ -28,7 +28,15 @@ const auth = auction.injectEndpoints({
         method: "PUT",
         body: formData,
       }),
-      invalidatesTags: ["CurrentUser"],
+      invalidatesTags: ["Profile"],
+    }),
+    updatePassword: builder.mutation({
+      query: (formData) => ({
+        url: "/password/update",
+        method: "PUT",
+        body: formData,
+      }),
+      invalidatesTags: ["Profile"],
     }),
   }),
   overrideExisting: false,
@@ -39,4 +47,5 @@ export const {
   useRegisterMutation,
   useGetProfileQuery,
   useUpdateProfileMutation,
+  useUpdatePasswordMutation
 } = auth;
