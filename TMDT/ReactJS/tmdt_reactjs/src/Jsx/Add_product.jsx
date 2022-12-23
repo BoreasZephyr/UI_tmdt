@@ -13,10 +13,13 @@ import { Link } from 'react-router-dom';
 import PaymentForm from './PaymentStripe';
 
 import { useAddProductMutation } from '../services/productApis';
+import { useGetCategoriesQuery } from '../services/categoryApis';
 import StripeCheckout from 'react-stripe-checkout';
 
 function AddProduct({ showCheckoutForm }) {
   const layoutOverlay = useRef(null); // --> ref to "js-layout__overlay" div
+
+  const { data: catsData, isFetching: isFetchingCatsData } = useGetCategoriesQuery();
 
   function showCheckoutForm() {
     layoutOverlay.current.classList.add('show');
@@ -120,6 +123,7 @@ function AddProduct({ showCheckoutForm }) {
       !formData.endTime
     ) {
       alert('Please fill out all fields');
+      console.log(formData)
       return e.stopPropagation();
     }
   }
@@ -213,6 +217,16 @@ function AddProduct({ showCheckoutForm }) {
                                 }))
                               }
                             />
+                            <select
+                              className="add-product-category__input"
+                              onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
+                              defaultValue="" 
+                            >
+                              <option value="" disabled hidden>Category</option>
+                              {catsData?.categories.map((category, i) => (
+                                <option key={i} value={category?._id}>{category?.name}</option>
+                              ))}
+                            </select>
                           </div>
                         </div>
                         <div className="row">

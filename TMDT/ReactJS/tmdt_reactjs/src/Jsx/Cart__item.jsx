@@ -13,10 +13,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Top5 from './Top5';
-import { useEffect } from 'react';
 
 function CartItem(prop) {
   return (
