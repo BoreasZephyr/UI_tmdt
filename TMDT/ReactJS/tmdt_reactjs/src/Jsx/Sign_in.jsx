@@ -30,16 +30,16 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
       try {
         const res = await login(formData);
 
-        if(res?.error) {
-          const { error: { data } } = res;
+        if (res?.error) {
+          const {
+            error: { data },
+          } = res;
           alert(data.message);
         } else {
           localStorage.setItem('user', JSON.stringify(res?.data.user));
           window.location.reload();
         }
-      } catch(error) {
-
-      }
+      } catch (error) {}
     }
   }
 
@@ -48,7 +48,7 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
 
     loginEmailInput.current.value = null;
     loginPasswordInput.current.value = null;
-    setFormData(prev => ({ ...prev, email: '', password: '' }));
+    setFormData((prev) => ({ ...prev, email: '', password: '' }));
   }
 
   return (
@@ -64,7 +64,12 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
           <h1 className="login__header">Log in</h1>
           <h3 className="login-signup">
             New member?{' '}
-            <Link to="/signup" href="#" className="signup__link" onClick={closeAndReset}>
+            <Link
+              to="/signup"
+              href="#"
+              className="signup__link"
+              onClick={closeAndReset}
+            >
               <strong>Sign up here!</strong>
             </Link>
           </h3>
@@ -103,11 +108,11 @@ function Sign_in({ showLoginForm, hideLoginForm }, ref) {
           {/* <button className="column l-12 btn primary-btn log-in__btn js-login__btn-submit">
             Log In
           </button> */}
-          <div className="sign-up-google__heading">or sign up with</div>
+          {/* <div className="sign-up-google__heading">or sign up with</div>
           <button className="column l-6 btn sign-up-google__btn">
             <i className="fa-brands fa-google"></i>
             SIGN UP WITH GOOGLE
-          </button>
+          </button> */}
         </form>
       </div>
     </div>

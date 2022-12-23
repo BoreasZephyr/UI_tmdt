@@ -27,7 +27,7 @@ function SignUp({ showLoginForm }) {
 
   const [isDisabled, setIsDisabled] = useState(true);
 
-  // RTK mutation hook for registration 
+  // RTK mutation hook for registration
   const [register, { isLoading }] = useRegisterMutation();
 
   //   Sign up
@@ -58,31 +58,33 @@ function SignUp({ showLoginForm }) {
     } else if (!signUpConfirmPasswordInput.current.value) {
       alert('Please confirm your password!');
     } else if (
-      !(signUpConfirmPasswordInput.current.value === signUpPasswordInput.current.value)
+      !(
+        signUpConfirmPasswordInput.current.value ===
+        signUpPasswordInput.current.value
+      )
     ) {
       alert('How can you forget your password just 5 seconds ago?!');
     } else {
       try {
         const res = await register(formData);
 
-        if(res?.error) {
-          const { error: { data } } = res;
+        if (res?.error) {
+          const {
+            error: { data },
+          } = res;
           alert(data.message);
         } else {
           localStorage.setItem('user', JSON.stringify(res?.data.user));
           window.location.reload();
         }
-
-      } catch(error) {
-
-      }
+      } catch (error) {}
     }
   }
 
   function toggleSignUpBtn() {
-    setIsDisabled(prev => !prev);
+    setIsDisabled((prev) => !prev);
   }
-  
+
   return (
     <>
       {/* Sign up form */}
@@ -91,7 +93,11 @@ function SignUp({ showLoginForm }) {
           <h1 className="sign-up__header">Sign up</h1>
           <h3 className="sign-up-login">
             Already have a account?{' '}
-            <a href="#" className="login__link js-login__link" onClick={showLoginForm}>
+            <a
+              href="#"
+              className="login__link js-login__link"
+              onClick={showLoginForm}
+            >
               <strong>Log in here!</strong>
             </a>
           </h3>
@@ -102,7 +108,9 @@ function SignUp({ showLoginForm }) {
               className="column l-6 sign-up__input name__input first-name__input js-first-name__input"
               placeholder="First name"
               ref={firstNameInput}
-              onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, firstName: e.target.value }))
+              }
             />
             <input
               type="text"
@@ -110,7 +118,9 @@ function SignUp({ showLoginForm }) {
               className="column l-6 sign-up__input name__input last-name__input js-last-name__input"
               placeholder="Last name"
               ref={lastNameInput}
-              onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, lastName: e.target.value }))
+              }
             />
           </div>
           <div className="column l-12 input__heading email__heading">
@@ -122,7 +132,9 @@ function SignUp({ showLoginForm }) {
             className="column l-12 sign-up__input email__input js-sign-up-email__input"
             placeholder="a123@gmail.com"
             ref={signUpEmailInput}
-            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, email: e.target.value }))
+            }
           />
           <div className="column l-12 input__heading password__heading">
             Enter your password
@@ -132,7 +144,9 @@ function SignUp({ showLoginForm }) {
             name=""
             className="column l-12 sign-up__input password__input js-sign-up-password__input"
             ref={signUpPasswordInput}
-            onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, password: e.target.value }))
+            }
           />
           <div className="column l-12 input__heading confirm-password__heading">
             Confirm your password
@@ -168,11 +182,11 @@ function SignUp({ showLoginForm }) {
             type="submit"
             isDisabled={isDisabled}
           />
-          <div className="sign-up-google__heading">or sign up with</div>
+          {/* <div className="sign-up-google__heading">or sign up with</div>
           <button className="column l-6 btn sign-up-google__btn">
             <FontAwesomeIcon icon={faGoogle} />
             &nbsp; SIGN UP WITH GOOGLE
-          </button>
+          </button> */}
         </form>
       </div>
     </>
