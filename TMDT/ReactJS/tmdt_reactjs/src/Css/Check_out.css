@@ -33,6 +33,8 @@
   width: 100%;
   font-size: 2rem;
   text-align: center;
+  overflow: auto;
+  height: 200px;
 }
 .ship-container {
 }
