@@ -79,6 +79,10 @@ function Profile() {
       } catch (error) {}
     }
   }
+  function checkSpaceChar(e) {
+    e.target.value = e.target.value.replace(/\s/g, '');
+    return false;
+  }
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -104,12 +108,13 @@ function Profile() {
                     placeholder="First name"
                     defaultValue={profile?.user.firstName}
                     ref={firstNameInput}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((prev) => ({
                         ...prev,
                         firstName: e.target.value,
-                      }))
-                    }
+                      }));
+                      checkSpaceChar(e);
+                    }}
                   />
                   <input
                     type="text"
@@ -123,6 +128,7 @@ function Profile() {
                         ...prev,
                         lastName: e.target.value,
                       }));
+                      checkSpaceChar(e);
                     }}
                   />
                 </div>

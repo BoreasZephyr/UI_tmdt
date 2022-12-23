@@ -115,7 +115,7 @@ function SignUp({ showLoginForm }) {
               ref={firstNameInput}
               onChange={(e) => {
                 setFormData((prev) => ({ ...prev, firstName: e.target.value }));
-                e.target.value = e.target.value.replace(/\s/g, '');
+                checkSpaceChar(e);
               }}
             />
             <input
@@ -125,8 +125,8 @@ function SignUp({ showLoginForm }) {
               placeholder="Last name"
               ref={lastNameInput}
               onChange={(e) => {
-                setFormData((prev) => ({ ...prev, firstName: e.target.value }));
-                e.target.value = e.target.value.replace(/\s/g, '');
+                setFormData((prev) => ({ ...prev, lastName: e.target.value }));
+                checkSpaceChar(e);
               }}
             />
           </div>
