@@ -186,9 +186,11 @@ function Search() {
       {/* Product list */}
       <div className="grid wide">
         <div className="row">
-          {productsData?.products.map((product, i) => (
+          {productsData?.products.length ? productsData?.products.map((product, i) => (
             <ProductItem key={i} product={product} />
-          ))}
+          )) : (
+            <h1 className="no-products__heading">No products found</h1>
+          )}
         </div>
       </div>
       {!isFetching ? (

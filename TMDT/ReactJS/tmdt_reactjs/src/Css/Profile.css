@@ -102,3 +102,11 @@ button.btn.profile__btn.disabled {
   background-color: #ea4335;
   padding: 10px;
 }
+.non-products {
+  text-align: center;
+  font-size: 4rem;
+}
+.sad-icon {
+  text-align: center;
+  font-size: 12rem;
+}

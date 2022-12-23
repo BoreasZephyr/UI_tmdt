@@ -29,7 +29,7 @@ function MyProduct() {
       <div className="grid wide" style={{ position: 'relative', marginBottom: '64px' }}>
         <div className="row">
           <div className="column l-10 profile-main-content">
-            {myProductsData?.products.map((product, i) => (
+            {myProductsData?.products.length ? myProductsData?.products.map((product, i) => (
               <MyProductItem
                 key={i}
                 url={product?.mainImage.url}
@@ -38,7 +38,14 @@ function MyProduct() {
                 description={product?.description}
                 proId={product?._id}
               />
-            ))}
+            )) : (
+              <>
+                <h1 className="non-products">You haven't create any auction products</h1>
+                <h2 className="sad-icon">
+                  <i class="fa-solid fa-face-sad-tear"></i>
+                </h2>
+              </>  
+            )}
           </div>
         </div>
         <Link to="/add-product">
