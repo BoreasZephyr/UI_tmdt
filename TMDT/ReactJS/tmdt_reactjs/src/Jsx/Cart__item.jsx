@@ -13,10 +13,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Top5 from './Top5';
-import { useEffect } from 'react';
 
 function CartItem(prop) {
   return (
@@ -31,8 +28,14 @@ function CartItem(prop) {
           </div>
           <div className="column l-8 cart-content-container">
             <h3 className="cart-item__heading">{prop.heading}</h3>
-            <span className="cart-item-price">${prop.price}</span>
-            <div className="cart-item-time-left">Time left: 16:30:28</div>
+            <span className="cart-item-price">
+              {' '}
+              {Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(prop.price)}
+            </span>
+            <div className="cart-item-time-left">Ended</div>
           </div>
         </div>
       </div>

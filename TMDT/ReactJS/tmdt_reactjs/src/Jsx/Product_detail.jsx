@@ -94,7 +94,8 @@ function ProductDetail({ user, showLoginForm }) {
         } = res;
         alert(data.message);
       } else {
-        window.location.reload();
+        // window.location.reload();
+        alert('Add product to cart success');
       }
     } catch (error) {}
   };

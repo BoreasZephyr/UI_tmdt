@@ -43,13 +43,14 @@ function WonProduct() {
                 />
               ))
             ) : (
-              <div className="grid wide">
-                <div className="row">
-                  <div className="column l-10 profile-main-content">
-                    <h1 className="user-score">You haven't won any products</h1>
-                  </div>
-                </div>
-              </div>
+              <>
+                <h1 className="non-products">
+                  You haven't won any products
+                </h1>
+                <h2 className="sad-icon">
+                  <i class="fa-solid fa-face-sad-tear"></i>
+                </h2>
+              </>
             )}
           </div>
         </div>

@@ -18,6 +18,7 @@
 .cart-item__heading {
   font-size: 2.4rem;
   margin: 0;
+  color: black;
 }
 .cart-item-price {
   color: var(--primary-color);

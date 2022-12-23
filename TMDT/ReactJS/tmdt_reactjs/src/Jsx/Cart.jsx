@@ -10,7 +10,7 @@ import SpecialBtn from './Special_btn';
 import CartItem from './Cart__item';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // import { Carousel, CarouselItemProps } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel';
@@ -19,39 +19,35 @@ import Top5 from './Top5';
 import { useGetCartQuery } from '../services/cartApis';
 
 function Cart() {
-  const { data: carts, isFetching: isFetchingCarts } = useGetCartQuery();
+  const navigate = useNavigate();
+
+  const { data: cartsData, isFetching: isFetchingCarts } = useGetCartQuery();
   useEffect(() => {
     window.scrollTo(0, 0);
   });
   return (
     <>
-      <Header />
       <div className="grid wide">
         <h1 className="cart__heading">Your cart</h1>
         <div className="column l-5 cart-container">
-          {!isFetchingCarts && carts.length ? (
+          {!isFetchingCarts && cartsData?.carts.length ? (
             <>
-              {carts.map((cart, i) => (
-                <div key={i} className="row">
+              {cartsData?.carts.map((cart, i) => (
+                <Link to={`/products/${cart?.product}`} key={i} className="row mb-3">
                   <CartItem
                     heading={cart.name}
                     price={cart.price}
-                    imgURL={cart.image}
+                    imgURL={cart?.image.url}
                   />
-                  <SpecialBtn className="cart-payment__btn" value="Payment" />
-                </div>
+                </Link>
               ))}
-            </>
-          ) : (
-            <div className="row">
-              <CartItem
-                heading="Casio"
-                price="5000"
-                imgURL="https://randomwordgenerator.com/img/picture-generator/5ee3dc414954b10ff3d8992cc12c30771037dbf85254794e732f7ad7934e_640.jpg"
-              />
               <Link to="/check-out">
                 <SpecialBtn className="cart-payment__btn" value="Payment" />
               </Link>
+            </>
+          ) : (
+            <div className="row">
+              <h3 className="no-item">No items</h3>
             </div>
           )}
         </div>
