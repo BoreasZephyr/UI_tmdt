@@ -35,7 +35,7 @@ function SignUp({ showLoginForm }) {
   async function Validate(e) {
     e.preventDefault();
 
-    const nameFormat = /^[a-zA-Z]*$/;
+    const nameFormat = /^([^0-9]*)$/;
     const mailFormat = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     const passWordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/;
 
@@ -85,6 +85,10 @@ function SignUp({ showLoginForm }) {
   function toggleSignUpBtn() {
     setIsDisabled((prev) => !prev);
   }
+  function checkSpaceChar(e) {
+    e.target.value = e.target.value.replace(/\s/g, '');
+    return false;
+  }
 
   return (
     <>
@@ -109,9 +113,10 @@ function SignUp({ showLoginForm }) {
               className="column l-6 sign-up__input name__input first-name__input js-first-name__input"
               placeholder="First name"
               ref={firstNameInput}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, firstName: e.target.value }))
-              }
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, firstName: e.target.value }));
+                e.target.value = e.target.value.replace(/\s/g, '');
+              }}
             />
             <input
               type="text"
@@ -119,9 +124,10 @@ function SignUp({ showLoginForm }) {
               className="column l-6 sign-up__input name__input last-name__input js-last-name__input"
               placeholder="Last name"
               ref={lastNameInput}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, lastName: e.target.value }))
-              }
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, firstName: e.target.value }));
+                e.target.value = e.target.value.replace(/\s/g, '');
+              }}
             />
           </div>
           <div className="column l-12 input__heading email__heading">
