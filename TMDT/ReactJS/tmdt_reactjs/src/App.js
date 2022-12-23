@@ -102,7 +102,7 @@ function App() {
             />
             <Route path="/search" element={<Search />} />
             <Route
-              path="/check-out"
+              path="/check-out/:id"
               element={user ? <CheckOut /> : <Navigate replace to="/" />}
             />
           </Routes>

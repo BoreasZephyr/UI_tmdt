@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 
 import '../Css/Base.css';
 import '../Css/Grid.css';
@@ -9,28 +9,97 @@ import Header from './Header';
 import SpecialBtn from './Special_btn';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import CheckOutItem from './Check_out_item';
+import { useDeleteCartMutation, useGetCartByIdQuery } from '../services/cartApis';
+
+import StripeCheckout from 'react-stripe-checkout';
+import { useNewOrderMutation } from '../services/orderApis';
+
 function CheckOut() {
+  const { id } = useParams();
+
+  const { data: CartByIdData, isFetching: isFetchingCart } = useGetCartByIdQuery(id)
+  const [deleteCart] = useDeleteCartMutation(id);
+
+  const [createOrder] = useNewOrderMutation();
+
+  const [districts, setDistricts] = useState({
+    'District 1': 15,
+    'District 2': 9,
+    'District 3': 15,
+    'District 4': 16,
+    'District 5': 19,
+    'District 6': 21,
+    'District 7': 20,
+    'District 8': 26,
+    'District 9': 5,
+    'District 10': 18,
+    'District 11': 19,
+    'District 12': 14,
+    'Thu Duc city': 2,
+    'Tan Binh': 14,
+    'Binh Thanh': 9,
+    'Go Vap': 10,
+    'Phu Nhuan': 11,
+    'Tan Phu': 15,
+  });
+
+  const [district, setDistrict] = useState({ "Thu Duc city": 2 })
+
+  const shippingPrice = Object.values(district) * CartByIdData?.cart.price / 200;
+
+  const hanldeClickDistrict = (key, value) => {
+    const shipping = {}
+    shipping[key] = value
+    setDistrict(shipping)
+  }
+
+  async function onToken(token) {
+    const order = {
+      orderItems: [{
+        name: CartByIdData?.cart.name,
+        image: CartByIdData?.cart.image.url,
+        price: CartByIdData?.cart.price,
+        product: CartByIdData?.cart.product,
+      }],
+      shippingInfo: {
+        district: Object.keys(district)[0],
+        phoneNo: JSON.parse(localStorage.getItem('user')).phoneNumber
+      },
+      shippingPrice: shippingPrice,
+      totalPrice: shippingPrice + CartByIdData?.cart.price,
+      token,
+    };
+
+    const res = await createOrder(order);
+
+    if (res?.error) {
+      const {
+        error: { data },
+      } = res;
+      alert(data.message);
+    } else {
+      alert('Paid');
+      const deleteRes = await deleteCart(id);
+      window.location.pathname = "/"
+    }
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
+
   return (
     <>
       <div className="grid wide">
         <div className="row">
           <CheckOutItem
-            heading="Casio"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            price="500"
-            imgURL="https://randomwordgenerator.com/img/picture-generator/52e4dc424e54af14f1dc8460962e33791c3ad6e04e50744172277fd0964ec3_640.jpg"
-          />
-          <CheckOutItem
-            heading="Rô Léch"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            price="1500"
-            imgURL="https://randomwordgenerator.com/img/picture-generator/57e1d1434954aa14f1dc8460962e33791c3ad6e04e50744172297ed29348c6_640.jpg"
+            heading={CartByIdData?.cart.name}
+            description={CartByIdData?.cart.description}
+            price={CartByIdData?.cart.price}
+            imgURL={CartByIdData?.cart.image.url}
           />
         </div>
         <div className="row">
@@ -41,7 +110,7 @@ function CheckOut() {
                 <div className="row">
                   <h3 className="column l-10 sub-total__heading">Sub Total</h3>
                   <div className="column l-2 check-out-price sub-total-price">
-                    $550
+                    ${CartByIdData?.cart.price}
                   </div>
                 </div>
               </div>
@@ -54,44 +123,22 @@ function CheckOut() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  District
+                  {Object.keys(district)}
                 </a>
                 <ul
                   className="dropdown-menu ship__list"
                   aria-labelledby="dropdownMenuLink ship-container "
                 >
-                  <li>
-                    <a href="" className="dropdown-item ship__item">
-                      District 1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="dropdown-item ship__item">
-                      District 3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="dropdown-item ship__item">
-                      District 5
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" className="dropdown-item ship__item">
-                      Thu Duc city
-                    </a>
-                  </li>
-                  {/* {categoriesData?.categories.map((category, i) => (
-                <li key={i}>
-                  <a
-                    id={category?._id}
-                    ref={brandLi}
-                    className="dropdown-item ship__item"
-                    onClick={handleChangeCate}
+                  {Object.entries(districts).map(([key, value], i) =>
+                  (<li key={i}
                   >
-                    {category?.name}
-                  </a>
-                </li>
-              ))} */}
+                    <a className="dropdown-item ship__item"
+                      onClick={() => hanldeClickDistrict(key, value)}
+                    >
+                      {key}
+                    </a>
+                  </li>)
+                  )}
                 </ul>
               </div>
               <div className="column l-12 estimated-shipping-container">
@@ -100,7 +147,7 @@ function CheckOut() {
                     Estimated shipping
                   </h3>
                   <div className="column l-2 check-out-price estimated-shipping-price">
-                    $20
+                    ${shippingPrice}
                   </div>
                 </div>
               </div>
@@ -110,12 +157,21 @@ function CheckOut() {
                     Estimated total
                   </h3>
                   <div className="column l-2 check-out-price estimated-total-price">
-                    $570
+                    ${shippingPrice + CartByIdData?.cart.price}
                   </div>
                 </div>
               </div>
             </div>
-            <SpecialBtn className="check-out-now__btn" value="CHECK OUT NOW!" />
+            <StripeCheckout
+              amount={(shippingPrice + CartByIdData?.cart.price) * 100}
+              token={onToken}
+              currency="USD"
+              stripeKey="pk_test_51LhTmHDGOQhsYLL1AGMaaqbRNEB4CKIIou69IljUChMBjvkf1OQEa1SMjADKv3x9vs8Z1IOceHacX7LhfFX1ZvdU00lyYntqcX"
+            >
+              <SpecialBtn
+                className="check-out-now__btn"
+                value="CHECK OUT NOW!" />
+            </StripeCheckout>
           </div>
         </div>
       </div>

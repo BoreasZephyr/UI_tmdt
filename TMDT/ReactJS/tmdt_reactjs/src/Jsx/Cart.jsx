@@ -16,12 +16,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Top5 from './Top5';
-import { useGetCartQuery } from '../services/cartApis';
+import { useGetCartsQuery } from '../services/cartApis';
 
 function Cart() {
   const navigate = useNavigate();
 
-  const { data: cartsData, isFetching: isFetchingCarts } = useGetCartQuery();
+  const { data: cartsData, isFetching: isFetchingCarts } = useGetCartsQuery();
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -39,11 +39,15 @@ function Cart() {
                     price={cart.price}
                     imgURL={cart?.image.url}
                   />
+                  <Link to={`/check-out/${cart?._id}`} style={{
+                    display: "flex",
+                    justifyContent: "end",
+                    marginTop: "5px"
+                  }}>
+                    <SpecialBtn className="cart-payment__btn" value="Checkout" />
+                  </Link>
                 </Link>
               ))}
-              <Link to="/check-out">
-                <SpecialBtn className="cart-payment__btn" value="Payment" />
-              </Link>
             </>
           ) : (
             <div className="row">

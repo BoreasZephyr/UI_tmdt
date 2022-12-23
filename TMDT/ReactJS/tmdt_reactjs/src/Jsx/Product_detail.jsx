@@ -51,6 +51,7 @@ function ProductDetail({ user, showLoginForm }) {
         name: productData?.product.name,
         image: productData?.product.mainImage,
         price: productData?.product.minPrice,
+        description: productData?.product.description,
         product: productData?.product,
         user: JSON.parse(localStorage.getItem('user')),
       });
@@ -81,7 +82,7 @@ function ProductDetail({ user, showLoginForm }) {
       } else {
         alert(`Place $${bidData.bidPrice} for product success`);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleAddToCart = async () => {
@@ -97,7 +98,7 @@ function ProductDetail({ user, showLoginForm }) {
         // window.location.reload();
         alert('Add product to cart success');
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
@@ -162,7 +163,7 @@ function ProductDetail({ user, showLoginForm }) {
                     <strong>
                       {productData?.product.priceHolder ? (
                         user &&
-                        user._id === productData?.product.priceHolder._id ? (
+                          user._id === productData?.product.priceHolder._id ? (
                           'You'
                         ) : (
                           <>
@@ -202,16 +203,16 @@ function ProductDetail({ user, showLoginForm }) {
                   {isFetchingProduct ? (
                     <></>
                   ) : new Date(productData?.product.endTime).getTime() -
-                      Date.now() <=
+                    Date.now() <=
                     0 ? (
                     user &&
-                    productData?.product.priceHolder?._id === user._id ? (
+                      productData?.product.priceHolder?._id === user._id ? (
                       <div style={{ marginTop: '8px' }}>
                         <SpecialBtn
                           className="product-bid__btn"
                           value={'Add to Cart'}
                           onClick={handleAddToCart}
-                          // isDisabled={}
+                        // isDisabled={}
                         />
                       </div>
                     ) : (
