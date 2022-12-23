@@ -30,7 +30,7 @@
 .product__img {
   padding-top: 70%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: top center;
   border-radius: 3px;
   cursor: default;

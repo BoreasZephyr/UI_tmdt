@@ -93,7 +93,7 @@ function Search() {
   // Change page handle
   const handlePageClick = (e) => {
     setPage(e.selected + 1);
-  }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -186,9 +186,11 @@ function Search() {
       {/* Product list */}
       <div className="grid wide">
         <div className="row">
-          {productsData?.products.length ? productsData?.products.map((product, i) => (
-            <ProductItem key={i} product={product} />
-          )) : (
+          {productsData?.products.length ? (
+            productsData?.products.map((product, i) => (
+              <ProductItem key={i} product={product} />
+            ))
+          ) : (
             <h1 className="no-products__heading">No products found</h1>
           )}
         </div>
@@ -200,7 +202,9 @@ function Search() {
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            pageCount={Math.ceil(productsData?.filteredProductsCount / productsData?.resPerPage)}
+            pageCount={Math.ceil(
+              productsData?.filteredProductsCount / productsData?.resPerPage
+            )}
             previousLabel="<"
             pageClassName="page-item"
             pageLinkClassName="page-link"
@@ -221,7 +225,7 @@ function Search() {
         <></>
       )}
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

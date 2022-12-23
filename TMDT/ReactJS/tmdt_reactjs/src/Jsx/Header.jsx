@@ -13,7 +13,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useGetProfileQuery } from '../services/authApis';
 
 function Header({ showLoginForm, closeLoginForm, user }) {
-  const { data: profile, isFetching: isFetchingProfile } = useGetProfileQuery({skip: !user});
+  const { data: profile, isFetching: isFetchingProfile } = useGetProfileQuery({
+    skip: !user,
+  });
 
   const navigate = useNavigate();
 
@@ -21,20 +23,20 @@ function Header({ showLoginForm, closeLoginForm, user }) {
 
   const handleChangeQuery = (e) => {
     setQuery(e.target.value);
-  }
+  };
 
   const handleSearch = () => {
-    if(query) {
+    if (query) {
       navigate(`/search?keyword=${query}`);
       setQuery('');
     }
-  }
+  };
 
   const handleKeyDown = (e) => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
       handleSearch();
     }
-  }
+  };
 
   return (
     <div>
@@ -179,9 +181,9 @@ function Header({ showLoginForm, closeLoginForm, user }) {
                       <a href="#" className="header-user-order__btn">
                         Orders
                       </a>
-                      <a href="#" className="header-user-order__btn">
+                      {/* <a href="#" className="header-user-order__btn">
                         Saved products
-                      </a>
+                      </a> */}
                     </div>
                   ) : (
                     <></>

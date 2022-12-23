@@ -24,6 +24,7 @@ function SignUp({ showLoginForm }) {
   const signUpPasswordInput = useRef(null);
   const signUpConfirmPasswordInput = useRef(null);
   const privacyCheckBox = useRef(null);
+  const signUpBtn = useRef(null);
 
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -180,6 +181,7 @@ function SignUp({ showLoginForm }) {
             className="sign-up-btn js-sign-up__btn"
             value="Sign Up"
             type="submit"
+            ref={signUpBtn}
             isDisabled={isDisabled}
           />
           {/* <div className="sign-up-google__heading">or sign up with</div>

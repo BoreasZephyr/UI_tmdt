@@ -81,7 +81,7 @@ button.btn.sign-up-btn {
   font-size: 25px;
   border-radius: 7px;
 }
-button.btn.sign-up-btn.disabled {
+button.btn.sign-up-btn:disabled {
   cursor: default;
   background-color: grey;
 }

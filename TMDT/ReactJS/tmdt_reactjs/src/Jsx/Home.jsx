@@ -103,7 +103,7 @@ function Home() {
 
                 <div
                   style={{
-                    backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/57e6d3404f56af14f1dc8460962e33791c3ad6e04e507440762a7cd49e45c4_640.jpg)`,
+                    backgroundImage: `url(https://res.cloudinary.com/doancnpm/image/upload/v1671647703/products/x6zpudbc6gjc5xlcnlys.jpg)`,
                   }}
                   className="d-block w-100 column l-4 slider-content slider-content-right slider-content__img"
                   alt="..."
@@ -123,13 +123,14 @@ function Home() {
                     <SpecialBtn
                       className="slider__btn"
                       value="Start exploring"
+                      onClick={() => navigate('/products')}
                     />
                   </div>
                 </div>
 
                 <div
                   style={{
-                    backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/55e6d7424250b10ff3d8992cc12c30771037dbf85257714d742d7dd0924a_640.jpg)`,
+                    backgroundImage: `url(https://res.cloudinary.com/doancnpm/image/upload/v1671647815/products/zdvvxpkimtkplmghooqc.jpg)`,
                   }}
                   className="d-block w-100 column l-4 slider-content slider-content-right slider-content__img"
                   alt="..."
@@ -149,12 +150,13 @@ function Home() {
                     <SpecialBtn
                       className="slider__btn"
                       value="Start exploring"
+                      onClick={() => navigate('/products')}
                     />
                   </div>
                 </div>
                 <div
                   style={{
-                    backgroundImage: `url(https://randomwordgenerator.com/img/picture-generator/53e8d3424257b10ff3d8992cc12c30771037dbf85254794e702673dd9e4b_640.jpg)`,
+                    backgroundImage: `url(https://res.cloudinary.com/doancnpm/image/upload/v1671647995/products/fwdcd5dovr762rsjsrss.jpg)`,
                   }}
                   className="d-block w-100 column l-4 slider-content slider-content-right slider-content__img"
                   alt="..."
@@ -204,7 +206,7 @@ function Home() {
       </div>
       <div className="grid wide">
         <div className="row">
-          <div className="product-container">
+          <div id="product-container" className="product-container">
             <div className="product-item__header">
               <div className="column l-10 product-item__header-left">
                 <h3 className="product__heading">Live auction</h3>
@@ -214,7 +216,10 @@ function Home() {
                   We want to be a part of your smile, success and future growth.
                 </p>
               </div>
-              <div className="product-item__header-right" onClick={() => navigate('/products')}>
+              <div
+                className="product-item__header-right"
+                onClick={() => navigate('/products')}
+              >
                 <SpecialBtn
                   className="product-item__header-btn"
                   value="View all"
@@ -231,8 +236,7 @@ function Home() {
           ))}
         </div>
       </div>
-      <Footer />
-    </div >
+    </div>
   );
 }
 export default Home;

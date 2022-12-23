@@ -277,8 +277,6 @@ function ProductDetail({ user, showLoginForm }) {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

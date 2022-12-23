@@ -17,6 +17,7 @@ function Footer() {
     const backToTopBtn = document.querySelector('.js-back-to-top');
     function BackToTop() {
       window.scrollTo(0, 0);
+      console.log('click');
     }
     backToTopBtn.addEventListener('click', BackToTop);
   });

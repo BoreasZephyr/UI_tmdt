@@ -2,7 +2,7 @@
   height: 50rem;
 }
 
-.item{
+.item {
   /* padding: 0 5rem; */
 }
 
@@ -13,11 +13,11 @@
 }
 
 .btn_top5 {
-  background-color: grey
+  background-color: grey;
 }
 
 .btn_top5-active {
-  background-color: black
+  background-color: black;
 }
 
 .home__slider {
@@ -65,7 +65,8 @@ button.slider__btn {
   min-height: 400px;
   max-width: 350px;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center right;
 }
 
 .carousel-item {
