@@ -4,10 +4,7 @@ import '../Css/Base.css';
 import '../Css/Grid.css';
 import '../Css/Main.css';
 import '../Css/Profile.css';
-import Header from './Header';
-import Footer from './Footer';
 import SpecialBtn from './Special_btn';
-import ProductItem from './Product_item';
 import ProfileNavbar from './Profile_navbar';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
@@ -82,6 +79,10 @@ function Profile() {
       } catch (error) {}
     }
   }
+  function checkSpaceChar(e) {
+    e.target.value = e.target.value.replace(/\s/g, '');
+    return false;
+  }
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -107,12 +108,13 @@ function Profile() {
                     placeholder="First name"
                     defaultValue={profile?.user.firstName}
                     ref={firstNameInput}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((prev) => ({
                         ...prev,
                         firstName: e.target.value,
-                      }))
-                    }
+                      }));
+                      checkSpaceChar(e);
+                    }}
                   />
                   <input
                     type="text"
@@ -126,6 +128,7 @@ function Profile() {
                         ...prev,
                         lastName: e.target.value,
                       }));
+                      checkSpaceChar(e);
                     }}
                   />
                 </div>
@@ -138,6 +141,7 @@ function Profile() {
                   className="column l-12 profile__input email__input js-profile-email__input"
                   placeholder="Enter your email"
                   defaultValue={profile?.user.email}
+                  disabled
                   ref={emailInput}
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, email: e.target.value }))
