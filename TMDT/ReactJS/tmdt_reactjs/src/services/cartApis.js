@@ -10,6 +10,7 @@ const auth = auction.injectEndpoints({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: ["Cart"],
     }),
     getCart: builder.query({
       query: () => "/carts",

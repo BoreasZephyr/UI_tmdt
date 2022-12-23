@@ -18,7 +18,6 @@ function CheckOut() {
   });
   return (
     <>
-      <Header />
       <div className="grid wide">
         <div className="row">
           <CheckOutItem

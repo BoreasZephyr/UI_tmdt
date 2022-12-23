@@ -26,7 +26,7 @@ function MyProduct() {
   return (
     <>
       <ProfileNavbar No="nav__link-6" />
-      <div className="grid wide" style={{ position: 'relative' }}>
+      <div className="grid wide" style={{ position: 'relative', marginBottom: '64px' }}>
         <div className="row">
           <div className="column l-10 profile-main-content">
             {myProductsData?.products.map((product, i) => (
