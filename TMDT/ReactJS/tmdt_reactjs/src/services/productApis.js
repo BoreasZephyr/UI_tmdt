@@ -26,7 +26,7 @@ const product = auction.injectEndpoints({
 
         if (category) baseProductApi = `${baseProductApi}&category=${category}`;
 
-        if (sortEnd) baseProductApi = `${baseProductApi}&sort=${sortEnd}`;
+        if (sortEnd) baseProductApi = `${baseProductApi}&endTime[gte]=${Date.now()}&sort=${sortEnd}`;
 
         return baseProductApi;
       },
