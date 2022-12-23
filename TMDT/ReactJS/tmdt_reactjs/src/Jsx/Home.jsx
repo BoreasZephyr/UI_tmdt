@@ -118,7 +118,7 @@ function Home() {
                       Classic series
                     </h2>
                     <h2 className="column l-12 slider-content__header slider-content__header-2">
-                      Time with perfection. You choosse
+                      Time with perfection. You choose
                     </h2>
                     <SpecialBtn
                       className="slider__btn"
@@ -145,7 +145,7 @@ function Home() {
                       Classic series
                     </h2>
                     <h2 className="column l-12 slider-content__header slider-content__header-2">
-                      Time with perfection. You choossse
+                      Time with perfection. You choose
                     </h2>
                     <SpecialBtn
                       className="slider__btn"
